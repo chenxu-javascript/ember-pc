@@ -1,0 +1,41 @@
+.user-sign-dropdown {
+  padding: 0;
+  &:after {
+    top: -17px;
+    right: 30px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #6eaed8;
+    border-width: 10px;
+    margin-left: -10px;
+  }
+  .user-sign-header {
+    padding: 5px 0;
+    background-color: #6eaed8;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+  }
+  .box-tools {
+    .user-sign-gaincoin {
+      font-size: 12px;
+      position: absolute;
+      color: #9cc7e4;
+      left: -140px;
+      top: 3px;
+    }
+    .btn-link {
+      color: white;
+      opacity: 0.5;
+      padding-top: 0;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

@@ -4,8 +4,12 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     babel: {
-      optional: ['es7.decorators'],
-      includePolyfill: true
+      optional: ['es7.decorators']
+    },
+    'ember-bootstrap': {
+      'bootstrapVersion': 3,
+      'importBootstrapFont': true,
+      'importBootstrapCSS': false
     }
   });
 
@@ -23,5 +27,9 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
   app.import('vendor/bootstrap/dist/css/bootstrap.min.css');
   app.import('vendor/bootstrap/dist/js/bootstrap.min.js');
+  app.import('vendor/AdminLTE/dist/css/AdminLTE.min.css');
+  app.import('vendor/AdminLTE/dist/css/skins/skin-red.css');
+  app.import('vendor/AdminLTE/dist/js/app.min.js');
+  app.import('vendor/lodash/lodash.min.js');
   return app.toTree();
 };

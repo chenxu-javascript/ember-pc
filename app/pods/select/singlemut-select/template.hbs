@@ -1,0 +1,12 @@
+{{#power-select
+  selected=destination
+  options=cities
+  onchange=(action (mut destination))
+  as |name|
+}}
+  {{name}}
+{{/power-select}}
+
+
+<button type="button" name="button" {{action 'add'}}>我的数据add</button>
+  {{select/mulite-select onadd=onadd}}

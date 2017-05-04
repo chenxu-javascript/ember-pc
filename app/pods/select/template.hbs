@@ -1,0 +1,27 @@
+
+<div class="form-group">
+  <label for="exampleInputName6" class="label-left">创建人：</label>
+  {{select/single-select}}
+</div>
+
+<br>
+<div class="form-group">
+  <label for="exampleInputName7" class="label-left">创建人：</label>
+  {{select/singlemut-select  onadd=(action 'add')}}
+</div>
+
+<br>
+<div class="form-group">
+  <label for="exampleInputName8" class="label-left">创建人ree：</label>
+</div>
+{{#each aaa as |item index|}}
+  <div class="">
+    <span>{{index}} {{item.a}}</span>
+    <button type="button" name="button" {{action 'up' aaa index }}class="btn btn-sm btn-flat btn-info">上移</button>
+  </div>
+{{/each}}
+
+<button type="button" name="button" {{action 'adds' }}>addd</button>
+{{#link-to 'yield'}}
+  toselect
+{{/link-to}}

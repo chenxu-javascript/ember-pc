@@ -1,9 +1,9 @@
 <div class="wrapper">
   {{main-content/content-header model=model}}
-  {{main-content/content-sidebar}}
+  {{!-- {{main-content/content-sidebar}} --}}
   {{#main-content/content-wrapper}}
-    {{outlet}}
+    {{liquid-outlet}}
   {{/main-content/content-wrapper}}
-  {{main-content/content-footer}}
-  {{main-content/content-control}}
+  {{!-- {{main-content/content-footer}}
+  {{main-content/content-control}} --}}
 </div>

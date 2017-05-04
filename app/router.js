@@ -8,6 +8,8 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('yield');
+  this.route('select');
+  this.route('liquidfire');
 });
 
 export default Router;

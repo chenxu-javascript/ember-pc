@@ -29,6 +29,7 @@ module.exports = function(defaults) {
   app.import('vendor/bootstrap/dist/js/bootstrap.min.js');
   app.import('vendor/AdminLTE/dist/css/AdminLTE.min.css');
   app.import('vendor/AdminLTE/dist/css/skins/skin-red.css');
+  app.import('vendor/AdminLTE/dist/css/skins/skin-blue.css');
   app.import('vendor/AdminLTE/dist/js/app.min.js');
   app.import('vendor/lodash/lodash.min.js');
   return app.toTree();

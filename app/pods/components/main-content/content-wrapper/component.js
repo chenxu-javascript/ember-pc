@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNames: ['content-wrapper'],
+  classNames: ['content-wrapper  padding20'],
   didInsertElement() {
     var self = this;
     self.resizeElement();

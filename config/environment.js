@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'chenxu',
     podModulePrefix: 'chenxu/pods',
     environment: environment,
-    rootURL: '/',
+    baseURL: '/',
     locationType: 'hash',
     contentSecurityPolicyHeader: 'Disabled-Content-Security-Policy',
     EmberENV: {

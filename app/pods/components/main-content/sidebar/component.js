@@ -13,7 +13,7 @@ export default Ember.Component.extend({
   },
   @computed('appRoute.router.url')
   routeUrl() {
-    return this.get('appRoute.router.url').replace(/\?.*/, '');
+    // return this.get('appRoute.router.url').replace(/\?.*/, '');
   },
   @observes('appRoute.router.url')
   urlChanged() {
@@ -30,35 +30,35 @@ export default Ember.Component.extend({
   },
   @observes('routeUrl')
   initSidebarByRoute() {
-    let that = this;
-    let $navItems = this.$('li', '.sidebar');
-    $navItems.removeClass('active');
-    let links = this.$('a', '.sidebar');
-    let currentUrl = that.get('routeUrl');
-    let flag = false;
-    links.each((index, element) => {
-      let url = $(element).attr('href') || '';
-      url = url.replace('#', '');
-      if (currentUrl == url) {
-        flag = true;
-      }
-      let routeArray = currentUrl.split('/');
-      if (currentUrl.indexOf('index') !== -1) {
-        routeArray.pop();
-        if (routeArray.join('/') == url) {
-          flag = true;
-        }
-      } else {
-        routeArray.push('index');
-        if (routeArray.join('/') == url) {
-          flag = true;
-        }
-      }
-      if (flag) {
-        that.activeCurrent(element);
-        return false;
-      }
-    });
+    // let that = this;
+    // let $navItems = this.$('li', '.sidebar');
+    // $navItems.removeClass('active');
+    // let links = this.$('a', '.sidebar');
+    // let currentUrl = that.get('routeUrl');
+    // let flag = false;
+    // links.each((index, element) => {
+    //   let url = $(element).attr('href') || '';
+    //   url = url.replace('#', '');
+    //   if (currentUrl == url) {
+    //     flag = true;
+    //   }
+    //   let routeArray = currentUrl.split('/');
+    //   if (currentUrl.indexOf('index') !== -1) {
+    //     routeArray.pop();
+    //     if (routeArray.join('/') == url) {
+    //       flag = true;
+    //     }
+    //   } else {
+    //     routeArray.push('index');
+    //     if (routeArray.join('/') == url) {
+    //       flag = true;
+    //     }
+    //   }
+    //   if (flag) {
+    //     that.activeCurrent(element);
+    //     return false;
+    //   }
+    // });
   },
   initRouter() {
     let _name = this.get('appRoute.controller.currentRouteName');

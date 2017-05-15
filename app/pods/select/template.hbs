@@ -7,7 +7,7 @@
 <br>
 <div class="form-group">
   <label for="exampleInputName7" class="label-left">创建人：</label>
-  {{select/singlemut-select  onadd=(action 'add')}}
+  {{select/singlemut-select}}
 </div>
 
 <br>
@@ -25,3 +25,6 @@
 {{#link-to 'yield'}}
   toselect
 {{/link-to}}
+
+{{yield-blog/post post=model}}
+{{log model}}

@@ -10,6 +10,10 @@ Router.map(function() {
   this.route('yield');
   this.route('select');
   this.route('liquidfire');
+  this.route('ember');
+  this.route('emberfn', { path: '/emberfn' }, function() {
+    this.route('embera', { path: '/embera' });
+  });
 });
 
 export default Router;

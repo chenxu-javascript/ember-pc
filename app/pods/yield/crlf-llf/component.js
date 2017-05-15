@@ -4,6 +4,13 @@ const { run: { later }} = Ember;
 export default Ember.Component.extend({
   didInsertElement() {
     this._super(...arguments);
+    this.gettimes();
+    let time = setInterval(() => {
+      this.gettimes();
+    }, 1000);
+    this.set('time', time);
+  },
+  gettimes() {
     let myDate = new Date();
     let hour = myDate.getHours();
     let getMinutes = myDate.getMinutes();
@@ -11,17 +18,10 @@ export default Ember.Component.extend({
     this.set('seconds', getSeconds);
     this.set('minutes', getMinutes);
     this.set('hour', hour);
-    this.times();
   },
-  times() {
-    setInterval(() => {
-      let myDate = new Date();
-      let hour = myDate.getHours();
-      let getMinutes = myDate.getMinutes();
-      let getSeconds = myDate.getSeconds();
-      this.set('seconds', getSeconds);
-      this.set('minutes', getMinutes);
-      this.set('hour', hour);
-    }, 1000);
+  willDestroyElement() {
+    this._super(...arguments);
+    let time = this.get('time');
+    window.clearTimeout(time);
   }
 });

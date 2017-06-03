@@ -14,6 +14,10 @@ var UserSignComponent = Ember.Component.extend({
     });
   },
   actions: {
+    fn() {
+      let count = this.get('childClickCount') + 1;
+
+    },
     userSign() {
       $(document).trigger('click:guide', true);
       if (!this.get('signDetail')) {

@@ -3,13 +3,11 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   name: [{ a: 1 }, { a: 2 }, { a: 3 }, { a: 4 }, { a: 5 }],
   model: { 'a': 1 },
-  @computed('name.[]', 'name', 'name.@each')
+  ismyshow: "aa",
   aaa() {
-    console.log(111111);
     return this.get('name');
   },
   swapItems(arr, index1, index2) {
-    console.log(arr);
     let  newarr = [];
     arr[index1] = arr.splice(index2, 1, arr[index1])[0];
     newarr = _.cloneDeep(arr);
@@ -43,7 +41,6 @@ export default Ember.Component.extend({
       // ]);
     },
     add() {
-      console.log(11111);
     }
   }
 });

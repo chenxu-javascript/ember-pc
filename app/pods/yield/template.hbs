@@ -1,5 +1,12 @@
-{{yield/yield-dialog }}
+{{yield/yield-dialog childClickCount =(mut  totalClicks)}}
+{{totalClicks}}
 {{yield/crlf-llf }}
+{{#yield/yield-yield as |im|}}
+{{set this 'im' im}}
+{{im.inputname placeholder="我是查维斯2"}}
+ 我是测试数据
+{{/yield/yield-yield}}
 {{#link-to 'select'}}
   toselect
 {{/link-to}}
+<button type="button" name="button" class="btn btn-info" {{action 'save' }}>保存</button>

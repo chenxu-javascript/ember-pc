@@ -1,0 +1,37 @@
+<div class="service flex">
+  <div class="service-line-name quyue-line-name">
+    <div class="">
+      <span class="line-name">{{data.name}}</span>
+    </div>
+  </div>
+  {{#each data.teams as |item index|}}
+    <div class="service-line-content  flex">
+      <div class="service_item flex-column w100p">
+        <header class="service_item_header flex-all-center">
+            <div class="service_item_item text-center lineheight20">
+              <div class="service_center_name f14 edit-text text-ellipsis ">{{item.team_name}}</div>
+              <div class="service_center_mgr f14 edit-text text-ellipsis ">{{item.leader.name}}</div>
+            </div>
+        </header>
+        <ul class="structures">
+          <div class="flex service_center_list_li mt10">
+            {{#each item.childrens as |items index|}}
+                  {{team/header-content
+                    data=items
+                    service_center_id=items.team_id
+                    team_id=items.team_id
+                    service_center_items=items.childrens
+                    service_center_mgr=items.leader.name
+                    service_center_name=items.team_name
+                    parent_team_id=items.parent_team_id
+                    group_type=items.group_type
+                    group_id=items.group_id
+                    user_id=items.leader.uid
+                  }}
+            {{/each}}
+          </div>
+        </ul>
+      </div>
+    </div>
+  {{/each}}
+</div>

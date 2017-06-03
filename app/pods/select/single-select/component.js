@@ -9,6 +9,9 @@ export default Ember.Component.extend({
       this.set('destination', city);
       // this.calculateRoute();
       // this.updatePrice();
+    },
+    changeaa() {
+      this.set('isshow', this.get('isshow')+'1');
     }
   }
 });

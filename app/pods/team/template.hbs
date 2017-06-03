@@ -1,0 +1,12 @@
+<div class="content-right">
+  <div class="">
+    {{#each model as |item index|}}
+       {{#if (is-eq index 1)}}
+        {{team/area-line data=item}}
+       {{/if}}
+    {{/each}}
+  </div>
+  <div class="mt20">
+    {{team/team-leader}}
+  </div>
+</div>

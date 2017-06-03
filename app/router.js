@@ -11,6 +11,8 @@ Router.map(function() {
   this.route('select');
   this.route('liquidfire');
   this.route('ember');
+  this.route('team');
+  this.route('img');
   this.route('emberfn', { path: '/emberfn' }, function() {
     this.route('embera', { path: '/embera' });
   });

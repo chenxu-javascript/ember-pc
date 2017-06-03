@@ -1,0 +1,21 @@
+<div class="service flex">
+     <div class="service-line-name banwei-line-name">
+       <div class="service-line-name-banwei">
+         <span class="line-name">班委</span>
+       </div>
+     </div>
+     <div class="service-line-content flex">
+       {{#each teamleader as |item|}}
+          <div class="ancestors">
+            <div>
+              <div class="f16">
+                {{item.jobname}}
+              </div>
+              <div class="f16">
+                {{item.name}}
+              </div>
+            </div>
+          </div>
+       {{/each}}
+     </div>
+</div>

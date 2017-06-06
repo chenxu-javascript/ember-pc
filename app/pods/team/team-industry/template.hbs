@@ -1,0 +1,45 @@
+<div class="service flex">
+  <div class="service-line-name industry-line-name">
+    <div class="">
+      <span class="line-name">{{data.name}}</span>
+    </div>
+  </div>
+  <div class="service-line-content   industry">
+    <div class="flex">
+      {{#each industry as |item index|}}
+        {{team/header-content
+          data=item
+          service_center_id=item.team_id
+          team_id=item.team_id
+          service_center_items=item.childrens
+          service_center_mgr=item.leader.name
+          service_center_name=item.team_name
+          parent_team_id=item.parent_team_id
+          group_type=item.group_type
+          group_id=item.group_id
+          user_id=item.leader.uid
+        }}
+      {{/each}}
+    </div>
+    <div class="support flex-column">
+      {{#each support as |item index|}}
+      <div class="flex-column mt10">
+        <header class="service_item_header flex-all-center h50">
+            <div class="service_item_item text-center">
+              <div class="service_center_name f14 edit-text text-ellipsis opacity6">{{if item.team_name item.team_name ''}}</div>
+              <div class="service_center_mgr f14 edit-text text-ellipsis opacity6 h20">{{if item.leader.name item.leader.name ''}}</div>
+            </div>
+        </header>
+        <ul class="flex mt5 support_item">
+          {{#each item.childrens as |items index|}}
+             <li class="service_center_item text-center  service_item_list flex-all-center h50">
+                 <div class="service_subItem_name edit-text f14 opacity6">{{if items.team_name items.team_name ""}}</div>
+                 <div class="service_subItem_mgr edit-text f14 opacity6 h20">{{if items.leader.name items.leader.name ""}}</div>
+             </li>
+          {{/each}}
+        </ul>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>

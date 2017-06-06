@@ -8,8 +8,17 @@ export default Ember.Route.extend({
       });
     });
   },
+  requestlistone() {
+    return new Ember.RSVP.Promise(function(resolve) {
+      Ember.$.getJSON('data/team.json').then(function(data) {
+        resolve(data.data.teams);
+      });
+    });
+  },
   model() {
-    let list = this.requestlist();
-    return list;
+    return Ember.RSVP.hash({
+      list: this.requestlist(),
+      data: this.requestlistone()
+    });
   }
 });

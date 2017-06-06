@@ -1,10 +1,20 @@
-<div class="content-right">
+<div class="content-right content-flex">
   <div class="">
-    {{#each model as |item index|}}
+    {{#each model.data as |item index|}}
+       {{#if (is-eq index 0)}}
+          {{team/team-industry data=item}}
+       {{/if}}
+    {{/each}}
+  </div>
+  <div class="mt20">
+    {{#each model.list as |item index|}}
        {{#if (is-eq index 1)}}
         {{team/area-line data=item}}
        {{/if}}
     {{/each}}
+  </div>
+  <div class="mt20">
+    {{team/team-other data=modelline}}
   </div>
   <div class="mt20">
     {{team/team-leader}}

@@ -2,10 +2,10 @@
     <header class="{{if isChild '' 'service_center_header'}}">
       {{#unless isChild}}
         <div class="service_item_item">
-          <div class="service_center_name f14 edit-text {{isfirefox}}" title={{service_center_name}}>
+          <div class="service_center_name f14 text-ellipsis  {{isfirefox}}" title={{service_center_name}}>
             {{service_center_name}}
           </div>
-          <div class="service_center_mgr f14 edit-text text-ellipsis">
+          <div class="service_center_mgr f14  text-ellipsis">
             {{service_center_mgr}}
           </div>
         </div>
@@ -16,8 +16,8 @@
       {{#each centerItems as |item index|}}
       <li class="service_center_item" >
         <div class="service_center_up">
-          <div class="service_subItem_name edit-text">{{item.team_name}}</div>
-          <div class="service_subItem_mgr edit-text">{{item.leader.name}}</div>
+          <div class="service_subItem_name f14 text-ellipsis">{{item.team_name}}</div>
+          <div class="service_subItem_mgr f14 text-ellipsis">{{item.leader.name}}</div>
         </div>
       </li>
       {{/each}}

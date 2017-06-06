@@ -6,12 +6,12 @@
      </div>
      <div class="service-line-content flex">
        {{#each teamleader as |item|}}
-          <div class="ancestors">
+          <div class="ancestors banwei-ancestors opacity8" {{action 'openuser' item.team_id }}>
             <div>
-              <div class="f16">
+              <div class="f16 jobname">
                 {{item.jobname}}
               </div>
-              <div class="f16">
+              <div class="f16 jobname">
                 {{item.name}}
               </div>
             </div>

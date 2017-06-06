@@ -1,0 +1,21 @@
+<div class="others">
+{{#each data as |item|}}
+  <div class="service flex other-content">
+       <div class="service-line-name other-line-name">
+         <div class="service-line-name-other">
+           <span class="line-name">{{item.name}}</span>
+         </div>
+       </div>
+       <div class="service-line-content flex">
+         {{#each item.teams as |items|}}
+            <div class="ancestor-other">
+              <div class="service_item_item">
+                <div class="service_subItem_name edit-text">{{items.team_name}}</div>
+                <div class="service_subItem_mgr edit-text">{{if items.leader.name items.leader.name ""}}</div>
+              </div>
+            </div>
+         {{/each}}
+       </div>
+  </div>
+{{/each}}
+</div>

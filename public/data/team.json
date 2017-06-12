@@ -1305,25 +1305,7 @@
         "block_id": 1,
         "parent_grouip_id": 1,
         "group_leaders": "2999,6226,10025,11545",
-        "childrens": [{
-          "team_id": 867,
-          "team_name": "高端业务取经团",
-          "logo": "https://dn-zbj-boss.qbox.me/@/default/2016-11-29/583cd9c9b6353.jpg",
-          "leader": {
-            "uid": 7282,
-            "name": "李冲b",
-            "userface": null,
-            "nickname": "披头星",
-            "uname": "披头星/李冲b",
-            "canlogin": true
-          },
-          "group_type": 2,
-          "group_id": 2225,
-          "parent_team_id": 38,
-          "block_id": 1,
-          "parent_grouip_id": 485,
-          "group_leaders": ""
-        }]
+        "childrens": []
       }, {
         "team_id": 260,
         "team_name": "八戒科技服务事业群",
@@ -1947,43 +1929,7 @@
         "parent_grouip_id": 1,
         "group_leaders": "9999,8682,4701,12008",
         "is_color": 1,
-        "childrens": [{
-          "team_id": 313,
-          "team_name": "综合取经团",
-          "logo": "https://dn-zbj-boss.qbox.me/@/default/2016-11-29/583cd9c9b6353.jpg",
-          "leader": {
-            "uid": 9560,
-            "name": "彭琳",
-            "userface": null,
-            "nickname": "琳琅",
-            "uname": "琳琅/彭琳",
-            "canlogin": true
-          },
-          "group_type": 2,
-          "group_id": 1094,
-          "parent_team_id": 293,
-          "block_id": 1,
-          "parent_grouip_id": 1027,
-          "group_leaders": ""
-        }, {
-          "team_id": 550,
-          "team_name": "公装业务取经团",
-          "logo": "https://dn-zbj-boss.qbox.me/@/default/2016-11-29/583cd9c9b6353.jpg",
-          "leader": {
-            "uid": 4701,
-            "name": "费世娟",
-            "userface": null,
-            "nickname": "绯红",
-            "uname": "绯红/费世娟",
-            "canlogin": true
-          },
-          "group_type": 2,
-          "group_id": 1549,
-          "parent_team_id": 293,
-          "block_id": 1,
-          "parent_grouip_id": 1027,
-          "group_leaders": ""
-        }]
+        "childrens": []
       }, {
         "team_id": 434,
         "team_name": "创业服务事业群",

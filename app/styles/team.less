@@ -15,6 +15,33 @@
     margin-bottom: 0;
   }
   .service {
+    .support{
+      .service_item_header{
+        border: 1px solid @industry-color;
+        background-color: @industry-color;
+        color: #fff;
+        .service_item_item{
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+      .support_item{
+        .service_center_item{
+          flex: 1 1 100%;
+          padding: 5px 0;
+          border: 1px solid @industry-color;
+          color: @industry-color;
+          background-color: @industry-bgcolor;
+          &:not(:last-child) {
+            margin-right: 4px;
+          }
+        }
+      }
+    }
+
     .service-line-name {
       display: flex;
       width: 80px;

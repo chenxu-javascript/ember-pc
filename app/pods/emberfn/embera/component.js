@@ -5,11 +5,10 @@ export default Ember.Component.extend({
   classNames: ['pagination'],
 
   init() {
-    debugger
     this._super(...arguments);
     if (!this.get('content')) {
       this.set('content', Ember.A());
     }
-    console.log(this.get('content'));
+  //  console.log(this.get('content'));
   }
 });

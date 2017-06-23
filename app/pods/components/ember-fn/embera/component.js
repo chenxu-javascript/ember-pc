@@ -17,10 +17,10 @@ export default Ember.Component.extend({
     Ember.cacheFor(this.get('obj'), 'a');
     this.deepcopy();
     Ember.run.next(() => {
-      console.log('我是next');
+    //  console.log('我是next');
     }, 100);
     Ember.run.later(() => {
-      console.log('我是later');
+    //  console.log('我是later');
     }, 100);
   },
   deepcopy() {

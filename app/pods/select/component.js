@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   name: [{ a: 1 }, { a: 2 }, { a: 3 }, { a: 4 }, { a: 5 }],
   model: { 'a': 1 },
-  ismyshow: "aa",
+  ismyshow: 'aa',
   aaa() {
     return this.get('name');
   },

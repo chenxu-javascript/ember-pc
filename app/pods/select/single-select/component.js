@@ -11,7 +11,8 @@ export default Ember.Component.extend({
       // this.updatePrice();
     },
     changeaa() {
-      this.set('isshow', this.get('isshow')+'1');
-    }
+      let aa = this.get('isshow').aa;
+      this.set('isshow.aa', aa+'1');
+    },
   }
 });

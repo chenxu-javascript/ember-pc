@@ -1,11 +1,11 @@
 
 <div class="form-group">
-  <label for="exampleInputName6" class="label-left">创建a人：{{ismyshow}}</label>
+  <label for="exampleInputName6" class="label-left">创建a人：{{ismyshow.aa}}</label>
   {{select/single-select   isshow=(unbound ismyshow)}}
 </div>
 
 <br>
-<div class="form-group">
+{{!-- <div class="form-group">
   <label for="exampleInputName7" class="label-left">创建人：</label>
   {{select/singlemut-select}}
 </div>
@@ -21,10 +21,9 @@
   </div>
 {{/each}}
 
-<button type="button" name="button" {{action 'adds' }}>addd</button>
+<button type="button" name="button" {{action 'adds' }}>addd</button> --}}
 {{#link-to 'yield'}}
   toselect
 {{/link-to}}
 
 {{yield-blog/post post=model}}
-{{log model}}

@@ -6,7 +6,7 @@ export default Ember.Component.extend({
   classNames: 'w160 inlineblock',
   actions: {
     add() {
-      console.log(this.attrs);
+    //  console.log(this.attrs);
       this.attrs.onadd();
     }
   }

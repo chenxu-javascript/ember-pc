@@ -15,7 +15,7 @@
     "test": "ember test"
   },
   "devDependencies": {
-    "babel-eslint": "^6.1.2",
+    "babel-eslint": "^7.2.3",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^2.4.1",
     "ember-cli": "2.12.1",
@@ -27,7 +27,6 @@
     "ember-cli-htmlbars-inline-precompile": "^0.3.6",
     "ember-cli-inject-live-reload": "^1.4.1",
     "ember-cli-less": "^1.5.3",
-    "ember-cli-mirage": "^0.3.3",
     "ember-cli-qunit": "^3.1.0",
     "ember-cli-shims": "^1.0.2",
     "ember-cli-sri": "^2.1.0",
@@ -50,6 +49,5 @@
   },
   "private": true,
   "dependencies": {
-    "npm": "^5.0.3"
   }
 }

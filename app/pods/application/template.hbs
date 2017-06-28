@@ -1,9 +1,6 @@
-<div class="wrapper">
-  {{main-content/header}}
-  {{main-content/sidebar}}
-  {{#main-content/wrapper}}
-    {{outlet}}
-  {{/main-content/wrapper}}
-  {{!-- {{main-content/footer}} --}}
-  {{main-content/control}}
-</div>
+{{main-content/header}}
+{{main-content/sidebar}}
+{{#main-content/wrapper}}
+  {{liquid-outlet}}
+{{/main-content/wrapper}}
+{{main-content/control}}

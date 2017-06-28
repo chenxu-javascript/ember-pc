@@ -19,7 +19,9 @@
     {{content-for "head-footer"}}
   </head>
   <body class="hold-transition skin-red sidebar-mini">
-    {{content-for "body"}}
+    <div class="wrapper">
+      {{content-for "body"}}
+    </div>
 
     <script src="{{rootURL}}assets/vendor.js"></script>
     <script src="{{rootURL}}assets/chenxu.js"></script>

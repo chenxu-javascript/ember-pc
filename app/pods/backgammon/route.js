@@ -2,6 +2,15 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model() {
-    // body
-  },
+    return [{
+      'body': 'body',
+      'title': 'title'
+    }, {
+      'body': 'body',
+      'title': 'title'
+    }, {
+      'body': 'body',
+      'title': 'title'
+    }];
+  }
 });

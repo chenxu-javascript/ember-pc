@@ -13,6 +13,7 @@ Router.map(function() {
   this.route('ember');
   this.route('team');
   this.route('img');
+  this.route('backgammon');
   this.route('emberfn', { path: '/emberfn' }, function() {
     this.route('embera', { path: '/embera' });
   });

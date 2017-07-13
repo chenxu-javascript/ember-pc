@@ -17,7 +17,6 @@ export default Ember.Component.extend({
 
   didRender() {
     this._super(...arguments);
-    debugger
     this.$('.item-list').scrollTop(this.$('.selected-item').position.top);
   }
 });

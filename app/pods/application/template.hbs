@@ -1,6 +1,11 @@
-{{main-content/header}}
-{{main-content/sidebar}}
-{{#main-content/wrapper}}
-  {{liquid-outlet}}
-{{/main-content/wrapper}}
-{{main-content/control}}
+<div class="animatedx fadeInx">
+  <div class="meny-contents">
+    {{main-content/header}}
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+      {{main-content/sidebar}}
+      <aside class="right-side">
+        {{outlet "main"}}
+      </aside>
+    </div>
+  </div>
+</div>

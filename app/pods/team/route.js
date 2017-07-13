@@ -18,7 +18,7 @@ export default Ember.Route.extend({
   model() {
     return Ember.RSVP.hash({
       list: this.requestlist(),
-      data: this.requestlistone()
+  //    data: this.requestlistone()
     });
   }
 });

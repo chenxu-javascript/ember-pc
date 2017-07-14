@@ -1,22 +1,29 @@
-<div class="content-right content-flex  padding20">
-  <div class="">
-    {{#each model.data as |item index|}}
-       {{#if (is-eq index 0)}}
-          {{team/team-industry data=item}}
-       {{/if}}
-    {{/each}}
-  </div>
-  <div class="mt20">
-    {{#each model.list as |item index|}}
-       {{#if (is-eq index 1)}}
-        {{team/area-line data=item}}
-       {{/if}}
-    {{/each}}
-  </div>
-  <div class="mt20">
-    {{team/team-other data=modelline}}
-  </div>
-  <div class="mt20">
-    {{team/team-leader}}
+<div class="content">
+  <div class="box box-solid">
+    <div class="content-right content-flex  padding20">
+      <h4 class="text-center">
+        <a class="color-primary f24" href="#">猪八戒网总公司</a>
+      </h4>
+      <div class="mt15">
+        {{#each model.data as |item index|}}
+           {{#if (is-eq index 0)}}
+              {{team/team-industry data=item}}
+           {{/if}}
+        {{/each}}
+      </div>
+      <div class="mt20">
+        {{#each model.list as |item index|}}
+           {{#if (is-eq index 1)}}
+            {{team/area-line data=item}}
+           {{/if}}
+        {{/each}}
+      </div>
+      <div class="mt20">
+        {{team/team-other data=modelline}}
+      </div>
+      <div class="mt20">
+        {{team/team-leader}}
+      </div>
+    </div>
   </div>
 </div>

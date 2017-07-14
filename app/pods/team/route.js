@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  activate() {
+    // The logger property is injected into all routes
+    this.get('logger').log('Entered the index route!');
+  },
   requestlist() {
     return new Ember.RSVP.Promise(function(resolve) {
       Ember.$.getJSON('data/sojson.json').then(function(data) {
@@ -18,7 +22,7 @@ export default Ember.Route.extend({
   model() {
     return Ember.RSVP.hash({
       list: this.requestlist(),
-  //    data: this.requestlistone()
+      data: this.requestlistone()
     });
   }
 });

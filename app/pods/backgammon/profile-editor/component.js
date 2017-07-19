@@ -3,7 +3,6 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   init() {
     this._super(...arguments);
-    console.log(1);
     this.errors = [];
   },
   er: [
@@ -11,15 +10,12 @@ export default Ember.Component.extend({
   ],
   didUpdateAttrs() {
     this._super(...arguments);
-    console.log(2);
     this.set('errors', []);
   },
 
   didInsertElement() {
-    console.log('didInsertElement1');
   },
   didRender() {
-    console.log('render');
   },
   actions: {
     eraction() {

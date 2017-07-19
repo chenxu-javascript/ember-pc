@@ -27,10 +27,10 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
   app.import('vendor/bootstrap/dist/css/bootstrap.min.css');
   app.import('vendor/bootstrap/dist/js/bootstrap.min.js');
-  app.import('vendor/AdminLTE/dist/css/AdminLTE.min.css');
-  app.import('vendor/AdminLTE/dist/css/skins/skin-red.css');
-  app.import('vendor/AdminLTE/dist/css/skins/skin-blue.css');
-  app.import('vendor/AdminLTE/dist/js/app.min.js');
+  app.import('vendor/AdminLTE/css/AdminLTE.min.css');
+  app.import('vendor/AdminLTE/css/skins/skin-red.css');
+  app.import('vendor/AdminLTE/css/skins/skin-blue.css');
+  app.import('vendor/AdminLTE/js/app.min.js');
   app.import('vendor/lodash/lodash.min.js');
   return app.toTree();
 };

@@ -20,8 +20,6 @@ export default Ember.Route.extend({
     });
   },
   async model() {
-    let list = await this.requestlist();
-    debugger
     return Ember.RSVP.hash({
       list: this.requestlist(),
       data: this.requestlistone()

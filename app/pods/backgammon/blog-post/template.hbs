@@ -1,9 +1,0 @@
-{{!-- <h2>{{title}}</h2>
-<div class="body">{{yield (hash body=(component editStyle postData=postData))}}</div> --}}
-{{#if hasBlock}}
-  {{yield post.title post.body post.author}}
-{{else}}
-  <h1>{{post.title}}</h1>
-  <p class="author">Authored by {{post.author}}</p>
-  <p>{{post.body}}</p>
-{{/if}}

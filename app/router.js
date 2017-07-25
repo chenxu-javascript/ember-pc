@@ -9,6 +9,7 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('yield');
   this.route('powerselect');
+  this.route('injectsevers');
   this.route('select');
   this.route('liquidfire');
   this.route('ember');

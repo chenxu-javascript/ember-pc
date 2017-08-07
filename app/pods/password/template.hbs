@@ -1,0 +1,4 @@
+{{password/form-control name="password" type="text" label="原密码(必填)" placeholder="请输入原密码" changeset=changeset }}
+=={{changeset.password}}==
+<button type="button" name="button" {{action 'btn'}}>提交</button>
+{{password/form-control childClickCount=totalClicks click-count-change=(action (mut totalClicks)) }}

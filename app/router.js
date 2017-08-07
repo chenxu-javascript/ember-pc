@@ -12,6 +12,7 @@ Router.map(function() {
   this.route('injectsevers');
   this.route('select');
   this.route('team');
+  this.route('password');
 });
 
 export default Router;

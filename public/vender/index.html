@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: black;
+            background: linear-gradient(to bottom, #dcdcdc 0%, palevioletred 100%);
+        }
+        #main-canvas {
+            width: 100%;
+            height: 100%;
+        }
+        .filter {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #fe5757;
+            animation: colorChange 30s ease-in-out infinite;
+            animation-fill-mode: both;
+            mix-blend-mode: overlay;
+        }
+        @keyframes colorChange {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: .7;
+            }
+        }
+    </style>
+
+</head>
+<body>
+<canvas id="canvas"></canvas>
+
+<script src="canvas.js"></script>
+<script type="text/javascript">
+	    var CanvasStares = new CanvasStar();
+    	CanvasStares.init();
+</script>
+</body>
+</html>

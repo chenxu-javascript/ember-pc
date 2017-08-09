@@ -33,5 +33,6 @@ module.exports = function(defaults) {
   app.import('vendor/AdminLTE/js/jquery.slimscroll.js');
   app.import('vendor/AdminLTE/js/app.js');
   app.import('vendor/lodash/lodash.min.js');
+  app.import('vendor/pods.js');
   return app.toTree();
 };

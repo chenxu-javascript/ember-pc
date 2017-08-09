@@ -101,7 +101,8 @@
       "$": false,
       "_": false,
       "moment": false,
-      "var2": false
+      "var2": false,
+      "CanvasStar": false
   },
   "env": {
       "es6": true,

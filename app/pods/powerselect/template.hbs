@@ -1,1 +1,32 @@
-{{canvas-star}}
+<form class="form-horizontal">
+  <div class="form-group pt20">
+    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-10 w200">
+      {{#power-select
+        options=array
+        selected=destination
+        onchange=(action "foo")
+        as |country|
+      }}
+        <strong>{{country.name}}</strong>
+      {{/power-select}}
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-10 w200">
+      {{#power-myselect
+        options=array1
+        value=param.id
+        selectedKey='id'
+      }}
+        {{country.name}}
+      {{/power-myselect}}
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="button" class="btn btn-info btn-flat" {{action 'save' }}>提交</button>
+    </div>
+  </div>
+</form>

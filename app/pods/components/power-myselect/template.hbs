@@ -1,0 +1,11 @@
+{{#power-select
+  options=options
+  selected=destination
+  onchange=(action "foo")
+  as |powerArray|
+}}
+{{get powerArray selectedValue}}
+  {{!-- {{powerArray.name}} --}}
+{{/power-select}}
+=={{destination.id}}==
+=={{value}}==

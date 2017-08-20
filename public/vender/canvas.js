@@ -281,27 +281,12 @@
 
     function animate() {
         ctx.clearRect(0, 0, WIDTH, HEIGHT);
-
-        for (var i in stars) {
-
-          let x = stars[i];
-          debugger
-            try {
-              stars[i].move();
-            } catch (e) {
-              console.log(i);
-            } finally {
-            }
-        }
-        for (var i in dots) {
-          let x = dots[i];
-          try {
-            dots[i].move();
-          } catch (e) {
-            console.log(i);
-          } finally {
-          }
-        }
+        stars.forEach(function(element, index) {
+          element.move();
+        })
+        dots.forEach(function(element, index) {
+          element.move();
+        })
         drawIfMouseMoving();
         requestAnimationFrame(animate);
     }

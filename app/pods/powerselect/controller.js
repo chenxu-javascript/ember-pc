@@ -18,7 +18,7 @@ export default Ember.Controller.extend({
   destination: array[2],
   array1,
   param: {
-    id: 41
+    id: ''
   },
   actions: {
     foo(level) {

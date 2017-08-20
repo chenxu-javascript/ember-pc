@@ -1,11 +1,23 @@
-{{#power-select
+{{!-- {{#power-select
   options=options
   selected=destination
+  placeholder=placeholder
+  allowClear=allowClear
   onchange=(action "foo")
   as |powerArray|
 }}
 {{get powerArray selectedValue}}
-  {{!-- {{powerArray.name}} --}}
-{{/power-select}}
+{{/power-select}} --}}
 =={{destination.id}}==
 =={{value}}==
+
+{{#power-select-multiple
+  options=options
+  selected=destination
+  placeholder=placeholder
+  allowClear=allowClear
+  onchange=(action "foo")
+  as |powerArray|
+}}
+  {{get powerArray selectedValue}}
+{{/power-select-multiple}}

@@ -1,0 +1,42 @@
+<div class="flex-come">
+  <div class="header">
+    嘉宾心得值
+  </div>
+  <div class="mainbdy ml15 mr15 mt20">
+    <div class="main-title flex">
+      {{#each title as |item|}}
+        <div class="main-name">
+          {{item}}
+        </div>
+      {{/each}}
+    </div>
+    <div class="main-item flex">
+      {{#each users as |item|}}
+         <div class="id flex-com">
+           {{item.id}}
+         </div>
+         <div class="name flex-com">
+           {{item.name}}
+         </div>
+      {{/each}}
+    </div>
+  </div>
+  <div class="mt20 ml15 mr15 list-table mb20">
+    <table class="w100p">
+      <tr>
+        {{#each title as |item|}}
+           <th class="w25p">{{item}}</th>
+        {{/each}}
+      </tr>
+      {{#each colleaction as |item|}}
+      <tr>
+        <td class="id">{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td class="id">{{item.idgg}}</td>
+        <td>{{item.namegg}}</td>
+      </tr>
+      {{/each}}
+
+    </table>
+  </div>
+</div>

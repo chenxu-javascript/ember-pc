@@ -25,7 +25,6 @@ export default Ember.Component.extend({
           return item[selectedKey] == value;
         });
       }
-
     }
   }),
   actions: {

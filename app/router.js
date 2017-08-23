@@ -12,6 +12,7 @@ Router.map(function() {
   this.route('injectsevers');
   this.route('select');
   this.route('team');
+  this.route('flex');
   this.route('password');
 });
 

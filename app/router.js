@@ -14,6 +14,7 @@ Router.map(function() {
   this.route('team');
   this.route('flex');
   this.route('password');
+  this.route('youku');
 });
 
 export default Router;

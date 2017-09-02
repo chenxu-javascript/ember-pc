@@ -3,8 +3,14 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
+    // babel: {
+    //   optional: ['es7.decorators']
+    // },
     babel: {
-      optional: ['es7.decorators']
+      plugins: ['transform-decorators-legacy']
+    },
+    'ember-cli-babel': {
+      compileModules: false
     },
     'ember-bootstrap': {
       'bootstrapVersion': 3,

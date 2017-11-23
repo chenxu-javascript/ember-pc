@@ -1,5 +1,6 @@
-import Ember from 'ember';
+import { set } from '@ember/object';
+import { helper } from '@ember/component/helper';
 
-export default Ember.Helper.helper(function([target, property, val]) {
-  Ember.set(target, property, val);
+export default helper(function([target, property, val]) {
+  set(target, property, val);
 });

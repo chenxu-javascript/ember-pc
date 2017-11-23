@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   name: [{ a: 1 }, { a: 2 }, { a: 3 }, { a: 4 }, { a: 5 }],
   model: { 'a': 1 },
   ismyshow: 'aa',
@@ -12,7 +12,6 @@ export default Ember.Component.extend({
     arr[index1] = arr.splice(index2, 1, arr[index1])[0];
     newarr = _.cloneDeep(arr);
     this.set('name', newarr);
-  //  console.log('newarr='+arr);
     return arr;
   },
   actions: {

@@ -1,10 +1,12 @@
-import Ember from 'ember';
+import { getOwner } from '@ember/application';
+import { computed } from '@ember/object';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   // body
 //  shoppingCart: Ember.inject.service(),
-  shoppingCart: Ember.computed(function() {
-    return Ember.getOwner(this).lookup('service:shopping-cart');
+  shoppingCart: computed(function() {
+    return getOwner(this).lookup('service:shopping-cart');
   }),
   actions: {
     remove(item) {

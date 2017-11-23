@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 import computed from 'ember-computed-decorators';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   @computed('model.list')
   modelline(model) {
     if (model.length > 0) {

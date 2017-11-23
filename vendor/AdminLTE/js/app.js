@@ -440,8 +440,8 @@ function _init() {
           e.preventDefault();
         }
         if (Ember.isEmpty(checkElement)) {
-          let $father = $this.parent();
-          let $brother = $father.siblings();
+          var $father = $this.parent();
+          var $brother = $father.siblings();
           $brother.removeClass('active');
           $father.addClass('active');
         }

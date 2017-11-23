@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 
 export function initialize(application) {
-  let Logger = Ember.Object.extend({
+  let Logger = EmberObject.extend({
     log() {
     }
   });

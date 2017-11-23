@@ -4,13 +4,33 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     babel: {
-      optional: ['es7.decorators']
-    },
-    'ember-bootstrap': {
-      'bootstrapVersion': 3,
-      'importBootstrapFont': true,
-      'importBootstrapCSS': false
-    }
+    plugins: ['transform-decorators-legacy', 'transform-object-rest-spread'],
+    optional: ['es7.decorators']
+  },
+  'ember-cli-babel': {
+    includePolyfill: true
+  },
+  'ember-cli-qunit': { // turn off jshint
+    useLintTree: false
+  },
+  sourcemaps: {
+    enabled: false
+  },
+  eslint: {
+    testGenerator: 'qunit',
+    group: true,
+    rulesDir: 'eslint-rules',
+    extensions: ['js']
+  },
+  adminLTE: {
+    plugins: ['select2']
+  },
+  lessOptions: {
+    paths: [
+      'app/styles/app.less'
+    ],
+    sourceMap: false
+  }
   });
 
   // Use `app.import` to add additional libraries to the generated

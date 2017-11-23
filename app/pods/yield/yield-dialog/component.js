@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import { later } from '@ember/runloop';
+import Component from '@ember/component';
 
-var UserSignComponent = Ember.Component.extend({
+var UserSignComponent = Component.extend({
 
   didInsertElement() {
     this.$().delegate('.user-sign-dropdown', 'click', function(evt) {
@@ -15,14 +16,14 @@ var UserSignComponent = Ember.Component.extend({
   },
   actions: {
     fn() {
-      let count = this.get('childClickCount') + 1;
+      this.get('childClickCount') + 1;
 
     },
     userSign() {
       $(document).trigger('click:guide', true);
       if (!this.get('signDetail')) {
         this.set('signDetail', true);
-        Ember.run.later(function() {
+        later(function() {
           $(document).trigger('click:addicon', 1);
         });
 

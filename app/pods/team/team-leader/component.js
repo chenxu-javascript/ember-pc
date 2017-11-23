@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   teamleader: [
     { name: '二师兄', jobname: 'CEO', team_id: 178 },
     { name: '不东', jobname: '总裁', team_id: 4262 },
@@ -15,7 +15,7 @@ export default Ember.Component.extend({
   ],
   actions: {
     openuser(id) {
-      window.open(ZBJConfig.API_HOST+ '#/team/user/'+ id);
+      window.open('#/team/user/'+ id);
     }
   }
 });

@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
 const countries = [
   { name: 'United States',  id: 1 },
@@ -10,7 +10,7 @@ const countries = [
   { name: 'United Kingdom', id: 7 },
 ];
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   // body
   countries,
   destination: countries[2],

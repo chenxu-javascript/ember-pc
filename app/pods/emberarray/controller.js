@@ -1,5 +1,8 @@
 import Controller from '@ember/controller';
 
 export default Controller.extend({
-  // body
+  init() {
+    this._super(...arguments);
+
+  },
 });

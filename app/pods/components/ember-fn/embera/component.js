@@ -1,6 +1,11 @@
-import Ember from 'ember';
+import { getWithDefault } from '@ember/object';
+import { next, later } from '@ember/runloop';
+import { cacheFor, copy } from '@ember/object/internals';
+import { assert, debug } from '@ember/debug';
+import { A } from '@ember/array';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'ul',
   classNames: ['pagination'],
   obj: { a: '1' },
@@ -8,27 +13,27 @@ export default Ember.Component.extend({
   init() {
     this._super(...arguments);
     if (!this.get('content')) {
-      this.set('content', Ember.A());
+      this.set('content', A());
     }
   },
   didInsertElement() {
     this._super(...arguments);
-    Ember.assert('必须传递有效对象', this.get('obj'));
-    Ember.cacheFor(this.get('obj'), 'a');
+    assert('必须传递有效对象', this.get('obj'));
+    cacheFor(this.get('obj'), 'a');
     this.deepcopy();
-    Ember.run.next(() => {
+    next(() => {
     //  console.log('我是next');
     }, 100);
-    Ember.run.later(() => {
+    later(() => {
     //  console.log('我是later');
     }, 100);
   },
   deepcopy() {
     var array = [1, 2, 3];
-    var newarray = Ember.copy(array, true);
-    Ember.debug('I\'m a debug notice!');
+    var newarray = copy(array, true);
+    debug('I\'m a debug notice!');
     newarray.push(4);
     let person = this.get('obj');
-    Ember.getWithDefault(person, 'a', 1);
+    getWithDefault(person, 'a', 1);
   }
 });

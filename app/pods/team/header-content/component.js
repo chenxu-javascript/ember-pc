@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import computed from 'ember-computed-decorators';
 
-export default Ember.Component.extend({
+export default Component.extend({
   // body
   classNames: 'big-area',
   @computed('service_center_items')

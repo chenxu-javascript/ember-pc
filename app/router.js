@@ -16,6 +16,7 @@ Router.map(function() {
   this.route('team');
   this.route('img');
   this.route('backgammon');
+  this.route('text');
   this.route('emberarray', { path: '/emarray' });
   this.route('emberfn', { path: '/emberfn' }, function() {
     this.route('embera', { path: '/embera' });

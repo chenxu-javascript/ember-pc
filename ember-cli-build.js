@@ -51,7 +51,8 @@ module.exports = function(defaults) {
   app.import('vendor/AdminLTE/css/AdminLTE.min.css');
   app.import('vendor/AdminLTE/css/skins/skin-red.css');
   app.import('vendor/AdminLTE/js/jquery.slimscroll.js');
-  app.import('vendor/AdminLTE/js/app.js');
+//  app.import('vendor/AdminLTE/js/app.js');
+  app.import('vendor/pods.js');
   app.import('vendor/lodash/lodash.min.js');
   return app.toTree();
 };

@@ -7,6 +7,7 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('css');
   this.route('yield');
   this.route('powerselect');
   this.route('injectsevers');

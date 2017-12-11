@@ -58,7 +58,9 @@
       "_": false,
       "moment": false,
       "var2": false,
-      "fade": false
+      "fade": false,
+      "bsPromise": false,
+      "bsLoad": false
   },
   "env": {
       "es6": true,

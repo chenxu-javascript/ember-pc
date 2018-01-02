@@ -1,0 +1,22 @@
+<div class="service-item flex-column text-center  w100p">
+  {{#if isHasChild}}
+    <div class="service-center-header flex-column flex-all-center h50">
+        <div class="service-teamname text-fff opacity6 text-ellipsis w100p">
+          {{dataitem.team_name }}
+        </div>
+        <div class="service-name text-fff opacity6 text-ellipsis">
+          {{dataitem.leader.name}}
+        </div>
+    </div>
+  {{/if}}
+  <div class="service-center-list flex {{if isHasChild 'mt5'}}">
+    {{#each teamItems as |item index|}}
+      <div class="service-center-item flex-1" >
+        <div class="service-center-up flex-column flex-all-center h50">
+          <div class="service-subItem-teamname f14  opacity6">{{item.team_name }}</div>
+          <div class="service-subItem-name f14  opacity6">{{item.leader.name}}</div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>

@@ -1,0 +1,35 @@
+&:not(:last-child){
+  margin-right: 4px;
+}
+.opacity6{
+    transition: all .4s;
+    &:hover{
+      opacity: .7;
+      cursor: pointer;
+    }
+}
+.service-item{
+  min-height: 400px;
+  .service-center-header{
+    background: red; // 配置
+  }
+  .service-center-list{
+    width: 100%;
+  //  height: 300px;
+    flex: 1 1;
+    background: #ffe6e7; // 配置
+    border-left: 1px solid red; // 配置
+    border-top: 1px solid red; // 配置
+    .service-center-item{
+      border-bottom: 1px solid red; // 配置
+      border-right: 1px solid red; // 配置
+      .service-subItem-name,.service-subItem-teamname{
+        width: 15px;
+        min-height: 50px;
+        align-self: center;
+        padding: 5px 0;
+        color: #f1525a;
+      }
+    }
+  }
+}

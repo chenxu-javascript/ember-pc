@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>寒山2017 - 新年抽奖</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/animate.css">
+</head>
+<body>
+<!-- 顶部中国风花纹 start -->
+<header class="top-head"></header>
+
+<!--左侧中奖名单展示-->
+<aside class="aside-left">
+    <div class="aside-main" id="mingdan-con">
+        <div class="btn btn-red-outline" data-toggle="modal" id="mingdan-title">中奖名单</div>
+        <div class="award-main">
+            <div id="award-123">
+                <div class="award-con" id="award-00">
+                    <h3 class="award-title">特等奖</h3>
+                    <ul class="win"></ul>
+                </div>
+                <div class="award-con" id="award-01">
+                    <h3 class="award-title">一等奖</h3>
+                    <ul class="win"></ul>
+                </div>
+                <div class="award-con" id="award-02">
+                    <h3 class="award-title">二等奖</h3>
+                    <ul class="win"></ul>
+                </div>
+                <div class="award-con" id="award-03">
+                    <h3 class="award-title">三等奖</h3>
+                    <ul class="win"></ul>
+                </div>
+            </div>
+            <div class="award-con" id="award-04">
+                <h3 class="award-title">幸运奖</h3>
+                <ul class="win"></ul>
+            </div>
+            <div class="award-con" id="award-05">
+                <h3 class="award-title">幸运奖</h3>
+                <ul class="win"></ul>
+            </div>
+            <a href="javascript:;" id="award04-toggle" class="more">查看更多</a>
+        </div>
+    </div>
+    <img src="./img/lantern.png" alt="" width="85" id="mingdan" class="switch">
+</aside>
+<!--右侧奖品名单展示-->
+<aside class="aside-right">
+    <div class="aside-main" id="liwu-con">
+        <div class="btn btn-red-outline" data-toggle="modal" id="liwu-title">新年礼物</div>
+        <div class="award-main">
+            <div class="award-con">
+                <h3 class="award-title">特等奖</h3>
+                <ul class="win">
+                    <li class="clearfix win-li">
+                        <div class="f-l name requird f16">人民币 ￥4800.00</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="award-con">
+                <h3 class="award-title">一等奖</h3>
+                <ul class="win">
+                    <li class="clearfix win-li">
+                        <div class="f-l name">人民币 ￥2800.00</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="award-con">
+                <h3 class="award-title">二等奖</h3>
+                <ul class="win">
+                    <li class="clearfix win-li">
+                        <div class="f-l name">人民币 ￥1800.00</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="award-con">
+                <h3 class="award-title">三等奖</h3>
+                <ul class="win">
+                    <li class="clearfix win-li">
+                        <div class="f-l name">人民币 ￥800.00</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="award-con">
+                <h3 class="award-title">神秘奖</h3>
+                <ul class="win">
+                    <li class="clearfix win-li">
+                        <div class="f-l name">我也不知道神秘奖是啥</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="award-con">
+                <h3 class="award-title">幸运奖</h3>
+                <ul class="win">
+                    <li class="clearfix win-li">
+                        <div class="f-l name">人民币 ￥800.00</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <img src="./img/lantern.png" alt="" width="85" id="liwu" class="switch">
+</aside>
+
+<!--倒计时展示-->
+<div class="stop-main">
+    <div id="stop-time">叁</div>
+    <div class="back"></div>
+</div>
+
+<button class="close" id="modal-close" data-dismiss="modal">
+    <span aria-hidden="true">&times;</span>
+</button>
+
+<div class="modal fade" id="lottery-result" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" >
+            <canvas id="lottery-canvas"></canvas>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+    <div class="lotterty-infogo">
+        <img src="img/logo.png">
+    </div>
+    <div id="lottery-main" class="lottery-main">
+        <div class="wrap-border-main">
+            <img src="./img/wrap-border-1.png" class="wrap-border wrap-border-1">
+            <img src="./img/wrap-border-2.png" class="wrap-border wrap-border-2">
+            <img src="./img/wrap-border-3.png" class="wrap-border wrap-border-3">
+            <img src="./img/wrap-border-4.png" class="wrap-border wrap-border-4">
+            <div class="wrap-border wrap-border-left"></div>
+            <div class="wrap-border wrap-border-right"></div>
+        </div>
+        <div class="wrap-main">
+            <div class="lottery-wrap" id="lottery-wrap"></div>
+        </div>
+
+        <!--抽奖按钮-->
+        <div class="dashboard">
+            <div class="cirle-btn award" id="award-1" data-award="1">一</div>
+            <div class="cirle-btn award" id="award-2" data-award="2">二</div>
+            <div class="btn btn-red-outline lottery-btn" id="lottery-btn" data-award="">开始抽奖</div>
+            <div class="cirle-btn award" id="award-3" data-award="3">三</div>
+            <div class="cirle-btn award" id="award-4" data-award="4">纪</div>
+        </div>
+    </div>
+</div>
+
+<canvas class="snow-canvas" speed="2" interaction="true" size="10" count="30" start-color="rgba(253,252,251,1)" end-color="rgba(251,252,253,0.3)" opacity="0.00001" wind-power="2" image="false" width="1366" height="667"></canvas>
+<canvas class="snow-canvas" speed="3" interaction="true" size="12" count="80" wind-power="-5" image="./img/snow.png" width="1366" height="667"></canvas>
+
+<footer class="footer"></footer>
+
+<!-- 新年祝福框模板 start -->
+<script type="text/template" id="lotterycon-tpl">
+    <% _.each(lottery_datas, function (item) { %>
+    <div class="clearfix lottery-list" data-id="" data-namezh="<%= item.namezh %>" data-nameen="<%= item.nameen %>">
+        <div class="f-l turqoise lottery-avatar">
+            <img src="./img/avatar/<%= item.nameen %>.jpg" alt="<%= item.namezh %>">
+        </div>
+        <div class="f-l lottery-content">
+            <em class="beauty border-01"></em>
+            <em class="beauty border-02"></em>
+            <em class="beauty border-03"></em>
+            <em class="beauty border-04"></em>
+            <div class="border bor-top"></div>
+            <div class="border bor-bottom"></div>
+            <h3 class="content-title"> <span class="lottery-name"><%= item.namezh %></span> &nbsp;&nbsp;<span class="company">[ 寒山科技 ]</span></h3>
+            <div class="content-detail">
+                <b>新年愿景及祝福：</b>
+                <span><%= item.wish %></span>
+            </div>
+        </div>
+    </div>
+    <% }); %>
+</script>
+<!-- 新年祝福框模板 end -->
+
+<!-- 中奖者数据展示模板 start -->
+<script type="text/template" id="awardcon-tpl">
+    <li class="clearfix win-li">
+        <div class="f-l avatar">
+            <img width="34" src="./img/avatar/{nameen}.jpg"/>
+        </div>
+        <div class="f-l name">{namezh}</div>
+        <a class="f-l delete" href="javascript:;">&times;</a>
+    </li>
+</script>
+<!-- 中奖者数据展示模板 end -->
+
+<!--音乐开关-->
+<a id="music-control" class="animated infinite bounce" href="javascript:;" data-open="1"></a>
+<!--清除数据开关-->
+<a id="clear-control" href="javascript:;" data-open="1"></a>
+
+<audio id="music" loop="loop" preload="auto" src="shiji.mp3">
+    你的浏览器不支持audio标签
+</audio>
+
+<script type="text/javascript" src="./js/underscore.js"></script>
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/lottery_data.js"></script>
+<script type="text/javascript" src="./js/init.js"></script>
+<script src="js/boot-modal.js"></script>
+<script src="js/snow-plugin.js"></script>
+<!--<script type="text/javascript" src="js/Tween.js"></script>-->
+</body>
+</html>

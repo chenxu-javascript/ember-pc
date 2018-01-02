@@ -1,0 +1,34 @@
+<div class="content content-team-v5">
+  <div class="box box-solid">
+    <div class="content-rightv5 padding20">
+      <h4 class="text-center">
+        <a class="color-primary f24" href="#">猪八戒网总公司</a>
+      </h4>
+      {{!-- <div class="flex">
+
+      </div> --}}
+      {{#each data as |item index|}}
+          <div class="flex-column basestyle {{classNameChange item.name}}">
+            <div class="flex flex-all-center h50 service-header text-fff">{{item.name}}</div>
+            <div class="flex service-content padding10">
+              {{#unless (is-eq index 5)}}
+                {{#each item.teams as |data i|}}
+                  {{teamv5/common-tree dataitem=data}}
+                {{!-- {{#each data.childrens as |dataitem index|}}
+                {{teamv5/common-tree dataitem=dataitem}}
+                {{/each}} --}}
+                {{/each}}
+              {{else}}
+                {{#each item.teams as |data i|}}
+                  {{teamv5/commonflex-tree dataitem=data}}
+                {{!-- {{#each data.childrens as |dataitem index|}}
+                {{teamv5/common-tree dataitem=dataitem}}
+                {{/each}} --}}
+                {{/each}}
+              {{/unless}}
+            </div>
+          </div>
+      {{/each}}
+    </div>
+  </div>
+</div>

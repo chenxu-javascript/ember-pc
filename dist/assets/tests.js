@@ -12,7 +12,12 @@ define('chenxu/tests/app.lint-test', [], function () {
 
   QUnit.test('components/main-content/header/component.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'components/main-content/header/component.js should pass ESLint\n\n');
+    assert.ok(false, 'components/main-content/header/component.js should pass ESLint\n\n9:11 - Do not use global `$` or `jQuery` (ember/no-global-jquery)\n9:11 - \'$\' is not defined. (no-undef)\n10:9 - Do not use global `$` or `jQuery` (ember/no-global-jquery)\n10:9 - \'$\' is not defined. (no-undef)\n12:9 - Do not use global `$` or `jQuery` (ember/no-global-jquery)\n12:9 - \'$\' is not defined. (no-undef)');
+  });
+
+  QUnit.test('helpers/classNameChange.js', function (assert) {
+    assert.expect(1);
+    assert.ok(false, 'helpers/classNameChange.js should pass ESLint\n\n5:7 - \'array\' is assigned a value but never used. (no-unused-vars)');
   });
 
   QUnit.test('helpers/is-eq.js', function (assert) {
@@ -30,9 +35,19 @@ define('chenxu/tests/app.lint-test', [], function () {
     assert.ok(true, 'initializers/logger.js should pass ESLint\n\n');
   });
 
+  QUnit.test('initializers/route-injector.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'initializers/route-injector.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('models/utils.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'models/utils.js should pass ESLint\n\n');
+  });
+
   QUnit.test('pods/application/component.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'pods/application/component.js should pass ESLint\n\n');
+    assert.ok(false, 'pods/application/component.js should pass ESLint\n\n6:5 - \'bsLoad\' is not defined. (no-undef)');
   });
 
   QUnit.test('pods/application/controller.js', function (assert) {
@@ -52,17 +67,17 @@ define('chenxu/tests/app.lint-test', [], function () {
 
   QUnit.test('pods/backgammon/controller.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'pods/backgammon/controller.js should pass ESLint\n\n');
+    assert.ok(false, 'pods/backgammon/controller.js should pass ESLint\n\n17:3 - Only string, number, symbol, boolean, null, undefined, and function are allowed as default properties (ember/avoid-leaking-state-in-ember-objects)\n23:3 - Only string, number, symbol, boolean, null, undefined, and function are allowed as default properties (ember/avoid-leaking-state-in-ember-objects)');
   });
 
   QUnit.test('pods/backgammon/did-render/component.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'pods/backgammon/did-render/component.js should pass ESLint\n\n');
+    assert.ok(false, 'pods/backgammon/did-render/component.js should pass ESLint\n\n5:3 - Only string, number, symbol, boolean, null, undefined, and function are allowed as default properties (ember/avoid-leaking-state-in-ember-objects)');
   });
 
   QUnit.test('pods/backgammon/profile-editor/component.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'pods/backgammon/profile-editor/component.js should pass ESLint\n\n');
+    assert.ok(false, 'pods/backgammon/profile-editor/component.js should pass ESLint\n\n8:3 - Only string, number, symbol, boolean, null, undefined, and function are allowed as default properties (ember/avoid-leaking-state-in-ember-objects)');
   });
 
   QUnit.test('pods/backgammon/route.js', function (assert) {
@@ -70,9 +85,14 @@ define('chenxu/tests/app.lint-test', [], function () {
     assert.ok(true, 'pods/backgammon/route.js should pass ESLint\n\n');
   });
 
+  QUnit.test('pods/components/block-holder/component.js', function (assert) {
+    assert.expect(1);
+    assert.ok(false, 'pods/components/block-holder/component.js should pass ESLint\n\n10:3 - Parsing error: Unexpected character \'@\' (null)');
+  });
+
   QUnit.test('pods/components/ember-fn/embera/component.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'pods/components/ember-fn/embera/component.js should pass ESLint\n\n');
+    assert.ok(false, 'pods/components/ember-fn/embera/component.js should pass ESLint\n\n11:3 - Only string, number, symbol, boolean, null, undefined, and function are allowed as default properties (ember/avoid-leaking-state-in-ember-objects)');
   });
 
   QUnit.test('pods/components/main-content/footer/component.js', function (assert) {
@@ -82,7 +102,7 @@ define('chenxu/tests/app.lint-test', [], function () {
 
   QUnit.test('pods/components/main-content/header/component.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'pods/components/main-content/header/component.js should pass ESLint\n\n');
+    assert.ok(false, 'pods/components/main-content/header/component.js should pass ESLint\n\n9:11 - Do not use global `$` or `jQuery` (ember/no-global-jquery)\n9:11 - \'$\' is not defined. (no-undef)\n10:9 - Do not use global `$` or `jQuery` (ember/no-global-jquery)\n10:9 - \'$\' is not defined. (no-undef)\n12:9 - Do not use global `$` or `jQuery` (ember/no-global-jquery)\n12:9 - \'$\' is not defined. (no-undef)');
   });
 
   QUnit.test('pods/components/main-content/sidebar/component.js', function (assert) {
@@ -92,12 +112,57 @@ define('chenxu/tests/app.lint-test', [], function () {
 
   QUnit.test('pods/components/main-content/wrapper/component.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'pods/components/main-content/wrapper/component.js should pass ESLint\n\n');
+    assert.ok(false, 'pods/components/main-content/wrapper/component.js should pass ESLint\n\n8:5 - \'$\' is not defined. (no-undef)\n8:5 - Do not use global `$` or `jQuery` (ember/no-global-jquery)\n13:22 - Do not use global `$` or `jQuery` (ember/no-global-jquery)\n13:22 - \'$\' is not defined. (no-undef)\n14:24 - Do not use global `$` or `jQuery` (ember/no-global-jquery)\n14:24 - \'$\' is not defined. (no-undef)\n15:26 - Do not use global `$` or `jQuery` (ember/no-global-jquery)\n15:26 - \'$\' is not defined. (no-undef)\n17:25 - Do not use global `$` or `jQuery` (ember/no-global-jquery)\n17:25 - \'$\' is not defined. (no-undef)\n18:9 - Do not use global `$` or `jQuery` (ember/no-global-jquery)\n18:9 - \'$\' is not defined. (no-undef)');
   });
 
   QUnit.test('pods/components/yield-blog/post/component.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'pods/components/yield-blog/post/component.js should pass ESLint\n\n');
+    assert.ok(false, 'pods/components/yield-blog/post/component.js should pass ESLint\n\n5:3 - Only string, number, symbol, boolean, null, undefined, and function are allowed as default properties (ember/avoid-leaking-state-in-ember-objects)');
+  });
+
+  QUnit.test('pods/concurrency/component.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'pods/concurrency/component.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('pods/concurrency/route.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'pods/concurrency/route.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('pods/concurrency/version-five/component.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'pods/concurrency/version-five/component.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('pods/concurrency/version-four/component.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'pods/concurrency/version-four/component.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('pods/concurrency/version-one/component.js', function (assert) {
+    assert.expect(1);
+    assert.ok(false, 'pods/concurrency/version-one/component.js should pass ESLint\n\n7:7 - \'$\' is not defined. (no-undef)');
+  });
+
+  QUnit.test('pods/concurrency/version-seven/component.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'pods/concurrency/version-seven/component.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('pods/concurrency/version-six/component.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'pods/concurrency/version-six/component.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('pods/concurrency/version-three/component.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'pods/concurrency/version-three/component.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('pods/concurrency/version-two/component.js', function (assert) {
+    assert.expect(1);
+    assert.ok(false, 'pods/concurrency/version-two/component.js should pass ESLint\n\n10:7 - \'$\' is not defined. (no-undef)');
   });
 
   QUnit.test('pods/css/component.js', function (assert) {
@@ -180,6 +245,26 @@ define('chenxu/tests/app.lint-test', [], function () {
     assert.ok(true, 'pods/injectsevers/route.js should pass ESLint\n\n');
   });
 
+  QUnit.test('pods/lottery/component.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'pods/lottery/component.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('pods/lottery/lottery-gift/component.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'pods/lottery/lottery-gift/component.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('pods/lottery/lottery-win/component.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'pods/lottery/lottery-win/component.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('pods/lottery/route.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'pods/lottery/route.js should pass ESLint\n\n');
+  });
+
   QUnit.test('pods/powerselect/controller.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'pods/powerselect/controller.js should pass ESLint\n\n');
@@ -192,17 +277,17 @@ define('chenxu/tests/app.lint-test', [], function () {
 
   QUnit.test('pods/select/component.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'pods/select/component.js should pass ESLint\n\n');
+    assert.ok(false, 'pods/select/component.js should pass ESLint\n\n4:3 - Only string, number, symbol, boolean, null, undefined, and function are allowed as default properties (ember/avoid-leaking-state-in-ember-objects)\n5:3 - Only string, number, symbol, boolean, null, undefined, and function are allowed as default properties (ember/avoid-leaking-state-in-ember-objects)\n13:14 - \'_\' is not defined. (no-undef)');
   });
 
   QUnit.test('pods/select/controller.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'pods/select/controller.js should pass ESLint\n\n');
+    assert.ok(false, 'pods/select/controller.js should pass ESLint\n\n5:3 - Only string, number, symbol, boolean, null, undefined, and function are allowed as default properties (ember/avoid-leaking-state-in-ember-objects)');
   });
 
   QUnit.test('pods/select/mulite-select/component.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'pods/select/mulite-select/component.js should pass ESLint\n\n');
+    assert.ok(false, 'pods/select/mulite-select/component.js should pass ESLint\n\n7:12 - Do not use this.attrs (ember/no-attrs-in-components)');
   });
 
   QUnit.test('pods/select/route.js', function (assert) {
@@ -212,12 +297,12 @@ define('chenxu/tests/app.lint-test', [], function () {
 
   QUnit.test('pods/select/single-select/component.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'pods/select/single-select/component.js should pass ESLint\n\n');
+    assert.ok(false, 'pods/select/single-select/component.js should pass ESLint\n\n4:3 - Only string, number, symbol, boolean, null, undefined, and function are allowed as default properties (ember/avoid-leaking-state-in-ember-objects)');
   });
 
   QUnit.test('pods/select/singlemut-select/component.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'pods/select/singlemut-select/component.js should pass ESLint\n\n');
+    assert.ok(false, 'pods/select/singlemut-select/component.js should pass ESLint\n\n4:3 - Only string, number, symbol, boolean, null, undefined, and function are allowed as default properties (ember/avoid-leaking-state-in-ember-objects)\n10:12 - Do not use this.attrs (ember/no-attrs-in-components)');
   });
 
   QUnit.test('pods/sfa/productrevenue/controller.js', function (assert) {
@@ -237,12 +322,12 @@ define('chenxu/tests/app.lint-test', [], function () {
 
   QUnit.test('pods/team/controller.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'pods/team/controller.js should pass ESLint\n\n');
+    assert.ok(false, 'pods/team/controller.js should pass ESLint\n\n5:3 - Parsing error: Unexpected character \'@\' (null)');
   });
 
   QUnit.test('pods/team/header-content/component.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'pods/team/header-content/component.js should pass ESLint\n\n');
+    assert.ok(false, 'pods/team/header-content/component.js should pass ESLint\n\n7:3 - Parsing error: Unexpected character \'@\' (null)');
   });
 
   QUnit.test('pods/team/route.js', function (assert) {
@@ -252,22 +337,57 @@ define('chenxu/tests/app.lint-test', [], function () {
 
   QUnit.test('pods/team/team-industry/component.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'pods/team/team-industry/component.js should pass ESLint\n\n');
+    assert.ok(false, 'pods/team/team-industry/component.js should pass ESLint\n\n5:3 - Only string, number, symbol, boolean, null, undefined, and function are allowed as default properties (ember/avoid-leaking-state-in-ember-objects)\n6:3 - Only string, number, symbol, boolean, null, undefined, and function are allowed as default properties (ember/avoid-leaking-state-in-ember-objects)');
   });
 
   QUnit.test('pods/team/team-leader/component.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'pods/team/team-leader/component.js should pass ESLint\n\n');
+    assert.ok(false, 'pods/team/team-leader/component.js should pass ESLint\n\n4:3 - Only string, number, symbol, boolean, null, undefined, and function are allowed as default properties (ember/avoid-leaking-state-in-ember-objects)');
   });
 
   QUnit.test('pods/team/team-other/component.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'pods/team/team-other/component.js should pass ESLint\n\n');
+    assert.ok(false, 'pods/team/team-other/component.js should pass ESLint\n\n4:3 - Only string, number, symbol, boolean, null, undefined, and function are allowed as default properties (ember/avoid-leaking-state-in-ember-objects)');
+  });
+
+  QUnit.test('pods/teamv5/common-tree/component.js', function (assert) {
+    assert.expect(1);
+    assert.ok(false, 'pods/teamv5/common-tree/component.js should pass ESLint\n\n11:3 - Parsing error: Unexpected character \'@\' (null)');
+  });
+
+  QUnit.test('pods/teamv5/commonflex-tree/component.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'pods/teamv5/commonflex-tree/component.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('pods/teamv5/component.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'pods/teamv5/component.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('pods/teamv5/modal-tree/component.js', function (assert) {
+    assert.expect(1);
+    assert.ok(false, 'pods/teamv5/modal-tree/component.js should pass ESLint\n\n10:3 - Parsing error: Unexpected character \'@\' (null)');
+  });
+
+  QUnit.test('pods/teamv5/route.js', function (assert) {
+    assert.expect(1);
+    assert.ok(false, 'pods/teamv5/route.js should pass ESLint\n\n5:12 - \'$\' is not defined. (no-undef)\n13:7 - \'$\' is not defined. (no-undef)');
+  });
+
+  QUnit.test('pods/teamv5/test.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'pods/teamv5/test.js should pass ESLint\n\n');
   });
 
   QUnit.test('pods/text/component.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'pods/text/component.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('pods/text/my-text/component.js', function (assert) {
+    assert.expect(1);
+    assert.ok(false, 'pods/text/my-text/component.js should pass ESLint\n\n7:5 - Unexpected console statement. (no-console)');
   });
 
   QUnit.test('pods/text/route.js', function (assert) {
@@ -302,7 +422,7 @@ define('chenxu/tests/app.lint-test', [], function () {
 
   QUnit.test('pods/yield/yield-dialog/component.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'pods/yield/yield-dialog/component.js should pass ESLint\n\n');
+    assert.ok(false, 'pods/yield/yield-dialog/component.js should pass ESLint\n\n9:11 - Do not use global `$` or `jQuery` (ember/no-global-jquery)\n9:11 - \'$\' is not defined. (no-undef)\n9:41 - Do not use global `$` or `jQuery` (ember/no-global-jquery)\n9:41 - \'$\' is not defined. (no-undef)\n23:7 - Do not use global `$` or `jQuery` (ember/no-global-jquery)\n23:7 - \'$\' is not defined. (no-undef)\n27:11 - Do not use global `$` or `jQuery` (ember/no-global-jquery)\n27:11 - \'$\' is not defined. (no-undef)');
   });
 
   QUnit.test('pods/yield/yield-yield/component.js', function (assert) {
@@ -320,6 +440,11 @@ define('chenxu/tests/app.lint-test', [], function () {
     assert.ok(true, 'router.js should pass ESLint\n\n');
   });
 
+  QUnit.test('services/logger.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'services/logger.js should pass ESLint\n\n');
+  });
+
   QUnit.test('services/shopping-cart.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'services/shopping-cart.js should pass ESLint\n\n');
@@ -327,7 +452,7 @@ define('chenxu/tests/app.lint-test', [], function () {
 
   QUnit.test('transitions.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'transitions.js should pass ESLint\n\n3:12 - \'fade\' is defined but never used. (no-unused-vars)');
+    assert.ok(false, 'transitions.js should pass ESLint\n\n3:12 - \'fade\' is defined but never used. (no-unused-vars)');
   });
 });
 define('chenxu/tests/helpers/destroy-app', ['exports'], function (exports) {
@@ -337,46 +462,11 @@ define('chenxu/tests/helpers/destroy-app', ['exports'], function (exports) {
     value: true
   });
   exports.default = destroyApp;
-  var run = Ember.run;
   function destroyApp(application) {
-    run(application, 'destroy');
+    Ember.run(application, 'destroy');
   }
 });
-define('chenxu/tests/helpers/ember-basic-dropdown', ['exports', 'ember-basic-dropdown/test-support/helpers', 'ember-native-dom-helpers'], function (exports, _helpers, _emberNativeDomHelpers) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.nativeClick = exports.fireKeydown = exports.tapTrigger = exports.clickTrigger = exports.nativeTap = undefined;
-  Object.defineProperty(exports, 'nativeTap', {
-    enumerable: true,
-    get: function () {
-      return _helpers.nativeTap;
-    }
-  });
-  Object.defineProperty(exports, 'clickTrigger', {
-    enumerable: true,
-    get: function () {
-      return _helpers.clickTrigger;
-    }
-  });
-  Object.defineProperty(exports, 'tapTrigger', {
-    enumerable: true,
-    get: function () {
-      return _helpers.tapTrigger;
-    }
-  });
-  Object.defineProperty(exports, 'fireKeydown', {
-    enumerable: true,
-    get: function () {
-      return _helpers.fireKeydown;
-    }
-  });
-  exports.default = _helpers.default;
-  var nativeClick = exports.nativeClick = _emberNativeDomHelpers.click;
-});
-define('chenxu/tests/helpers/ember-keyboard/register-test-helpers', ['exports', 'ember-keyboard', 'ember-keyboard/fixtures/modifiers-array', 'ember-keyboard/utils/get-cmd-key'], function (exports, _emberKeyboard, _modifiersArray, _getCmdKey) {
+define('chenxu/tests/helpers/ember-keyboard/register-test-helpers', ['exports', 'ember-keyboard', 'ember-keyboard/fixtures/modifiers-array', 'ember-keyboard/fixtures/mouse-buttons-array', 'ember-keyboard/utils/get-cmd-key'], function (exports, _emberKeyboard, _modifiersArray, _mouseButtonsArray, _getCmdKey) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -395,13 +485,31 @@ define('chenxu/tests/helpers/ember-keyboard/register-test-helpers', ['exports', 
     Ember.Test.registerAsyncHelper('keyPress', function (app, attributes, element) {
       return keyEvent(app, attributes, 'keypress', element);
     });
+
+    Ember.Test.registerAsyncHelper('mouseDown', function (app, attributes, element) {
+      return keyEvent(app, attributes, 'mousedown', element);
+    });
+
+    Ember.Test.registerAsyncHelper('mouseUp', function (app, attributes, element) {
+      return keyEvent(app, attributes, 'mouseup', element);
+    });
+
+    Ember.Test.registerAsyncHelper('touchStart', function (app, attributes, element) {
+      return keyEvent(app, attributes, 'touchstart', element);
+    });
+
+    Ember.Test.registerAsyncHelper('touchEnd', function (app, attributes, element) {
+      return keyEvent(app, attributes, 'touchend', element);
+    });
   };
 
   var keyEvent = function keyEvent(app, attributes, type, element) {
-    var event = attributes.split('+').reduce(function (event, attribute) {
+    var event = (attributes || '').split('+').reduce(function (event, attribute) {
       if (_modifiersArray.default.indexOf(attribute) > -1) {
         attribute = attribute === 'cmd' ? (0, _getCmdKey.default)() : attribute;
         event[attribute + 'Key'] = true;
+      } else if (_mouseButtonsArray.default.indexOf(attribute) > -1) {
+        event.button = (0, _emberKeyboard.getMouseCode)(attribute);
       } else {
         event.keyCode = (0, _emberKeyboard.getKeyCode)(attribute);
       }
@@ -409,7 +517,7 @@ define('chenxu/tests/helpers/ember-keyboard/register-test-helpers', ['exports', 
       return event;
     }, {});
 
-    return app.testHelpers.triggerEvent(element || document, type, event);
+    return app.testHelpers.triggerEvent(element || document.body, type, event);
   };
 });
 define('chenxu/tests/helpers/ember-power-select', ['exports', 'ember-power-select/test-support/helpers'], function (exports, _helpers) {
@@ -419,61 +527,42 @@ define('chenxu/tests/helpers/ember-power-select', ['exports', 'ember-power-selec
     value: true
   });
   exports.selectChoose = exports.touchTrigger = exports.nativeTouch = exports.clickTrigger = exports.typeInSearch = exports.triggerKeydown = exports.nativeMouseUp = exports.nativeMouseDown = exports.findContains = undefined;
-  Object.defineProperty(exports, 'findContains', {
-    enumerable: true,
-    get: function () {
-      return _helpers.findContains;
-    }
-  });
-  Object.defineProperty(exports, 'nativeMouseDown', {
-    enumerable: true,
-    get: function () {
-      return _helpers.nativeMouseDown;
-    }
-  });
-  Object.defineProperty(exports, 'nativeMouseUp', {
-    enumerable: true,
-    get: function () {
-      return _helpers.nativeMouseUp;
-    }
-  });
-  Object.defineProperty(exports, 'triggerKeydown', {
-    enumerable: true,
-    get: function () {
-      return _helpers.triggerKeydown;
-    }
-  });
-  Object.defineProperty(exports, 'typeInSearch', {
-    enumerable: true,
-    get: function () {
-      return _helpers.typeInSearch;
-    }
-  });
-  Object.defineProperty(exports, 'clickTrigger', {
-    enumerable: true,
-    get: function () {
-      return _helpers.clickTrigger;
-    }
-  });
-  Object.defineProperty(exports, 'nativeTouch', {
-    enumerable: true,
-    get: function () {
-      return _helpers.nativeTouch;
-    }
-  });
-  Object.defineProperty(exports, 'touchTrigger', {
-    enumerable: true,
-    get: function () {
-      return _helpers.touchTrigger;
-    }
-  });
-  Object.defineProperty(exports, 'selectChoose', {
-    enumerable: true,
-    get: function () {
-      return _helpers.selectChoose;
-    }
-  });
-  exports.default = _helpers.default;
+  exports.default = deprecatedRegisterHelpers;
+
+
+  function deprecateHelper(fn, name) {
+    return function () {
+      (true && !(false) && Ember.deprecate('DEPRECATED `import { ' + name + ' } from \'../../tests/helpers/ember-power-select\';` is deprecated. Please, replace it with `import { ' + name + ' } from \'ember-power-select/test-support/helpers\';`', false, { until: '1.11.0', id: 'ember-power-select-test-support-' + name }));
+
+      return fn.apply(undefined, arguments);
+    };
+  }
+
+  var findContains = deprecateHelper(_helpers.findContains, 'findContains');
+  var nativeMouseDown = deprecateHelper(_helpers.nativeMouseDown, 'nativeMouseDown');
+  var nativeMouseUp = deprecateHelper(_helpers.nativeMouseUp, 'nativeMouseUp');
+  var triggerKeydown = deprecateHelper(_helpers.triggerKeydown, 'triggerKeydown');
+  var typeInSearch = deprecateHelper(_helpers.typeInSearch, 'typeInSearch');
+  var clickTrigger = deprecateHelper(_helpers.clickTrigger, 'clickTrigger');
+  var nativeTouch = deprecateHelper(_helpers.nativeTouch, 'nativeTouch');
+  var touchTrigger = deprecateHelper(_helpers.touchTrigger, 'touchTrigger');
+  var selectChoose = deprecateHelper(_helpers.selectChoose, 'selectChoose');
+
+  function deprecatedRegisterHelpers() {
+    (true && !(false) && Ember.deprecate("DEPRECATED `import registerPowerSelectHelpers from '../../tests/helpers/ember-power-select';` is deprecated. Please, replace it with `import registerPowerSelectHelpers from 'ember-power-select/test-support/helpers';`", false, { until: '1.11.0', id: 'ember-power-select-test-support-register-helpers' }));
+
+    return (0, _helpers.default)();
+  }
+
+  exports.findContains = findContains;
+  exports.nativeMouseDown = nativeMouseDown;
+  exports.nativeMouseUp = nativeMouseUp;
+  exports.triggerKeydown = triggerKeydown;
+  exports.typeInSearch = typeInSearch;
+  exports.clickTrigger = clickTrigger;
+  exports.nativeTouch = nativeTouch;
+  exports.touchTrigger = touchTrigger;
+  exports.selectChoose = selectChoose;
 });
 define('chenxu/tests/helpers/module-for-acceptance', ['exports', 'qunit', 'chenxu/tests/helpers/start-app', 'chenxu/tests/helpers/destroy-app'], function (exports, _qunit, _startApp, _destroyApp) {
   'use strict';
@@ -497,14 +586,12 @@ define('chenxu/tests/helpers/module-for-acceptance', ['exports', 'qunit', 'chenx
         var _this = this;
 
         var afterEach = options.afterEach && options.afterEach.apply(this, arguments);
-        return Promise.resolve(afterEach).then(function () {
+        return Ember.RSVP.resolve(afterEach).then(function () {
           return (0, _destroyApp.default)(_this.application);
         });
       }
     });
   };
-
-  var Promise = Ember.RSVP.Promise;
 });
 define('chenxu/tests/helpers/resolver', ['exports', 'chenxu/resolver', 'chenxu/config/environment'], function (exports, _resolver, _environment) {
   'use strict';
@@ -530,13 +617,12 @@ define('chenxu/tests/helpers/start-app', ['exports', 'chenxu/app', 'chenxu/confi
     value: true
   });
   exports.default = startApp;
-  var run = Ember.run;
-  var merge = Ember.merge;
   function startApp(attrs) {
-    var attributes = merge({}, _environment.default.APP);
-    attributes = merge(attributes, attrs); // use defaults, but you can override;
+    var attributes = Ember.merge({}, _environment.default.APP);
+    attributes.autoboot = true;
+    attributes = Ember.merge(attributes, attrs); // use defaults, but you can override;
 
-    return run(function () {
+    return Ember.run(function () {
       var application = _app.default.create(attributes);
       application.setupForTesting();
       application.injectTestHelpers();
@@ -551,7 +637,6 @@ define('chenxu/tests/helpers/x-select', ['exports'], function (exports) {
     value: true
   });
   exports.select = select;
-  var jQuery = Ember.$;
 
 
   /**
@@ -566,7 +651,7 @@ define('chenxu/tests/helpers/x-select', ['exports'], function (exports) {
       texts[_key - 1] = arguments[_key];
     }
 
-    var $select = selector instanceof jQuery ? selector : Ember.$(selector);
+    var $select = selector instanceof Ember.$ ? selector : Ember.$(selector);
     var $options = $select.find('option');
 
     if (!$options.length) {
@@ -593,10 +678,12 @@ define('chenxu/tests/helpers/x-select', ['exports'], function (exports) {
     });
   }
 });
-define('chenxu/tests/test-helper', ['chenxu/tests/helpers/resolver', 'ember-qunit'], function (_resolver, _emberQunit) {
+define('chenxu/tests/test-helper', ['chenxu/app', 'chenxu/config/environment', '@ember/test-helpers', 'ember-qunit'], function (_app, _environment, _testHelpers, _emberQunit) {
   'use strict';
 
-  (0, _emberQunit.setResolver)(_resolver.default);
+  (0, _testHelpers.setApplication)(_app.default.create(_environment.default.APP));
+
+  (0, _emberQunit.start)();
 });
 define('chenxu/tests/tests.lint-test', [], function () {
   'use strict';

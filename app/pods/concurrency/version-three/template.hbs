@@ -1,0 +1,16 @@
+<button onclick={{action 'findStores'}}>
+  Find Nearby three
+</button>
+
+{{#if isFindingStores}}
+  {{#block-holder}}
+    加载中
+  {{/block-holder}}
+{{/if}}
+{{#if result}}
+  {{#each result as |s|}}
+    <li>
+      <strong>{{s.team_name}}</strong>:
+    </li>
+  {{/each}}
+{{/if}}

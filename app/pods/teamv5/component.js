@@ -1,10 +1,11 @@
+import { alias } from '@ember/object/computed';
 import Component from '@ember/component';
+import $ from 'jquery';
 // import xx  from './test.js';
-import { computed } from '@ember/object';
 export default Component.extend({
   // body
-  list: computed.alias('model.list'),
-  data: computed.alias('model.data'),
+  list: alias('model.list'),
+  data: alias('model.data'),
   didInsertElement() {
     // console.log(xx);
     $('body').addClass('nooverhidden');

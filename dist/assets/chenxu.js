@@ -8,11 +8,9 @@ define('chenxu/app', ['exports', 'chenxu/resolver', 'ember-load-initializers', '
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Application = Ember.Application;
 
-  var App = void 0;
 
-  App = Application.extend({
+  var App = Ember.Application.extend({
     modulePrefix: _environment.default.modulePrefix,
     podModulePrefix: _environment.default.podModulePrefix,
     Resolver: _resolver.default
@@ -97,19 +95,6 @@ define('chenxu/components/basic-dropdown/trigger', ['exports', 'ember-basic-drop
     enumerable: true,
     get: function () {
       return _trigger.default;
-    }
-  });
-});
-define('chenxu/components/bs-datetimepicker', ['exports', 'ember-bootstrap-datetimepicker/components/bs-datetimepicker'], function (exports, _bsDatetimepicker) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  Object.defineProperty(exports, 'default', {
-    enumerable: true,
-    get: function () {
-      return _bsDatetimepicker.default;
     }
   });
 });
@@ -352,8 +337,7 @@ define('chenxu/components/main-content/header/component', ['exports'], function 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     classNames: ['main-header'],
     tagName: 'header',
     actions: {
@@ -541,17 +525,18 @@ define('chenxu/helpers/and', ['exports', 'ember-truth-helpers/helpers/and'], fun
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-
-
-  var forExport = null;
-
-  if (Ember.Helper) {
-    forExport = Ember.Helper.helper(_and.andHelper);
-  } else if (Ember.HTMLBars.makeBoundHelper) {
-    forExport = Ember.HTMLBars.makeBoundHelper(_and.andHelper);
-  }
-
-  exports.default = forExport;
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _and.default;
+    }
+  });
+  Object.defineProperty(exports, 'and', {
+    enumerable: true,
+    get: function () {
+      return _and.and;
+    }
+  });
 });
 define('chenxu/helpers/app-version', ['exports', 'chenxu/config/environment', 'ember-cli-app-version/utils/regexp'], function (exports, _environment, _regexp) {
   'use strict';
@@ -577,27 +562,24 @@ define('chenxu/helpers/app-version', ['exports', 'chenxu/config/environment', 'e
 
   exports.default = Ember.Helper.helper(appVersion);
 });
-define('chenxu/helpers/cancel-all', ['exports', 'ember-concurrency/-helpers'], function (exports, _helpers) {
+define('chenxu/helpers/cancel-all', ['exports', 'ember-concurrency/helpers/cancel-all'], function (exports, _cancelAll) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.cancelHelper = cancelHelper;
-
-
-  var CANCEL_REASON = "the 'cancel-all' template helper was invoked";
-
-  function cancelHelper(args) {
-    var cancelable = args[0];
-    if (!cancelable || typeof cancelable.cancelAll !== 'function') {
-      Ember.assert('The first argument passed to the `cancel-all` helper should be a Task or TaskGroup (without quotes); you passed ' + cancelable, false);
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _cancelAll.default;
     }
-
-    return (0, _helpers.taskHelperClosure)('cancel-all', 'cancelAll', [cancelable, CANCEL_REASON]);
-  }
-
-  exports.default = Ember.Helper.helper(cancelHelper);
+  });
+  Object.defineProperty(exports, 'cancelAll', {
+    enumerable: true,
+    get: function () {
+      return _cancelAll.cancelAll;
+    }
+  });
 });
 define('chenxu/helpers/changeset', ['exports', 'ember-changeset/helpers/changeset'], function (exports, _changeset) {
   'use strict';
@@ -616,6 +598,83 @@ define('chenxu/helpers/changeset', ['exports', 'ember-changeset/helpers/changese
     get: function () {
       return _changeset.changeset;
     }
+  });
+});
+define('chenxu/helpers/classNameChange', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _slicedToArray = function () {
+    function sliceIterator(arr, i) {
+      var _arr = [];
+      var _n = true;
+      var _d = false;
+      var _e = undefined;
+
+      try {
+        for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+          _arr.push(_s.value);
+
+          if (i && _arr.length === i) break;
+        }
+      } catch (err) {
+        _d = true;
+        _e = err;
+      } finally {
+        try {
+          if (!_n && _i["return"]) _i["return"]();
+        } finally {
+          if (_d) throw _e;
+        }
+      }
+
+      return _arr;
+    }
+
+    return function (arr, i) {
+      if (Array.isArray(arr)) {
+        return arr;
+      } else if (Symbol.iterator in Object(arr)) {
+        return sliceIterator(arr, i);
+      } else {
+        throw new TypeError("Invalid attempt to destructure non-iterable instance");
+      }
+    };
+  }();
+
+  exports.default = Ember.Helper.helper(function (_ref) {
+    var _ref2 = _slicedToArray(_ref, 1),
+        name = _ref2[0];
+
+    var classes = '';
+    var array = ['', '行业线', '区域线', '', '', '', '', '', '类目线', '中台线', '集团线', '序列线'];
+    switch (name) {
+      case '区域线':
+        classes = 'area-line';
+        break;
+      case '行业线':
+        classes = 'industry-line';
+        break;
+      case '类目线':
+        classes = 'category-line';
+        break;
+      case '中台线':
+        classes = 'station-line';
+        break;
+      case '序列线':
+        classes = 'order-line';
+        break;
+      case '集团线':
+        classes = 'group-line';
+        break;
+      default:
+        classes = 'area-line';
+        break;
+    }
+    return classes;
   });
 });
 define('chenxu/helpers/ember-power-select-is-group', ['exports', 'ember-power-select/helpers/ember-power-select-is-group'], function (exports, _emberPowerSelectIsGroup) {
@@ -681,17 +740,18 @@ define('chenxu/helpers/eq', ['exports', 'ember-truth-helpers/helpers/equal'], fu
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-
-
-  var forExport = null;
-
-  if (Ember.Helper) {
-    forExport = Ember.Helper.helper(_equal.equalHelper);
-  } else if (Ember.HTMLBars.makeBoundHelper) {
-    forExport = Ember.HTMLBars.makeBoundHelper(_equal.equalHelper);
-  }
-
-  exports.default = forExport;
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _equal.default;
+    }
+  });
+  Object.defineProperty(exports, 'equal', {
+    enumerable: true,
+    get: function () {
+      return _equal.equal;
+    }
+  });
 });
 define('chenxu/helpers/gt', ['exports', 'ember-truth-helpers/helpers/gt'], function (exports, _gt) {
   'use strict';
@@ -699,17 +759,18 @@ define('chenxu/helpers/gt', ['exports', 'ember-truth-helpers/helpers/gt'], funct
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-
-
-  var forExport = null;
-
-  if (Ember.Helper) {
-    forExport = Ember.Helper.helper(_gt.gtHelper);
-  } else if (Ember.HTMLBars.makeBoundHelper) {
-    forExport = Ember.HTMLBars.makeBoundHelper(_gt.gtHelper);
-  }
-
-  exports.default = forExport;
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _gt.default;
+    }
+  });
+  Object.defineProperty(exports, 'gt', {
+    enumerable: true,
+    get: function () {
+      return _gt.gt;
+    }
+  });
 });
 define('chenxu/helpers/gte', ['exports', 'ember-truth-helpers/helpers/gte'], function (exports, _gte) {
   'use strict';
@@ -717,17 +778,31 @@ define('chenxu/helpers/gte', ['exports', 'ember-truth-helpers/helpers/gte'], fun
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _gte.default;
+    }
+  });
+  Object.defineProperty(exports, 'gte', {
+    enumerable: true,
+    get: function () {
+      return _gte.gte;
+    }
+  });
+});
+define('chenxu/helpers/is-after', ['exports', 'ember-moment/helpers/is-after'], function (exports, _isAfter) {
+  'use strict';
 
-
-  var forExport = null;
-
-  if (Ember.Helper) {
-    forExport = Ember.Helper.helper(_gte.gteHelper);
-  } else if (Ember.HTMLBars.makeBoundHelper) {
-    forExport = Ember.HTMLBars.makeBoundHelper(_gte.gteHelper);
-  }
-
-  exports.default = forExport;
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _isAfter.default;
+    }
+  });
 });
 define('chenxu/helpers/is-array', ['exports', 'ember-truth-helpers/helpers/is-array'], function (exports, _isArray) {
   'use strict';
@@ -735,17 +810,44 @@ define('chenxu/helpers/is-array', ['exports', 'ember-truth-helpers/helpers/is-ar
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _isArray.default;
+    }
+  });
+  Object.defineProperty(exports, 'isArray', {
+    enumerable: true,
+    get: function () {
+      return _isArray.isArray;
+    }
+  });
+});
+define('chenxu/helpers/is-before', ['exports', 'ember-moment/helpers/is-before'], function (exports, _isBefore) {
+  'use strict';
 
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _isBefore.default;
+    }
+  });
+});
+define('chenxu/helpers/is-between', ['exports', 'ember-moment/helpers/is-between'], function (exports, _isBetween) {
+  'use strict';
 
-  var forExport = null;
-
-  if (Ember.Helper) {
-    forExport = Ember.Helper.helper(_isArray.isArrayHelper);
-  } else if (Ember.HTMLBars.makeBoundHelper) {
-    forExport = Ember.HTMLBars.makeBoundHelper(_isArray.isArrayHelper);
-  }
-
-  exports.default = forExport;
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _isBetween.default;
+    }
+  });
 });
 define('chenxu/helpers/is-eq', ['exports'], function (exports) {
   'use strict';
@@ -792,8 +894,7 @@ define('chenxu/helpers/is-eq', ['exports'], function (exports) {
     };
   }();
 
-  var helper = Ember.Helper.helper;
-  exports.default = helper(function (_ref) {
+  exports.default = Ember.Helper.helper(function (_ref) {
     var _ref2 = _slicedToArray(_ref, 2),
         leftSide = _ref2[0],
         rightSide = _ref2[1];
@@ -817,6 +918,45 @@ define('chenxu/helpers/is-equal', ['exports', 'ember-truth-helpers/helpers/is-eq
     enumerable: true,
     get: function () {
       return _isEqual.isEqual;
+    }
+  });
+});
+define('chenxu/helpers/is-same-or-after', ['exports', 'ember-moment/helpers/is-same-or-after'], function (exports, _isSameOrAfter) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _isSameOrAfter.default;
+    }
+  });
+});
+define('chenxu/helpers/is-same-or-before', ['exports', 'ember-moment/helpers/is-same-or-before'], function (exports, _isSameOrBefore) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _isSameOrBefore.default;
+    }
+  });
+});
+define('chenxu/helpers/is-same', ['exports', 'ember-moment/helpers/is-same'], function (exports, _isSame) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _isSame.default;
     }
   });
 });
@@ -864,17 +1004,18 @@ define('chenxu/helpers/lt', ['exports', 'ember-truth-helpers/helpers/lt'], funct
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-
-
-  var forExport = null;
-
-  if (Ember.Helper) {
-    forExport = Ember.Helper.helper(_lt.ltHelper);
-  } else if (Ember.HTMLBars.makeBoundHelper) {
-    forExport = Ember.HTMLBars.makeBoundHelper(_lt.ltHelper);
-  }
-
-  exports.default = forExport;
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _lt.default;
+    }
+  });
+  Object.defineProperty(exports, 'lt', {
+    enumerable: true,
+    get: function () {
+      return _lt.lt;
+    }
+  });
 });
 define('chenxu/helpers/lte', ['exports', 'ember-truth-helpers/helpers/lte'], function (exports, _lte) {
   'use strict';
@@ -882,17 +1023,187 @@ define('chenxu/helpers/lte', ['exports', 'ember-truth-helpers/helpers/lte'], fun
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _lte.default;
+    }
+  });
+  Object.defineProperty(exports, 'lte', {
+    enumerable: true,
+    get: function () {
+      return _lte.lte;
+    }
+  });
+});
+define('chenxu/helpers/moment-add', ['exports', 'ember-moment/helpers/moment-add'], function (exports, _momentAdd) {
+  'use strict';
 
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentAdd.default;
+    }
+  });
+});
+define('chenxu/helpers/moment-calendar', ['exports', 'ember-moment/helpers/moment-calendar'], function (exports, _momentCalendar) {
+  'use strict';
 
-  var forExport = null;
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentCalendar.default;
+    }
+  });
+});
+define('chenxu/helpers/moment-diff', ['exports', 'ember-moment/helpers/moment-diff'], function (exports, _momentDiff) {
+  'use strict';
 
-  if (Ember.Helper) {
-    forExport = Ember.Helper.helper(_lte.lteHelper);
-  } else if (Ember.HTMLBars.makeBoundHelper) {
-    forExport = Ember.HTMLBars.makeBoundHelper(_lte.lteHelper);
-  }
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentDiff.default;
+    }
+  });
+});
+define('chenxu/helpers/moment-duration', ['exports', 'ember-moment/helpers/moment-duration'], function (exports, _momentDuration) {
+  'use strict';
 
-  exports.default = forExport;
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentDuration.default;
+    }
+  });
+});
+define('chenxu/helpers/moment-format', ['exports', 'ember-moment/helpers/moment-format'], function (exports, _momentFormat) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentFormat.default;
+    }
+  });
+});
+define('chenxu/helpers/moment-from-now', ['exports', 'ember-moment/helpers/moment-from-now'], function (exports, _momentFromNow) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentFromNow.default;
+    }
+  });
+});
+define('chenxu/helpers/moment-from', ['exports', 'ember-moment/helpers/moment-from'], function (exports, _momentFrom) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentFrom.default;
+    }
+  });
+});
+define('chenxu/helpers/moment-subtract', ['exports', 'ember-moment/helpers/moment-subtract'], function (exports, _momentSubtract) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentSubtract.default;
+    }
+  });
+});
+define('chenxu/helpers/moment-to-date', ['exports', 'ember-moment/helpers/moment-to-date'], function (exports, _momentToDate) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentToDate.default;
+    }
+  });
+});
+define('chenxu/helpers/moment-to-now', ['exports', 'ember-moment/helpers/moment-to-now'], function (exports, _momentToNow) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentToNow.default;
+    }
+  });
+});
+define('chenxu/helpers/moment-to', ['exports', 'ember-moment/helpers/moment-to'], function (exports, _momentTo) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentTo.default;
+    }
+  });
+});
+define('chenxu/helpers/moment-unix', ['exports', 'ember-moment/helpers/unix'], function (exports, _unix) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _unix.default;
+    }
+  });
+});
+define('chenxu/helpers/moment', ['exports', 'ember-moment/helpers/moment'], function (exports, _moment) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _moment.default;
+    }
+  });
 });
 define('chenxu/helpers/not-eq', ['exports', 'ember-truth-helpers/helpers/not-equal'], function (exports, _notEqual) {
   'use strict';
@@ -900,17 +1211,18 @@ define('chenxu/helpers/not-eq', ['exports', 'ember-truth-helpers/helpers/not-equ
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-
-
-  var forExport = null;
-
-  if (Ember.Helper) {
-    forExport = Ember.Helper.helper(_notEqual.notEqualHelper);
-  } else if (Ember.HTMLBars.makeBoundHelper) {
-    forExport = Ember.HTMLBars.makeBoundHelper(_notEqual.notEqualHelper);
-  }
-
-  exports.default = forExport;
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _notEqual.default;
+    }
+  });
+  Object.defineProperty(exports, 'notEq', {
+    enumerable: true,
+    get: function () {
+      return _notEqual.notEq;
+    }
+  });
 });
 define('chenxu/helpers/not', ['exports', 'ember-truth-helpers/helpers/not'], function (exports, _not) {
   'use strict';
@@ -918,17 +1230,31 @@ define('chenxu/helpers/not', ['exports', 'ember-truth-helpers/helpers/not'], fun
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _not.default;
+    }
+  });
+  Object.defineProperty(exports, 'not', {
+    enumerable: true,
+    get: function () {
+      return _not.not;
+    }
+  });
+});
+define('chenxu/helpers/now', ['exports', 'ember-moment/helpers/now'], function (exports, _now) {
+  'use strict';
 
-
-  var forExport = null;
-
-  if (Ember.Helper) {
-    forExport = Ember.Helper.helper(_not.notHelper);
-  } else if (Ember.HTMLBars.makeBoundHelper) {
-    forExport = Ember.HTMLBars.makeBoundHelper(_not.notHelper);
-  }
-
-  exports.default = forExport;
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _now.default;
+    }
+  });
 });
 define('chenxu/helpers/or', ['exports', 'ember-truth-helpers/helpers/or'], function (exports, _or) {
   'use strict';
@@ -936,30 +1262,37 @@ define('chenxu/helpers/or', ['exports', 'ember-truth-helpers/helpers/or'], funct
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-
-
-  var forExport = null;
-
-  if (Ember.Helper) {
-    forExport = Ember.Helper.helper(_or.orHelper);
-  } else if (Ember.HTMLBars.makeBoundHelper) {
-    forExport = Ember.HTMLBars.makeBoundHelper(_or.orHelper);
-  }
-
-  exports.default = forExport;
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _or.default;
+    }
+  });
+  Object.defineProperty(exports, 'or', {
+    enumerable: true,
+    get: function () {
+      return _or.or;
+    }
+  });
 });
-define('chenxu/helpers/perform', ['exports', 'ember-concurrency/-helpers'], function (exports, _helpers) {
+define('chenxu/helpers/perform', ['exports', 'ember-concurrency/helpers/perform'], function (exports, _perform) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.performHelper = performHelper;
-  function performHelper(args, hash) {
-    return (0, _helpers.taskHelperClosure)('perform', 'perform', args, hash);
-  }
-
-  exports.default = Ember.Helper.helper(performHelper);
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _perform.default;
+    }
+  });
+  Object.defineProperty(exports, 'perform', {
+    enumerable: true,
+    get: function () {
+      return _perform.perform;
+    }
+  });
 });
 define('chenxu/helpers/route-action', ['exports', 'ember-route-action-helper/helpers/route-action'], function (exports, _routeAction) {
   'use strict';
@@ -1019,49 +1352,46 @@ define('chenxu/helpers/set', ['exports'], function (exports) {
     };
   }();
 
-  var set = Ember.set;
-  var helper = Ember.Helper.helper;
-  exports.default = helper(function (_ref) {
+  exports.default = Ember.Helper.helper(function (_ref) {
     var _ref2 = _slicedToArray(_ref, 3),
         target = _ref2[0],
         property = _ref2[1],
         val = _ref2[2];
 
-    set(target, property, val);
+    Ember.set(target, property, val);
   });
 });
-define('chenxu/helpers/task', ['exports'], function (exports) {
+define('chenxu/helpers/task', ['exports', 'ember-concurrency/helpers/task'], function (exports, _task) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-
-  function _toConsumableArray(arr) {
-    if (Array.isArray(arr)) {
-      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
-        arr2[i] = arr[i];
-      }
-
-      return arr2;
-    } else {
-      return Array.from(arr);
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _task.default;
     }
-  }
+  });
+  Object.defineProperty(exports, 'task', {
+    enumerable: true,
+    get: function () {
+      return _task.task;
+    }
+  });
+});
+define('chenxu/helpers/unix', ['exports', 'ember-moment/helpers/unix'], function (exports, _unix) {
+  'use strict';
 
-  function _toArray(arr) {
-    return Array.isArray(arr) ? arr : Array.from(arr);
-  }
-
-  function taskHelper(_ref) {
-    var _ref2 = _toArray(_ref),
-        task = _ref2[0],
-        args = _ref2.slice(1);
-
-    return task._curry.apply(task, _toConsumableArray(args));
-  }
-
-  exports.default = Ember.Helper.helper(taskHelper);
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _unix.default;
+    }
+  });
 });
 define('chenxu/helpers/xor', ['exports', 'ember-truth-helpers/helpers/xor'], function (exports, _xor) {
   'use strict';
@@ -1069,17 +1399,18 @@ define('chenxu/helpers/xor', ['exports', 'ember-truth-helpers/helpers/xor'], fun
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-
-
-  var forExport = null;
-
-  if (Ember.Helper) {
-    forExport = Ember.Helper.helper(_xor.xorHelper);
-  } else if (Ember.HTMLBars.makeBoundHelper) {
-    forExport = Ember.HTMLBars.makeBoundHelper(_xor.xorHelper);
-  }
-
-  exports.default = forExport;
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _xor.default;
+    }
+  });
+  Object.defineProperty(exports, 'xor', {
+    enumerable: true,
+    get: function () {
+      return _xor.xor;
+    }
+  });
 });
 define('chenxu/initializers/app-version', ['exports', 'ember-cli-app-version/initializer-factory', 'chenxu/config/environment'], function (exports, _initializerFactory, _environment) {
   'use strict';
@@ -1087,9 +1418,15 @@ define('chenxu/initializers/app-version', ['exports', 'ember-cli-app-version/ini
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var _config$APP = _environment.default.APP,
-      name = _config$APP.name,
-      version = _config$APP.version;
+
+
+  var name = void 0,
+      version = void 0;
+  if (_environment.default.APP) {
+    name = _environment.default.APP.name;
+    version = _environment.default.APP.version;
+  }
+
   exports.default = {
     name: 'App Version',
     initialize: (0, _initializerFactory.default)(name, version)
@@ -1188,16 +1525,24 @@ define('chenxu/initializers/container-debug-adapter', ['exports', 'ember-resolve
     }
   };
 });
-define('chenxu/initializers/ember-concurrency', ['exports', 'ember-concurrency'], function (exports) {
+define('chenxu/initializers/ember-concurrency', ['exports', 'ember-concurrency/initializers/ember-concurrency'], function (exports, _emberConcurrency) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = {
-    name: 'ember-concurrency',
-    initialize: function initialize() {}
-  };
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _emberConcurrency.default;
+    }
+  });
+  Object.defineProperty(exports, 'initialize', {
+    enumerable: true,
+    get: function () {
+      return _emberConcurrency.initialize;
+    }
+  });
 });
 define('chenxu/initializers/ember-keyboard-first-responder-inputs', ['exports', 'ember-keyboard/initializers/ember-keyboard-first-responder-inputs'], function (exports, _emberKeyboardFirstResponderInputs) {
   'use strict';
@@ -1315,9 +1660,9 @@ define('chenxu/initializers/lib-routable-component', ['exports'], function (expo
       var owner = Ember.getOwner(this);
       var into = options && options.into && options.into.replace(/\//g, '.');
       var outlet = options && options.outlet || 'main';
-      var component = owner.lookup('component:' + name);
+      var componentExists = owner.hasRegistration('component:' + name);
 
-      if (!component) {
+      if (!componentExists) {
         this._super.apply(this, arguments);
       } else {
         var controller = owner.lookup('controller:' + name);
@@ -1368,9 +1713,8 @@ define('chenxu/initializers/logger', ['exports'], function (exports) {
     value: true
   });
   exports.initialize = initialize;
-  var EmberObject = Ember.Object;
   function initialize(application) {
-    var Logger = EmberObject.extend({
+    var Logger = Ember.Object.extend({
       log: function log() {}
     });
 
@@ -1383,37 +1727,18 @@ define('chenxu/initializers/logger', ['exports'], function (exports) {
     initialize: initialize
   };
 });
-define('chenxu/initializers/truth-helpers', ['exports', 'ember-truth-helpers/utils/register-helper', 'ember-truth-helpers/helpers/and', 'ember-truth-helpers/helpers/or', 'ember-truth-helpers/helpers/equal', 'ember-truth-helpers/helpers/not', 'ember-truth-helpers/helpers/is-array', 'ember-truth-helpers/helpers/not-equal', 'ember-truth-helpers/helpers/gt', 'ember-truth-helpers/helpers/gte', 'ember-truth-helpers/helpers/lt', 'ember-truth-helpers/helpers/lte'], function (exports, _registerHelper, _and, _or, _equal, _not, _isArray, _notEqual, _gt, _gte, _lt, _lte) {
+define('chenxu/initializers/route-injector', ['exports'], function (exports) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
   exports.initialize = initialize;
-  function initialize() /* container, application */{
-
-    // Do not register helpers from Ember 1.13 onwards, starting from 1.13 they
-    // will be auto-discovered.
-    if (Ember.Helper) {
-      return;
-    }
-
-    (0, _registerHelper.registerHelper)('and', _and.andHelper);
-    (0, _registerHelper.registerHelper)('or', _or.orHelper);
-    (0, _registerHelper.registerHelper)('eq', _equal.equalHelper);
-    (0, _registerHelper.registerHelper)('not', _not.notHelper);
-    (0, _registerHelper.registerHelper)('is-array', _isArray.isArrayHelper);
-    (0, _registerHelper.registerHelper)('not-eq', _notEqual.notEqualHelper);
-    (0, _registerHelper.registerHelper)('gt', _gt.gtHelper);
-    (0, _registerHelper.registerHelper)('gte', _gte.gteHelper);
-    (0, _registerHelper.registerHelper)('lt', _lt.ltHelper);
-    (0, _registerHelper.registerHelper)('lte', _lte.lteHelper);
+  function initialize(application) {
+    application.inject('component', 'router', 'route:application');
   }
 
-  exports.default = {
-    name: 'truth-helpers',
-    initialize: initialize
-  };
+  exports.default = { initialize: initialize };
 });
 define('chenxu/mixins/click-outside', ['exports', 'ember-click-outside/mixins/click-outside'], function (exports, _clickOutside) {
   'use strict';
@@ -1436,14 +1761,461 @@ define('chenxu/mixins/style-namespacing-extras', ['exports', 'ember-component-cs
     }
   });
 });
+define('chenxu/models/utils', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  function _asyncToGenerator(fn) {
+    return function () {
+      var gen = fn.apply(this, arguments);
+      return new Promise(function (resolve, reject) {
+        function step(key, arg) {
+          try {
+            var info = gen[key](arg);
+            var value = info.value;
+          } catch (error) {
+            reject(error);
+            return;
+          }
+
+          if (info.done) {
+            resolve(value);
+          } else {
+            return Promise.resolve(value).then(function (value) {
+              step("next", value);
+            }, function (err) {
+              step("throw", err);
+            });
+          }
+        }
+
+        return step("next");
+      });
+    };
+  }
+
+  var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+    return typeof obj;
+  } : function (obj) {
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+  };
+
+  var isDev = location.origin.indexOf('http://localhost') == 0;
+
+  var ZBJConfig = exports.ZBJConfig = {
+    API_HOST: isDev ? 'http://qy.dev.zbjdev.com' : location.origin,
+    HOME_DIR: isDev ? '/' : '/fe/dist/',
+    isDev: isDev
+  };
+  var _ = {
+    isUndefined: function isUndefined(o) {
+      return typeof o == 'undefined';
+    },
+    cloneDeep: function cloneDeep(o) {
+      return Ember.$.extend({}, o, true);
+    }
+  };
+
+  var bsPromise = exports.bsPromise = function bsPromise(data, time) {
+    return new Ember.RSVP.Promise(function (resolve) {
+      if (time) {
+        Ember.run.later(function () {
+          resolve(data);
+        }, time || 1);
+      } else {
+        resolve(data);
+      }
+    });
+  };
+  var bsWait = exports.bsWait = function bsWait(time) {
+    return bsPromise(null, time);
+  };
+
+  var bsConfirm = exports.bsConfirm = function bsConfirm() {
+    var content = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '是否确定？';
+    var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '系统提示';
+    var okBtnText = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '确定';
+    var cancelBtnText = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '取消';
+
+    return new Ember.RSVP.Promise(function (confirmHandler, cancelHandler) {
+      window.confirmComponent.setProperties({
+        show: true, content: content, title: title, okBtnText: okBtnText, cancelBtnText: cancelBtnText,
+        confirmHandler: confirmHandler, cancelHandler: cancelHandler
+      });
+    });
+  };
+
+  /**
+   */
+  var bsTip = exports.bsTip = function bsTip(msg, type, timeout) {
+    type = type || 'success'; // success info warning error
+    timeout = timeout || 3000;
+
+    if (window.bsTip) {
+      return window.bsTip(msg, type, timeout);
+    }
+
+    var notification = window.Qyweb.__container__.lookup('service:notify');
+    var opts = {
+      closeAfter: timeout
+    };
+    notification[type](msg, opts);
+  };
+
+  var BsCache = {
+    CACHE_URLS: [
+      // '/corp/department/act/GetDepartmentList'
+    ],
+    cache: {},
+    shouldCache: function shouldCache(url) {
+      if (url.indexOf(ZBJConfig.API_HOST) === 0) {
+        url = url.substr(ZBJConfig.API_HOST.length);
+      }
+      for (var i = 0; i < this.CACHE_URLS.length; i++) {
+        if (url.indexOf(this.CACHE_URLS[i]) === 0) {
+          return true;
+        }
+      }
+      return false;
+    },
+    encodeKey: function encodeKey(url, params) {
+      if (typeof params == 'string') {
+        return url + '__params__' + params;
+      }
+      return url + '__params__' + Ember.$.param(params);
+    },
+    saveCache: function saveCache(url, params, data) {
+      var cacheKey = this.encodeKey(url, params);
+      this.cache[cacheKey] = data;
+    },
+    removeCache: function removeCache(url, params) {
+      var cacheKey = this.encodeKey(url, params);
+      delete this.cache[cacheKey];
+    },
+    getCache: function getCache(url, params) {
+      var cacheKey = this.encodeKey(url, params);
+      return this.cache[cacheKey];
+    }
+  };
+
+  var bsGetAppname = exports.bsGetAppname = function bsGetAppname() {
+    var hash = location.hash.replace(/\?.*/, '');
+    var maps = {
+      'luckdraw': 'whhd_yj',
+      'sign': 'whhd_qd',
+      'vote': 'whhd_tp',
+      'wechatwall': 'whhd_wxc',
+
+      'meeting': 'xtbg_hygl',
+      'news': 'ydbg_tzgg',
+      'jobreport': 'ydbg_gzbg',
+      'attendance': 'ydbg_kqdk',
+      'addressbook': 'ydbg_txl',
+      'salary': 'rlzy_gzt',
+      'exam': 'whpx_kscp',
+
+      'sell': 'xsgl_bjxsgl'
+    };
+    var names = Object.keys(maps);
+    for (var i = 0; i < names.length; i++) {
+      var name = names[i];
+      if (hash.indexOf(name) !== -1) {
+        return maps[name];
+      }
+    }
+    return '';
+  };
+
+  var APP = {};
+  var bsAddReqToken = function bsAddReqToken(url) {
+    if (!APP.REQ_TOKEN) {
+      return url;
+    }
+    if (url.indexOf('?') === -1) {
+      return url + '?token=' + APP.REQ_TOKEN;
+    } else {
+      return url + '&token=' + APP.REQ_TOKEN;
+    }
+  };
+
+  var bsGetJSON = exports.bsGetJSON = function bsGetJSON(url, params, type) {
+    type = type || 'GET';
+    type = type.toUpperCase();
+    var shouldCache = BsCache.shouldCache(url);
+
+    if ((typeof params === 'undefined' ? 'undefined' : _typeof(params)) === 'object' && params !== null) {
+      params = JSON.parse(JSON.stringify(params));
+    }
+
+    Ember.$.ajaxSetup({
+      xhrFields: {
+        withCredentials: false
+      }
+    });
+
+    function handleRequestError(data) {
+      if (data && data.token) {
+        APP.REQ_TOKEN = data.token;
+      }
+      if (data && data.is_redirect) {
+        var char = data.redirect_url.indexOf('?') == -1 ? '?' : '&';
+        location.href = data.redirect_url + char + 'back_url=' + encodeURIComponent(location.href);
+      } else if (data && !data.state) {
+        // error
+        bsTip(data.data || 'error', 'error');
+      }
+      if (!data.state) {
+        BsCache.removeCache(url, params);
+      } else if (shouldCache) {
+        // 复制一份数据，防止业务对数据进行修改后从缓存中取出的是修改后的数据
+        var cachedData = _.cloneDeep(data);
+        data.cachedData = cachedData;
+      }
+      return data;
+    }
+    params = params || {};
+
+    if (ZBJConfig.isDev) {
+      if (typeof params == 'string') {
+        params += '&isAjax=1';
+      } else {
+        params.isAjax = 1;
+      }
+    }
+    if (url.indexOf('http://') !== 0 && url.indexOf('https://') !== 0) {
+      url = ZBJConfig.API_HOST + url;
+    }
+
+    if (shouldCache) {
+      var cache = BsCache.getCache(url, params);
+      if (cache) {
+        return cache.then(function (data) {
+          // 返回缓存的原始数据
+          if (data.cachedData) {
+            return _.cloneDeep(data.cachedData);
+          }
+          return data;
+        });
+      }
+    }
+
+    var promise = null;
+
+    var urlAddToken = bsAddReqToken(url);
+    if (type == 'GET') {
+      promise = Ember.$.getJSON(urlAddToken, params);
+    } else {
+      promise = Ember.$.post(urlAddToken, params, null, 'json');
+    }
+
+    promise = new Ember.RSVP.Promise(function (resolve, reject) {
+      promise.then(handleRequestError).done(resolve).fail(reject);
+    });
+
+    if (shouldCache) {
+      BsCache.saveCache(url, params, promise);
+    }
+    return promise;
+  };
+
+  /**
+   * 当满足条件时执行函数，函数最多只会执行一次，超时后还没有满足条件则函数不会执行
+   * @param {} fn 要执行的函数
+   * @param {} cod  要满足的条件
+   * @param {} name
+   */
+  var bsRunWhen = exports.bsRunWhen = function bsRunWhen(fn, cod) {
+
+    if (cod()) {
+      fn();
+      return;
+    }
+
+    var i = 0;
+    var interval = setInterval(function () {
+      i++;
+      if (i > 500) {
+        clearInterval(interval);
+      } else if (cod()) {
+        fn();
+        clearInterval(interval);
+      }
+    }, 30);
+  };
+
+  var bsCheck = exports.bsCheck = function bsCheck(cod) {
+    return new Ember.RSVP.Promise(function (resolve, reject) {
+      bsRunWhen(resolve, cod, 'bsCheck', reject);
+    });
+  };
+
+  var bsElementIsScrolledIntoView = exports.bsElementIsScrolledIntoView = function bsElementIsScrolledIntoView(elem, container) {
+    container = container || window;
+    var $elem = Ember.$(elem);
+    var $window = Ember.$(container);
+
+    if ($elem.length == 0) {
+      return false;
+    }
+
+    var docViewTop = $window.scrollTop();
+    var docViewBottom = docViewTop + $window.height();
+
+    var elemTop = $elem.offset().top;
+    if ($window.scrollTop()) {
+      elemTop -= $window.scrollTop();
+    }
+    var elemBottom = elemTop + $elem.height();
+
+    return elemBottom >= docViewTop && elemTop <= docViewBottom;
+  };
+
+  var loaded = [];
+  var loading = [];
+
+  var Loader = Ember.Object.extend({
+    lazyLoadFiles: function lazyLoadFiles() {
+      return [];
+    },
+    _endsWith: function _endsWith(str, suffix) {
+      return str.indexOf(suffix, str.length - suffix.length) !== -1;
+    },
+    _isJsFile: function _isJsFile(file) {
+      return this._endsWith(file, '.js');
+    },
+    _isCssFile: function _isCssFile(file) {
+      return this._endsWith(file, '.css');
+    },
+    _getScript: function _getScript(url) {
+      return Ember.$.ajax({
+        url: url,
+        dataType: 'script',
+        cache: true
+      });
+    },
+    _doLoad: function _doLoad(path) {
+      var filePath = path;
+      var self = this;
+      if (!loaded[filePath]) {
+        if (this._isJsFile(filePath)) {
+          if (loading[filePath]) {
+            return loading[filePath];
+          }
+          var loadPromise = self._getScript(filePath).then(function () {
+            // getScript is in jQuery
+            loaded[filePath] = true;
+            loading[filePath] = null;
+            return true;
+          });
+          loading[filePath] = loadPromise;
+          return loadPromise;
+        } else if (this._isCssFile(filePath)) {
+          Ember.$('<link/>', {
+            rel: 'stylesheet',
+            type: 'text/css',
+            href: filePath
+          }).appendTo('head');
+          loaded[filePath] = true;
+          return bsPromise(true);
+        }
+      } else {
+        return bsPromise(true);
+      }
+    },
+    beforeModel: function beforeModel() {
+      var files = this.lazyLoadFiles() || [];
+      var self = this;
+
+      var promises = {};
+      if (files && files.length > 0) {
+        files.map(function (o, i) {
+          promises[String(i)] = self._doLoad(o);
+        });
+        return Ember.RSVP.hash(promises);
+      }
+      return true;
+    },
+    bsLoad: function bsLoad(files) {
+      var self = this;
+      if (Ember.$.isArray(files) && files.length > 0) {
+        var promises = files.map(function (o) {
+          return self.bsLoad(o);
+        });
+        return Ember.RSVP.all(promises);
+      }
+      if (typeof files === 'string') {
+        return self._doLoad(files);
+      }
+      return bsPromise();
+    }
+  });
+
+  var loader = new Loader();
+  var bsLoad = exports.bsLoad = function bsLoad(files) {
+    if (Ember.$.isArray(files) && files.length > 0) {
+      var promises = files.map(function (o) {
+        return bsLoad(o);
+      });
+      return Ember.RSVP.all(promises);
+    }
+    if (typeof files == 'string') {
+      return loader._doLoad(files);
+    }
+    return bsPromise();
+  };
+
+  window.bsLoad = bsLoad;
+
+  var bsGetToken = exports.bsGetToken = function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      var result;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return bsGetJSON('/index/gettoken');
+
+            case 2:
+              result = _context.sent;
+
+              if (result.state && result.data && result.data.token) {
+                APP.REQ_TOKEN = result.data.token;
+              }
+
+            case 4:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, this);
+    }));
+
+    return function bsGetToken() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  var Utils = {
+    ZBJConfig: ZBJConfig,
+    bsPromise: bsPromise,
+    bsConfirm: bsConfirm,
+    bsTip: bsTip,
+    bsGetJSON: bsGetJSON,
+    bsLoad: bsLoad
+  };
+  exports.default = Utils;
+});
 define('chenxu/pods/application/component', ['exports'], function (exports) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     didInsertElement: function didInsertElement() {
       this._super.apply(this, arguments);
       bsLoad('./Adminlte/index.js');
@@ -1456,8 +2228,7 @@ define('chenxu/pods/application/controller', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Controller = Ember.Controller;
-  exports.default = Controller.extend({});
+  exports.default = Ember.Controller.extend({});
 });
 define('chenxu/pods/application/route', ['exports'], function (exports) {
   'use strict';
@@ -1465,8 +2236,7 @@ define('chenxu/pods/application/route', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Route = Ember.Route;
-  exports.default = Route.extend({
+  exports.default = Ember.Route.extend({
     model: function model() {}
   });
 });
@@ -1484,8 +2254,7 @@ define('chenxu/pods/backgammon/blog-post/component', ['exports'], function (expo
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     // body
     didInsertElement: function didInsertElement() {}
   });
@@ -1504,12 +2273,11 @@ define('chenxu/pods/backgammon/controller', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Controller = Ember.Controller;
 
 
   var countries = [{ name: 'United States', id: 1 }, { name: 'Spain', id: 2 }, { name: 'Portugal', id: 3 }, { name: 'Russia', id: 4 }, { name: 'Latvia', id: 5 }, { name: 'Brazil', id: 6 }, { name: 'United Kingdom', id: 7 }];
 
-  exports.default = Controller.extend({
+  exports.default = Ember.Controller.extend({
     // body
     countries: countries,
     destination: countries[2],
@@ -1535,8 +2303,7 @@ define('chenxu/pods/backgammon/did-render/component', ['exports'], function (exp
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     classNames: ['item-list'],
     selectedItem: {
       id: 14
@@ -1572,8 +2339,7 @@ define('chenxu/pods/backgammon/profile-editor/component', ['exports'], function 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     init: function init() {
       this._super.apply(this, arguments);
       this.errors = [];
@@ -1614,8 +2380,7 @@ define('chenxu/pods/backgammon/route', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Route = Ember.Route;
-  exports.default = Route.extend({
+  exports.default = Ember.Route.extend({
     model: function model() {
       return [{
         'body': 'body',
@@ -1638,21 +2403,77 @@ define("chenxu/pods/backgammon/template", ["exports"], function (exports) {
   });
   exports.default = Ember.HTMLBars.template({ "id": "EZQv74oN", "block": "{\"symbols\":[\"country\"],\"statements\":[[0,\"\\n\"],[0,\"\\n\"],[1,[25,\"input\",null,[[\"type\",\"value\",\"onchange\"],[\"text\",[20,[\"invalue\"]],[25,\"action\",[[19,0,[]],\"changeinput\",[20,[\"invalue\"]]],null]]]],false],[0,\"\\n\\n\"],[1,[20,[\"destination\",\"id\"]],false],[0,\"\\n\"],[4,\"power-select\",null,[[\"options\",\"selected\",\"onchange\"],[[20,[\"countries\"]],[20,[\"destination\"]],[25,\"action\",[[19,0,[]],\"foo\"],null]]],{\"statements\":[[0,\"  \"],[6,\"span\"],[10,\"class\",[19,1,[\"id\"]],null],[7],[0,\"\\n    \"],[6,\"strong\"],[7],[1,[19,1,[\"name\"]],false],[8],[0,\"\\n  \"],[8],[0,\"\\n\"]],\"parameters\":[1]},null]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/pods/backgammon/template.hbs" } });
 });
+define('chenxu/pods/components/block-holder/component', ['exports', 'ember-computed-decorators'], function (exports, _emberComputedDecorators) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+      desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+      desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+      return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+      desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+      desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+      Object['define' + 'Property'](target, property, desc);
+      desc = null;
+    }
+
+    return desc;
+  }
+
+  var _dec, _desc, _value, _obj;
+
+  exports.default = Ember.Component.extend((_dec = (0, _emberComputedDecorators.default)('width', 'height'), (_obj = {
+    height: null,
+    width: null,
+    classNames: ['minh100', 'all-center-parent', 'w100p'],
+    attributeBindings: ['style'],
+
+    style: function style(width, height) {
+      var style = '';
+      if (width) {
+        style += 'width:' + width + ';';
+      }
+      if (height) {
+        style += 'height:' + height + ';';
+      }
+      return style;
+    }
+  }, (_applyDecoratedDescriptor(_obj, 'style', [_dec], Object.getOwnPropertyDescriptor(_obj, 'style'), _obj)), _obj)));
+});
+define("chenxu/pods/components/block-holder/template", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "HLVrzhvS", "block": "{\"symbols\":[\"&default\"],\"statements\":[[6,\"span\"],[9,\"class\",\"all-center\"],[7],[0,\"\\n\"],[4,\"if\",[[22,1]],null,{\"statements\":[[0,\"    \"],[11,1],[0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[0,\"    \"],[6,\"i\"],[9,\"class\",\"icon-spinner icon-spin\"],[7],[8],[0,\"加载中...\\n\"]],\"parameters\":[]}],[8],[0,\"\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/pods/components/block-holder/template.hbs" } });
+});
 define('chenxu/pods/components/ember-fn/embera/component', ['exports'], function (exports) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var getWithDefault = Ember.getWithDefault;
-  var next = Ember.run.next;
-  var later = Ember.run.later;
-  var cacheFor = Ember.cacheFor;
-  var copy = Ember.copy;
-  var debug = Ember.debug;
-  var A = Ember.A;
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     tagName: 'ul',
     classNames: ['pagination'],
     obj: { a: '1' },
@@ -1660,29 +2481,29 @@ define('chenxu/pods/components/ember-fn/embera/component', ['exports'], function
     init: function init() {
       this._super.apply(this, arguments);
       if (!this.get('content')) {
-        this.set('content', A());
+        this.set('content', Ember.A());
       }
     },
     didInsertElement: function didInsertElement() {
       this._super.apply(this, arguments);
       (true && !(this.get('obj')) && Ember.assert('必须传递有效对象', this.get('obj')));
 
-      cacheFor(this.get('obj'), 'a');
+      Ember.cacheFor(this.get('obj'), 'a');
       this.deepcopy();
-      next(function () {
+      Ember.run.next(function () {
         //  console.log('我是next');
       }, 100);
-      later(function () {
+      Ember.run.later(function () {
         //  console.log('我是later');
       }, 100);
     },
     deepcopy: function deepcopy() {
       var array = [1, 2, 3];
-      var newarray = copy(array, true);
-      debug('I\'m a debug notice!');
+      var newarray = Ember.copy(array, true);
+      Ember.debug('I\'m a debug notice!');
       newarray.push(4);
       var person = this.get('obj');
-      getWithDefault(person, 'a', 1);
+      Ember.getWithDefault(person, 'a', 1);
     }
   });
 });
@@ -1700,8 +2521,7 @@ define('chenxu/pods/components/main-content/footer/component', ['exports'], func
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     // body
   });
 });
@@ -1719,8 +2539,7 @@ define('chenxu/pods/components/main-content/header/component', ['exports'], func
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     classNames: ['main-header', 'top-header'],
     tagName: 'header',
     actions: {
@@ -1749,8 +2568,7 @@ define('chenxu/pods/components/main-content/sidebar/component', ['exports'], fun
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     tagName: 'aside',
     classNames: ['main-sidebar left-side']
 
@@ -1770,8 +2588,7 @@ define('chenxu/pods/components/main-content/wrapper/component', ['exports'], fun
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     classNames: ['content-wrapper', 'padding20'],
     didInsertElement: function didInsertElement() {
       var self = this;
@@ -1803,8 +2620,7 @@ define('chenxu/pods/components/yield-blog/post/component', ['exports'], function
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     // body
     post: {
       'title': '1',
@@ -1821,14 +2637,431 @@ define("chenxu/pods/components/yield-blog/post/template", ["exports"], function 
   });
   exports.default = Ember.HTMLBars.template({ "id": "v+02NHNu", "block": "{\"symbols\":[\"&default\"],\"statements\":[[11,1,[[20,[\"post\",\"title\"]],[20,[\"post\",\"body\"]],[20,[\"post\",\"author\"]]]],[0,\"\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/pods/components/yield-blog/post/template.hbs" } });
 });
+define('chenxu/pods/concurrency/component', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.Component.extend({
+    // body
+  });
+});
+define('chenxu/pods/concurrency/route', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.Route.extend({
+    model: function model() {
+      // body
+    }
+  });
+});
+define("chenxu/pods/concurrency/template", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "tkxJtO7h", "block": "{\"symbols\":[],\"statements\":[[1,[18,\"concurrency/version-one\"],false],[0,\"\\n\"],[1,[18,\"concurrency/version-two\"],false],[0,\"\\n\"],[1,[18,\"concurrency/version-three\"],false],[0,\"\\n\"],[1,[18,\"concurrency/version-four\"],false],[0,\"\\n\"],[1,[18,\"concurrency/version-five\"],false],[0,\"\\n\"],[1,[18,\"concurrency/version-six\"],false],[0,\"\\n\"],[1,[18,\"concurrency/version-seven\"],false],[0,\"\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/pods/concurrency/template.hbs" } });
+});
+define('chenxu/pods/concurrency/version-five/component', ['exports', 'ember-concurrency', 'ember-concurrency/utils', 'chenxu/models/utils'], function (exports, _emberConcurrency, _utils, _utils2) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.Component.extend({
+    status: null,
+
+    findStores: (0, _emberConcurrency.task)( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              this.set('status', "Gimme one second...");
+              _context.next = 3;
+              return (0, _utils2.bsPromise)({}, 1000);
+
+            case 3:
+              this.set('status', "Gimme one more second...");
+              _context.next = 6;
+              return (0, _utils.timeout)(1000);
+
+            case 6:
+              this.set('status', "OK, I'm done.");
+
+            case 7:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, this);
+    })),
+    myTask: (0, _emberConcurrency.task)( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              this.set('status', 'Thinking...');
+              _context2.prev = 1;
+              _context2.next = 4;
+              return (0, _utils.timeout)(1000).then(function () {
+                throw "Ahhhhh!!!!";
+              });
+
+            case 4:
+              this.set('status', 'This does not get used!');
+              _context2.next = 10;
+              break;
+
+            case 7:
+              _context2.prev = 7;
+              _context2.t0 = _context2['catch'](1);
+
+              this.set('status', 'Caught value: ' + _context2.t0);
+
+            case 10:
+            case 'end':
+              return _context2.stop();
+          }
+        }
+      }, _callee2, this, [[1, 7]]);
+    }))
+
+  });
+});
+define("chenxu/pods/concurrency/version-five/template", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "26ttqov5", "block": "{\"symbols\":[],\"statements\":[[6,\"button\"],[10,\"onclick\",[25,\"perform\",[[20,[\"findStores\"]]],null],null],[7],[0,\"\\n  Find Nearby five\\n\"],[8],[0,\"\\n\"],[1,[18,\"status\"],false],[0,\"\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/pods/concurrency/version-five/template.hbs" } });
+});
+define('chenxu/pods/concurrency/version-four/component', ['exports', 'ember-concurrency'], function (exports, _emberConcurrency) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.Component.extend({
+    result: null,
+    getTeams: function getTeams() {
+      return new Ember.RSVP.Promise(function () {
+        return Ember.$.getJSON('http://boss.test.zbjdev.com/team/getallteamv4', { isAjax: 1, reqtoken: 1 });
+      });
+    },
+
+
+    findStores: (0, _emberConcurrency.task)( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      var data;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              this.set('result', null);
+              _context.next = 3;
+              return Ember.$.getJSON('http://boss.test.zbjdev.com/team/getallteamv4', { isAjax: 1, reqtoken: 1 });
+
+            case 3:
+              data = _context.sent;
+
+              if (data.state) {
+                this.set('result', data.data);
+              }
+
+            case 5:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, this);
+    })).drop()
+  });
+});
+define("chenxu/pods/concurrency/version-four/template", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "RQAGW5sN", "block": "{\"symbols\":[\"s\"],\"statements\":[[6,\"button\"],[10,\"onclick\",[25,\"perform\",[[20,[\"findStores\"]]],null],null],[7],[0,\"\\n  Find Nearby fouer\\n\"],[8],[0,\"\\n\\n\"],[4,\"if\",[[20,[\"findStores\",\"isRunning\"]]],null,{\"statements\":[[4,\"block-holder\",null,null,{\"statements\":[[0,\"    加载中\\n\"]],\"parameters\":[]},null]],\"parameters\":[]},null],[4,\"if\",[[20,[\"result\"]]],null,{\"statements\":[[4,\"each\",[[20,[\"result\"]]],null,{\"statements\":[[0,\"    \"],[6,\"li\"],[7],[0,\"\\n      \"],[6,\"strong\"],[7],[1,[19,1,[\"team_name\"]],false],[8],[0,\":\\n    \"],[8],[0,\"\\n\"]],\"parameters\":[1]},null]],\"parameters\":[]},null]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/pods/concurrency/version-four/template.hbs" } });
+});
+define('chenxu/pods/concurrency/version-one/component', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.Component.extend({
+    result: null,
+    actions: {
+      findStores: function findStores() {
+        var _this = this;
+
+        $.getJSON('http://boss.test.zbjdev.com/team/getallteamv4', { isAjax: 1, reqtoken: 1 }).then(function (o) {
+          if (o.state) {
+            _this.set('result', o.data);
+          }
+        });
+      }
+    }
+  });
+});
+define("chenxu/pods/concurrency/version-one/template", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "I5SeWgP4", "block": "{\"symbols\":[\"s\"],\"statements\":[[6,\"button\"],[10,\"onclick\",[25,\"action\",[[19,0,[]],\"findStores\"],null],null],[7],[0,\"\\n  Find Nearby one\\n\"],[8],[0,\"\\n\\n\"],[4,\"if\",[[20,[\"result\"]]],null,{\"statements\":[[4,\"each\",[[20,[\"result\"]]],null,{\"statements\":[[0,\"    \"],[6,\"li\"],[7],[0,\"\\n      \"],[6,\"strong\"],[7],[1,[19,1,[\"team_name\"]],false],[8],[0,\":\\n    \"],[8],[0,\"\\n\"]],\"parameters\":[1]},null]],\"parameters\":[]},null]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/pods/concurrency/version-one/template.hbs" } });
+});
+define('chenxu/pods/concurrency/version-seven/component', ['exports', 'ember-concurrency', 'ember-concurrency/utils'], function (exports, _emberConcurrency, _utils) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.Component.extend({
+    status: "Waiting to start",
+
+    parentTask: (0, _emberConcurrency.task)( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      var value;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              this.set('status', "1. Parent: one moment...");
+              _context.next = 3;
+              return (0, _utils.timeout)(1000);
+
+            case 3:
+              _context.next = 5;
+              return this.get('childTask').perform();
+
+            case 5:
+              value = _context.sent;
+
+              this.set('status', '5. Parent: child says "' + value + '"');
+              _context.next = 9;
+              return (0, _utils.timeout)(1000);
+
+            case 9:
+              this.set('status', "6. Done!");
+
+            case 10:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, this);
+    })).restartable(),
+
+    childTask: (0, _emberConcurrency.task)( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+      var value;
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              this.set('status', "2. Child: one moment...");
+              _context2.next = 3;
+              return (0, _utils.timeout)(1000);
+
+            case 3:
+              _context2.next = 5;
+              return this.get('grandchildTask').perform();
+
+            case 5:
+              value = _context2.sent;
+
+              this.set('status', '4. Child: grandchild says "' + value + '"');
+              _context2.next = 9;
+              return (0, _utils.timeout)(1000);
+
+            case 9:
+              return _context2.abrupt('return', "What's up");
+
+            case 10:
+            case 'end':
+              return _context2.stop();
+          }
+        }
+      }, _callee2, this);
+    })),
+
+    grandchildTask: (0, _emberConcurrency.task)( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+      return regeneratorRuntime.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              this.set('status', "3. Grandchild: one moment...");
+              _context3.next = 3;
+              return (0, _utils.timeout)(1000);
+
+            case 3:
+              return _context3.abrupt('return', "Hello");
+
+            case 4:
+            case 'end':
+              return _context3.stop();
+          }
+        }
+      }, _callee3, this);
+    }))
+  });
+});
+define("chenxu/pods/concurrency/version-seven/template", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "nnnRuhNv", "block": "{\"symbols\":[],\"statements\":[[6,\"h5\"],[7],[1,[18,\"status\"],false],[8],[0,\"\\n\\n\"],[6,\"ul\"],[7],[0,\"\\n  \"],[6,\"li\"],[7],[0,\"Parent Task:     \"],[1,[20,[\"parentTask\",\"state\"]],false],[8],[0,\"\\n  \"],[6,\"li\"],[7],[0,\"Child Task:      \"],[1,[20,[\"childTask\",\"state\"]],false],[8],[0,\"\\n  \"],[6,\"li\"],[7],[0,\"Grandchild Task: \"],[1,[20,[\"grandchildTask\",\"state\"]],false],[8],[0,\"\\n\"],[8],[0,\"\\n\\n\"],[6,\"button\"],[10,\"onclick\",[25,\"perform\",[[20,[\"parentTask\"]]],null],null],[7],[0,\"\\n\"],[4,\"if\",[[20,[\"parentTask\",\"isRunning\"]]],null,{\"statements\":[[0,\"    Restart Parent Task\\n\"]],\"parameters\":[]},{\"statements\":[[0,\"    Perform Parent Task\\n\"]],\"parameters\":[]}],[8],[0,\"\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/pods/concurrency/version-seven/template.hbs" } });
+});
+define('chenxu/pods/concurrency/version-six/component', ['exports', 'ember-concurrency'], function (exports, _emberConcurrency) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var WAIT_HERE_FOREVER = Ember.RSVP.defer().promise;
+  exports.default = Ember.Component.extend({
+    count: 0,
+    mostRecent: null,
+
+    myTask: (0, _emberConcurrency.task)( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+
+              this.incrementProperty('count');
+              _context.next = 4;
+              return WAIT_HERE_FOREVER;
+
+            case 4:
+              _context.prev = 4;
+
+              // finally blocks always get called,
+              // even when the task is being canceled
+              this.decrementProperty('count');
+              return _context.finish(4);
+
+            case 7:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, this, [[0,, 4, 7]]);
+    })),
+
+    actions: {
+      performTask: function performTask() {
+        var task = this.get('myTask');
+        var taskInstance = task.perform();
+        this.set('mostRecent', taskInstance);
+      },
+      cancelAll: function cancelAll() {
+        this.get('myTask').cancelAll();
+      },
+      cancelMostRecent: function cancelMostRecent() {
+        this.get('mostRecent').cancel();
+      }
+    }
+  });
+});
+define("chenxu/pods/concurrency/version-six/template", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "97kB3xaW", "block": "{\"symbols\":[],\"statements\":[[6,\"h5\"],[7],[0,\"Running tasks: \"],[1,[18,\"count\"],false],[8],[0,\"\\n\\n\"],[6,\"button\"],[3,\"action\",[[19,0,[]],\"performTask\"]],[7],[0,\"Perform Task\"],[8],[0,\"\\n\"],[4,\"if\",[[20,[\"count\"]]],null,{\"statements\":[[0,\"  \"],[6,\"button\"],[3,\"action\",[[19,0,[]],\"cancelAll\"]],[7],[0,\"Cancel All\"],[8],[0,\"\\n\"]],\"parameters\":[]},null],[4,\"if\",[[20,[\"mostRecent\",\"isRunning\"]]],null,{\"statements\":[[0,\"  \"],[6,\"button\"],[3,\"action\",[[19,0,[]],\"cancelMostRecent\"]],[7],[0,\"Cancel Most Recent\"],[8],[0,\"\\n\"]],\"parameters\":[]},null]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/pods/concurrency/version-six/template.hbs" } });
+});
+define('chenxu/pods/concurrency/version-three/component', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.Component.extend({
+    result: null,
+    isFindingStores: false, // ++
+    getTeams: function getTeams() {
+      return new Ember.RSVP.Promise(function (resolve) {
+        Ember.$.getJSON('http://boss.test.zbjdev.com/team/getallteamv4', { isAjax: 1, reqtoken: 1 }).then(function (data) {
+          resolve(data.data);
+        });
+      });
+    },
+
+    actions: {
+      findStores: function findStores() {
+        if (this.isFindingStores) return; // ++
+        this.set('result', null);
+        this.set('isFindingStores', true); // ++
+        var data = this.getTeams();
+        if (data.state) {
+          this.set('result', data.data);
+          this.set('isFindingStores', false); // ++
+        }
+      }
+    }
+  });
+});
+define("chenxu/pods/concurrency/version-three/template", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "Cq8C4rg7", "block": "{\"symbols\":[\"s\"],\"statements\":[[6,\"button\"],[10,\"onclick\",[25,\"action\",[[19,0,[]],\"findStores\"],null],null],[7],[0,\"\\n  Find Nearby three\\n\"],[8],[0,\"\\n\\n\"],[4,\"if\",[[20,[\"isFindingStores\"]]],null,{\"statements\":[[4,\"block-holder\",null,null,{\"statements\":[[0,\"    加载中\\n\"]],\"parameters\":[]},null]],\"parameters\":[]},null],[4,\"if\",[[20,[\"result\"]]],null,{\"statements\":[[4,\"each\",[[20,[\"result\"]]],null,{\"statements\":[[0,\"    \"],[6,\"li\"],[7],[0,\"\\n      \"],[6,\"strong\"],[7],[1,[19,1,[\"team_name\"]],false],[8],[0,\":\\n    \"],[8],[0,\"\\n\"]],\"parameters\":[1]},null]],\"parameters\":[]},null]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/pods/concurrency/version-three/template.hbs" } });
+});
+define('chenxu/pods/concurrency/version-two/component', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.Component.extend({
+    result: null,
+    isFindingStores: false, // ++
+    actions: {
+      findStores: function findStores() {
+        var _this = this;
+
+        this.set('result', null);
+        this.set('isFindingStores', true); // ++
+        $.getJSON('http://boss.test.zbjdev.com/team/getallteamv4', { isAjax: 1, reqtoken: 1 }).then(function (o) {
+          if (o.state) {
+            _this.set('result', o.data);
+            _this.set('isFindingStores', false); // ++
+          }
+        });
+      }
+    }
+  });
+});
+define("chenxu/pods/concurrency/version-two/template", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "J2sbcxw6", "block": "{\"symbols\":[\"s\"],\"statements\":[[6,\"button\"],[10,\"onclick\",[25,\"action\",[[19,0,[]],\"findStores\"],null],null],[7],[0,\"\\n  Find Nearby two\\n\"],[8],[0,\"\\n\\n\"],[4,\"if\",[[20,[\"isFindingStores\"]]],null,{\"statements\":[[4,\"block-holder\",null,null,{\"statements\":[[0,\"    加载中\\n\"]],\"parameters\":[]},null]],\"parameters\":[]},null],[4,\"if\",[[20,[\"result\"]]],null,{\"statements\":[[4,\"each\",[[20,[\"result\"]]],null,{\"statements\":[[0,\"    \"],[6,\"li\"],[7],[0,\"\\n      \"],[6,\"strong\"],[7],[1,[19,1,[\"team_name\"]],false],[8],[0,\":\\n    \"],[8],[0,\"\\n\"]],\"parameters\":[1]},null]],\"parameters\":[]},null]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/pods/concurrency/version-two/template.hbs" } });
+});
 define('chenxu/pods/css/component', ['exports'], function (exports) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     // body
   });
 });
@@ -1838,8 +3071,7 @@ define('chenxu/pods/css/route', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Route = Ember.Route;
-  exports.default = Route.extend({
+  exports.default = Ember.Route.extend({
     model: function model() {}
   });
 });
@@ -1857,8 +3089,7 @@ define('chenxu/pods/ember/component', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     // body
     value: false,
     actions: {
@@ -1874,8 +3105,7 @@ define('chenxu/pods/ember/controller', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Controller = Ember.Controller;
-  exports.default = Controller.extend({
+  exports.default = Ember.Controller.extend({
     value: false,
     actions: {
       togglePropertyname: function togglePropertyname() {
@@ -1890,8 +3120,7 @@ define('chenxu/pods/ember/route', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Route = Ember.Route;
-  exports.default = Route.extend({
+  exports.default = Ember.Route.extend({
     model: function model() {
       // body
     }
@@ -1911,8 +3140,7 @@ define('chenxu/pods/emberarray/controller', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Controller = Ember.Controller;
-  exports.default = Controller.extend({
+  exports.default = Ember.Controller.extend({
     init: function init() {
       this._super.apply(this, arguments);
     }
@@ -1924,8 +3152,7 @@ define('chenxu/pods/emberarray/em-array/component', ['exports'], function (expor
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     // body
     didInsertElement: function didInsertElement() {
       this._super.apply(this, arguments);
@@ -1953,8 +3180,7 @@ define('chenxu/pods/emberarray/route', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Route = Ember.Route;
-  exports.default = Route.extend({
+  exports.default = Ember.Route.extend({
     model: function model() {
       // body
     }
@@ -1974,16 +3200,14 @@ define('chenxu/pods/emberfn/embera/component', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var A = Ember.A;
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     tagName: 'ul',
     classNames: ['pagination'],
 
     init: function init() {
       this._super.apply(this, arguments);
       if (!this.get('content')) {
-        this.set('content', A());
+        this.set('content', Ember.A());
       }
       //  console.log(this.get('content'));
     }
@@ -1995,8 +3219,7 @@ define('chenxu/pods/img/controller', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Controller = Ember.Controller;
-  exports.default = Controller.extend({
+  exports.default = Ember.Controller.extend({
     // body
   });
 });
@@ -2006,8 +3229,7 @@ define('chenxu/pods/img/route', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Route = Ember.Route;
-  exports.default = Route.extend({
+  exports.default = Ember.Route.extend({
     model: function model() {}
   });
 });
@@ -2025,8 +3247,7 @@ define('chenxu/pods/index/controller', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Controller = Ember.Controller;
-  exports.default = Controller.extend({
+  exports.default = Ember.Controller.extend({
     // body
     actions: {
       postmessage: function postmessage() {
@@ -2054,8 +3275,7 @@ define('chenxu/pods/index/index-common/component', ['exports'], function (export
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     // body
     classNames: ''
   });
@@ -2074,8 +3294,7 @@ define('chenxu/pods/index/route', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Route = Ember.Route;
-  exports.default = Route.extend({
+  exports.default = Ember.Route.extend({
     model: function model() {
       // body
     }
@@ -2095,14 +3314,11 @@ define('chenxu/pods/injectsevers/controller', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var getOwner = Ember.getOwner;
-  var computed = Ember.computed;
-  var Controller = Ember.Controller;
-  exports.default = Controller.extend({
+  exports.default = Ember.Controller.extend({
     // body
     //  shoppingCart: Ember.inject.service(),
-    shoppingCart: computed(function () {
-      return getOwner(this).lookup('service:shopping-cart');
+    shoppingCart: Ember.computed(function () {
+      return Ember.getOwner(this).lookup('service:shopping-cart');
     }),
     actions: {
       remove: function remove(item) {
@@ -2120,8 +3336,7 @@ define('chenxu/pods/injectsevers/route', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Route = Ember.Route;
-  exports.default = Route.extend({
+  exports.default = Ember.Route.extend({
     model: function model() {}
   });
 });
@@ -2141,17 +3356,84 @@ define("chenxu/pods/loading/template", ["exports"], function (exports) {
   });
   exports.default = Ember.HTMLBars.template({ "id": "BXdJIxdO", "block": "{\"symbols\":[],\"statements\":[[6,\"section\"],[9,\"class\",\"content\"],[7],[0,\"\\n   \"],[6,\"h2\"],[7],[6,\"i\"],[9,\"class\",\"iconfont icon-spinner icon-spin\"],[7],[8],[0,\"加载中...\"],[8],[0,\"\\n\"],[8],[0,\"\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/pods/loading/template.hbs" } });
 });
+define('chenxu/pods/lottery/component', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.Component.extend({
+    // body
+  });
+});
+define('chenxu/pods/lottery/lottery-gift/component', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.Component.extend({
+    classNames: 'aside-right',
+    tagName: 'aside'
+  });
+});
+define("chenxu/pods/lottery/lottery-gift/template", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "u63Q8leq", "block": "{\"symbols\":[],\"statements\":[[0,\"  \"],[6,\"div\"],[9,\"class\",\"aside-main\"],[9,\"id\",\"liwu-con\"],[7],[0,\"\\n      \"],[6,\"div\"],[9,\"class\",\"btn btn-red-outline\"],[9,\"data-toggle\",\"modal\"],[9,\"id\",\"liwu-title\"],[7],[0,\"新年礼物\"],[8],[0,\"\\n      \"],[6,\"div\"],[9,\"class\",\"award-main\"],[7],[0,\"\\n          \"],[6,\"div\"],[9,\"class\",\"award-con\"],[7],[0,\"\\n              \"],[6,\"h3\"],[9,\"class\",\"award-title\"],[7],[0,\"一等奖\"],[8],[0,\"\\n              \"],[6,\"ul\"],[9,\"class\",\"win\"],[7],[0,\"\\n                  \"],[6,\"li\"],[9,\"class\",\"clearfix win-li\"],[7],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l avatar\"],[7],[0,\"\\n                          \"],[6,\"img\"],[9,\"width\",\"34\"],[9,\"src\",\"./img/gift/canon.jpg\"],[7],[8],[0,\"\\n                      \"],[8],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l name\"],[7],[0,\"佳能微单\"],[8],[0,\"\\n                  \"],[8],[0,\"\\n              \"],[8],[0,\"\\n          \"],[8],[0,\"\\n          \"],[6,\"div\"],[9,\"class\",\"award-con\"],[7],[0,\"\\n              \"],[6,\"h3\"],[9,\"class\",\"award-title\"],[7],[0,\"二等奖\"],[8],[0,\"\\n              \"],[6,\"ul\"],[9,\"class\",\"win\"],[7],[0,\"\\n                  \"],[6,\"li\"],[9,\"class\",\"clearfix win-li\"],[7],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l avatar\"],[7],[0,\"\\n                          \"],[6,\"img\"],[9,\"width\",\"34\"],[9,\"src\",\"./img/gift/kindle.jpg\"],[7],[8],[0,\"\\n                      \"],[8],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l name\"],[7],[0,\"Kindle 阅读器\"],[8],[0,\"\\n                  \"],[8],[0,\"\\n                  \"],[6,\"li\"],[9,\"class\",\"clearfix win-li\"],[7],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l avatar\"],[7],[0,\"\\n                          \"],[6,\"img\"],[9,\"width\",\"34\"],[9,\"src\",\"./img/gift/kule.jpg\"],[7],[8],[0,\"\\n                      \"],[8],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l name\"],[7],[0,\"酷乐视投影机\"],[8],[0,\"\\n                  \"],[8],[0,\"\\n                  \"],[6,\"li\"],[9,\"class\",\"clearfix win-li\"],[7],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l avatar\"],[7],[0,\"\\n                          \"],[6,\"img\"],[9,\"width\",\"34\"],[9,\"src\",\"./img/gift/beats.jpg\"],[7],[8],[0,\"\\n                      \"],[8],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l name\"],[7],[0,\"Beats动力耳机\"],[8],[0,\"\\n                  \"],[8],[0,\"\\n              \"],[8],[0,\"\\n          \"],[8],[0,\"\\n          \"],[6,\"div\"],[9,\"class\",\"award-con\"],[7],[0,\"\\n              \"],[6,\"h3\"],[9,\"class\",\"award-title\"],[7],[0,\"三等奖\"],[8],[0,\"\\n              \"],[6,\"ul\"],[9,\"class\",\"win\"],[7],[0,\"\\n                  \"],[6,\"li\"],[9,\"class\",\"clearfix win-li\"],[7],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l avatar\"],[7],[0,\"\\n                          \"],[6,\"img\"],[9,\"width\",\"34\"],[9,\"src\",\"./img/gift/jingdong.jpg\"],[7],[8],[0,\"\\n                      \"],[8],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l name\"],[7],[0,\"京东购物E卡\"],[8],[0,\"\\n                  \"],[8],[0,\"\\n                  \"],[6,\"li\"],[9,\"class\",\"clearfix win-li\"],[7],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l avatar\"],[7],[0,\"\\n                          \"],[6,\"img\"],[9,\"width\",\"34\"],[9,\"src\",\"./img/gift/yashua.jpg\"],[7],[8],[0,\"\\n                      \"],[8],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l name\"],[7],[0,\"飞利浦电动牙刷\"],[8],[0,\"\\n                  \"],[8],[0,\"\\n                  \"],[6,\"li\"],[9,\"class\",\"clearfix win-li\"],[7],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l avatar\"],[7],[0,\"\\n                          \"],[6,\"img\"],[9,\"width\",\"34\"],[9,\"src\",\"./img/gift/anmo.jpg\"],[7],[8],[0,\"\\n                      \"],[8],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l name\"],[7],[0,\"颈椎按摩器\"],[8],[0,\"\\n                  \"],[8],[0,\"\\n              \"],[8],[0,\"\\n          \"],[8],[0,\"\\n          \"],[6,\"div\"],[9,\"class\",\"award-con\"],[7],[0,\"\\n              \"],[6,\"h3\"],[9,\"class\",\"award-title\"],[7],[0,\"纪念奖\"],[8],[0,\"\\n              \"],[6,\"ul\"],[9,\"class\",\"win\"],[7],[0,\"\\n                  \"],[6,\"li\"],[9,\"class\",\"clearfix win-li\"],[7],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l avatar\"],[7],[0,\"\\n                          \"],[6,\"img\"],[9,\"width\",\"34\"],[9,\"src\",\"./img/gift/chongdian.jpg\"],[7],[8],[0,\"\\n                      \"],[8],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l name\"],[7],[0,\"罗马仕充电宝\"],[8],[0,\"\\n                  \"],[8],[0,\"\\n                  \"],[6,\"li\"],[9,\"class\",\"clearfix win-li\"],[7],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l avatar\"],[7],[0,\"\\n                          \"],[6,\"img\"],[9,\"width\",\"34\"],[9,\"src\",\"./img/gift/nuanshou.jpg\"],[7],[8],[0,\"\\n                      \"],[8],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l name\"],[7],[0,\"马卡龙  暖手宝\"],[8],[0,\"\\n                  \"],[8],[0,\"\\n                  \"],[6,\"li\"],[9,\"class\",\"clearfix win-li\"],[7],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l avatar\"],[7],[0,\"\\n                          \"],[6,\"img\"],[9,\"width\",\"34\"],[9,\"src\",\"./img/gift/bao.jpg\"],[7],[8],[0,\"\\n                      \"],[8],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l name\"],[7],[0,\"旅行双肩包\"],[8],[0,\"\\n                  \"],[8],[0,\"\\n                  \"],[6,\"li\"],[9,\"class\",\"clearfix win-li\"],[7],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l avatar\"],[7],[0,\"\\n                          \"],[6,\"img\"],[9,\"width\",\"34\"],[9,\"src\",\"./img/gift/beizi.jpg\"],[7],[8],[0,\"\\n                      \"],[8],[0,\"\\n                      \"],[6,\"div\"],[9,\"class\",\"f-l name\"],[7],[0,\"乐扣马克保温杯\"],[8],[0,\"\\n                  \"],[8],[0,\"\\n              \"],[8],[0,\"\\n          \"],[8],[0,\"\\n      \"],[8],[0,\"\\n  \"],[8],[0,\"\\n  \"],[6,\"img\"],[9,\"src\",\"./img/lantern.png\"],[9,\"alt\",\"\"],[9,\"width\",\"85\"],[9,\"id\",\"liwu\"],[9,\"class\",\"switch\"],[7],[8],[0,\"\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/pods/lottery/lottery-gift/template.hbs" } });
+});
+define('chenxu/pods/lottery/lottery-win/component', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.Component.extend({
+    // body
+    classNames: 'aside-left',
+    tagName: 'aside'
+  });
+});
+define("chenxu/pods/lottery/lottery-win/template", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "Wfmo9/vk", "block": "{\"symbols\":[],\"statements\":[[6,\"div\"],[9,\"class\",\"aside-main\"],[9,\"id\",\"mingdan-con\"],[7],[0,\"\\n    \"],[6,\"div\"],[9,\"class\",\"btn btn-red-outline\"],[9,\"data-toggle\",\"modal\"],[9,\"id\",\"mingdan-title\"],[7],[0,\"中奖名单\"],[8],[0,\"\\n    \"],[6,\"div\"],[9,\"class\",\"award-main\"],[7],[0,\"\\n        \"],[6,\"div\"],[9,\"id\",\"award-123\"],[7],[0,\"\\n            \"],[6,\"div\"],[9,\"class\",\"award-con\"],[9,\"id\",\"award-01\"],[7],[0,\"\\n                \"],[6,\"h3\"],[9,\"class\",\"award-title\"],[7],[0,\"一等奖\"],[8],[0,\"\\n                \"],[6,\"ul\"],[9,\"class\",\"win\"],[7],[8],[0,\"\\n            \"],[8],[0,\"\\n            \"],[6,\"div\"],[9,\"class\",\"award-con\"],[9,\"id\",\"award-02\"],[7],[0,\"\\n                \"],[6,\"h3\"],[9,\"class\",\"award-title\"],[7],[0,\"二等奖\"],[8],[0,\"\\n                \"],[6,\"ul\"],[9,\"class\",\"win\"],[7],[8],[0,\"\\n            \"],[8],[0,\"\\n            \"],[6,\"div\"],[9,\"class\",\"award-con\"],[9,\"id\",\"award-03\"],[7],[0,\"\\n                \"],[6,\"h3\"],[9,\"class\",\"award-title\"],[7],[0,\"三等奖\"],[8],[0,\"\\n                \"],[6,\"ul\"],[9,\"class\",\"win\"],[7],[8],[0,\"\\n            \"],[8],[0,\"\\n        \"],[8],[0,\"\\n        \"],[6,\"div\"],[9,\"class\",\"award-con\"],[9,\"id\",\"award-04\"],[7],[0,\"\\n            \"],[6,\"h3\"],[9,\"class\",\"award-title\"],[7],[0,\"纪念奖\"],[8],[0,\"\\n            \"],[6,\"ul\"],[9,\"class\",\"win\"],[7],[8],[0,\"\\n        \"],[8],[0,\"\\n        \"],[6,\"a\"],[9,\"href\",\"javascript:;\"],[9,\"id\",\"award04-toggle\"],[9,\"class\",\"more\"],[7],[0,\"查看更多\"],[8],[0,\"\\n    \"],[8],[0,\"\\n\"],[8],[0,\"\\n\"],[6,\"img\"],[9,\"src\",\"./img/lantern.png\"],[9,\"alt\",\"\"],[9,\"width\",\"85\"],[9,\"id\",\"mingdan\"],[9,\"class\",\"switch\"],[7],[8],[0,\"\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/pods/lottery/lottery-win/template.hbs" } });
+});
+define('chenxu/pods/lottery/route', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.Route.extend({
+    model: function model() {
+      // body
+    }
+  });
+});
+define("chenxu/pods/lottery/template", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "My9Vq08L", "block": "{\"symbols\":[],\"statements\":[[6,\"header\"],[9,\"class\",\"top-head\"],[7],[8],[0,\"\\n\\n\\n\"],[1,[18,\"lottery/lottery-win\"],false],[0,\"\\n\"],[1,[18,\"lottery/lottery-gift\"],false],[0,\"\\n\\n\\n\"],[6,\"div\"],[9,\"class\",\"main\"],[7],[0,\"\\n    \"],[6,\"div\"],[9,\"class\",\"lotterty-infogo\"],[7],[0,\"\\n        \"],[6,\"img\"],[9,\"src\",\"img/logo.png\"],[7],[8],[0,\"\\n    \"],[8],[0,\"\\n    \"],[6,\"div\"],[9,\"id\",\"lottery-main\"],[9,\"class\",\"lottery-main\"],[7],[0,\"\\n        \"],[6,\"div\"],[9,\"class\",\"wrap-border-main\"],[7],[0,\"\\n            \"],[6,\"img\"],[9,\"src\",\"./img/wrap-border-1.png\"],[9,\"class\",\"wrap-border wrap-border-1\"],[7],[8],[0,\"\\n            \"],[6,\"img\"],[9,\"src\",\"./img/wrap-border-2.png\"],[9,\"class\",\"wrap-border wrap-border-2\"],[7],[8],[0,\"\\n            \"],[6,\"img\"],[9,\"src\",\"./img/wrap-border-3.png\"],[9,\"class\",\"wrap-border wrap-border-3\"],[7],[8],[0,\"\\n            \"],[6,\"img\"],[9,\"src\",\"./img/wrap-border-4.png\"],[9,\"class\",\"wrap-border wrap-border-4\"],[7],[8],[0,\"\\n            \"],[6,\"div\"],[9,\"class\",\"wrap-border wrap-border-left\"],[7],[8],[0,\"\\n            \"],[6,\"div\"],[9,\"class\",\"wrap-border wrap-border-right\"],[7],[8],[0,\"\\n        \"],[8],[0,\"\\n        \"],[6,\"div\"],[9,\"class\",\"wrap-main\"],[7],[0,\"\\n            \"],[6,\"div\"],[9,\"class\",\"lottery-wrap\"],[9,\"id\",\"lottery-wrap\"],[7],[8],[0,\"\\n        \"],[8],[0,\"\\n\\n        \"],[2,\"抽奖按钮\"],[0,\"\\n        \"],[6,\"div\"],[9,\"class\",\"dashboard\"],[7],[0,\"\\n            \"],[6,\"div\"],[9,\"class\",\"cirle-btn award\"],[9,\"id\",\"award-1\"],[9,\"data-award\",\"1\"],[7],[0,\"一\"],[8],[0,\"\\n            \"],[6,\"div\"],[9,\"class\",\"cirle-btn award\"],[9,\"id\",\"award-2\"],[9,\"data-award\",\"2\"],[7],[0,\"二\"],[8],[0,\"\\n            \"],[6,\"div\"],[9,\"class\",\"btn btn-red-outline lottery-btn\"],[9,\"id\",\"lottery-btn\"],[9,\"data-award\",\"\"],[7],[0,\"开始抽奖\"],[8],[0,\"\\n            \"],[6,\"div\"],[9,\"class\",\"cirle-btn award\"],[9,\"id\",\"award-3\"],[9,\"data-award\",\"3\"],[7],[0,\"三\"],[8],[0,\"\\n            \"],[6,\"div\"],[9,\"class\",\"cirle-btn award\"],[9,\"id\",\"award-4\"],[9,\"data-award\",\"4\"],[7],[0,\"纪\"],[8],[0,\"\\n        \"],[8],[0,\"\\n    \"],[8],[0,\"\\n\"],[8],[0,\"\\n\\n\"],[6,\"footer\"],[9,\"class\",\"footer\"],[7],[8],[0,\"\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/pods/lottery/template.hbs" } });
+});
 define('chenxu/pods/powerselect/controller', ['exports'], function (exports) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var service = Ember.inject.service;
-  var Controller = Ember.Controller;
-  exports.default = Controller.extend({
+  exports.default = Ember.Controller.extend({
     // body
-    shoppingCart: service(),
+    shoppingCart: Ember.inject.service(),
     // shoppingCart: Ember.computed(function() {
     //   return Ember.getOwner(this).lookup('service:shopping-cart');
     // }),
@@ -2171,8 +3453,7 @@ define('chenxu/pods/powerselect/route', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Route = Ember.Route;
-  exports.default = Route.extend({
+  exports.default = Ember.Route.extend({
     activate: function activate() {
       // The logger property is injected into all routes
       this.get('logger').log('Entered the index routess!');
@@ -2207,8 +3488,7 @@ define('chenxu/pods/select/component', ['exports'], function (exports) {
     }
   }
 
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     name: [{ a: 1 }, { a: 2 }, { a: 3 }, { a: 4 }, { a: 5 }],
     model: { 'a': 1 },
     ismyshow: 'aa',
@@ -2258,8 +3538,7 @@ define('chenxu/pods/select/controller', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Controller = Ember.Controller;
-  exports.default = Controller.extend({
+  exports.default = Ember.Controller.extend({
     // body
     ismyshow: { aa: 'aa' }
   });
@@ -2270,8 +3549,7 @@ define('chenxu/pods/select/mulite-select/component', ['exports'], function (expo
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     actions: {
       add: function add() {
         //  console.log(this.attrs);
@@ -2294,8 +3572,7 @@ define('chenxu/pods/select/route', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Route = Ember.Route;
-  exports.default = Route.extend({
+  exports.default = Ember.Route.extend({
     model: function model() {
       // body
     }
@@ -2307,8 +3584,7 @@ define('chenxu/pods/select/single-select/component', ['exports'], function (expo
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     cities: ['Barcelona', 'London', 'New York', 'Porto'],
     destination: 'London',
     classNames: 'w160 inlineblock',
@@ -2339,8 +3615,7 @@ define('chenxu/pods/select/singlemut-select/component', ['exports'], function (e
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     cities: ['Barcelona', 'London', 'New York', 'Porto'],
     destination: 'London',
     classNames: 'w160 inlineblock',
@@ -2374,8 +3649,7 @@ define('chenxu/pods/sfa/productrevenue/controller', ['exports'], function (expor
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Controller = Ember.Controller;
-  exports.default = Controller.extend({
+  exports.default = Ember.Controller.extend({
     // body
   });
 });
@@ -2385,8 +3659,7 @@ define('chenxu/pods/sfa/productrevenue/route', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Route = Ember.Route;
-  exports.default = Route.extend({
+  exports.default = Ember.Route.extend({
     model: function model() {}
   });
 });
@@ -2404,8 +3677,7 @@ define('chenxu/pods/team/area-line/component', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     data: ''
   });
 });
@@ -2455,8 +3727,7 @@ define('chenxu/pods/team/controller', ['exports', 'ember-computed-decorators'], 
 
   var _dec, _desc, _value, _obj;
 
-  var Controller = Ember.Controller;
-  exports.default = Controller.extend((_dec = (0, _emberComputedDecorators.default)('model.list'), (_obj = {
+  exports.default = Ember.Controller.extend((_dec = (0, _emberComputedDecorators.default)('model.list'), (_obj = {
     modelline: function modelline(model) {
       if (model.length > 0) {
         return model.splice(2);
@@ -2502,8 +3773,7 @@ define('chenxu/pods/team/header-content/component', ['exports', 'ember-computed-
 
   var _dec, _dec2, _desc, _value, _obj;
 
-  var Component = Ember.Component;
-  exports.default = Component.extend((_dec = (0, _emberComputedDecorators.default)('service_center_items'), _dec2 = (0, _emberComputedDecorators.default)('isChild'), (_obj = {
+  exports.default = Ember.Component.extend((_dec = (0, _emberComputedDecorators.default)('service_center_items'), _dec2 = (0, _emberComputedDecorators.default)('isChild'), (_obj = {
     // body
     classNames: 'big-area',
     isChild: function isChild() {
@@ -2580,25 +3850,21 @@ define('chenxu/pods/team/route', ['exports'], function (exports) {
     };
   }
 
-  var $ = Ember.$;
-  var EmberPromise = Ember.RSVP.Promise;
-  var hash = Ember.RSVP.hash;
-  var Route = Ember.Route;
-  exports.default = Route.extend({
+  exports.default = Ember.Route.extend({
     activate: function activate() {
       // The logger property is injected into all routes
       this.get('logger').log('Entered the index route!');
     },
     requestlist: function requestlist() {
-      return new EmberPromise(function (resolve) {
-        $.getJSON('data/sojson.json').then(function (data) {
+      return new Ember.RSVP.Promise(function (resolve) {
+        Ember.$.getJSON('data/sojson.json').then(function (data) {
           resolve(data.data.teams);
         });
       });
     },
     requestlistone: function requestlistone() {
-      return new EmberPromise(function (resolve) {
-        $.getJSON('data/team.json').then(function (data) {
+      return new Ember.RSVP.Promise(function (resolve) {
+        Ember.$.getJSON('data/team.json').then(function (data) {
           resolve(data.data.teams);
         });
       });
@@ -2609,7 +3875,7 @@ define('chenxu/pods/team/route', ['exports'], function (exports) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                return _context.abrupt('return', hash({
+                return _context.abrupt('return', Ember.RSVP.hash({
                   list: this.requestlist(),
                   data: this.requestlistone()
                 }));
@@ -2636,8 +3902,7 @@ define('chenxu/pods/team/team-industry/component', ['exports'], function (export
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     // body
     support: [],
     industry: [],
@@ -2675,8 +3940,7 @@ define('chenxu/pods/team/team-leader/component', ['exports'], function (exports)
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     teamleader: [{ name: '二师兄', jobname: 'CEO', team_id: 178 }, { name: '不东', jobname: '总裁', team_id: 4262 }, { name: '般若', jobname: 'CFO', team_id: 4610 }, { name: '楞严', jobname: 'CTO', team_id: 8737 }, { name: '刘勇利', jobname: '员外', team_id: 6402 }, { name: '袁进', jobname: '二郎神', team_id: 330 }, { name: '吴镝', jobname: '海东青', team_id: 9514 }, { name: '卢轶男', jobname: '铁男', team_id: 9515 }, { name: '周勇', jobname: '周公', team_id: 12026 }, { name: '齐天大圣', jobname: '董长城', team_id: 1032 }],
     actions: {
       openuser: function openuser(id) {
@@ -2699,8 +3963,7 @@ define('chenxu/pods/team/team-other/component', ['exports'], function (exports) 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     data: [],
     didInsertElement: function didInsertElement() {
       //  this.$('.others').width(1600);
@@ -2723,14 +3986,344 @@ define("chenxu/pods/team/template", ["exports"], function (exports) {
   });
   exports.default = Ember.HTMLBars.template({ "id": "3qAhFxN+", "block": "{\"symbols\":[\"item\",\"index\",\"item\",\"index\"],\"statements\":[[6,\"div\"],[9,\"class\",\"content\"],[7],[0,\"\\n  \"],[6,\"div\"],[9,\"class\",\"box box-solid\"],[7],[0,\"\\n    \"],[6,\"div\"],[9,\"class\",\"content-right content-flex  padding20\"],[7],[0,\"\\n      \"],[6,\"h4\"],[9,\"class\",\"text-center\"],[7],[0,\"\\n        \"],[6,\"a\"],[9,\"class\",\"color-primary f24\"],[9,\"href\",\"#\"],[7],[0,\"猪八戒网总公司\"],[8],[0,\"\\n      \"],[8],[0,\"\\n      \"],[6,\"div\"],[9,\"class\",\"mt15\"],[7],[0,\"\\n\"],[4,\"each\",[[20,[\"model\",\"data\"]]],null,{\"statements\":[[4,\"if\",[[25,\"is-eq\",[[19,4,[]],0],null]],null,{\"statements\":[[0,\"              \"],[1,[25,\"team/team-industry\",null,[[\"data\"],[[19,3,[]]]]],false],[0,\"\\n\"]],\"parameters\":[]},null]],\"parameters\":[3,4]},null],[0,\"      \"],[8],[0,\"\\n      \"],[6,\"div\"],[9,\"class\",\"mt20\"],[7],[0,\"\\n\"],[4,\"each\",[[20,[\"model\",\"list\"]]],null,{\"statements\":[[4,\"if\",[[25,\"is-eq\",[[19,2,[]],1],null]],null,{\"statements\":[[0,\"            \"],[1,[25,\"team/area-line\",null,[[\"data\"],[[19,1,[]]]]],false],[0,\"\\n\"]],\"parameters\":[]},null]],\"parameters\":[1,2]},null],[0,\"      \"],[8],[0,\"\\n      \"],[6,\"div\"],[9,\"class\",\"mt20\"],[7],[0,\"\\n        \"],[1,[25,\"team/team-other\",null,[[\"data\"],[[20,[\"modelline\"]]]]],false],[0,\"\\n      \"],[8],[0,\"\\n      \"],[6,\"div\"],[9,\"class\",\"mt20\"],[7],[0,\"\\n        \"],[1,[18,\"team/team-leader\"],false],[0,\"\\n      \"],[8],[0,\"\\n    \"],[8],[0,\"\\n  \"],[8],[0,\"\\n\"],[8],[0,\"\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/pods/team/template.hbs" } });
 });
+define('chenxu/pods/teamv5/common-tree/component', ['exports', 'ember-computed-decorators'], function (exports, _emberComputedDecorators) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+      desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+      desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+      return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+      desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+      desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+      Object['define' + 'Property'](target, property, desc);
+      desc = null;
+    }
+
+    return desc;
+  }
+
+  var _dec, _dec2, _desc, _value, _obj;
+
+  exports.default = Ember.Component.extend((_dec = (0, _emberComputedDecorators.default)('dataitem'), _dec2 = (0, _emberComputedDecorators.default)('isHasChild'), (_obj = {
+    dataitem: {},
+    singleItem: [],
+    classNames: 'areaAndCenter',
+    didInsertElement: function didInsertElement() {
+      this._super.apply(this, arguments);
+      console.log(this.get('dataitem'));
+    },
+    isHasChild: function isHasChild() {
+      var dataitem = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      var group_id = dataitem.group_id,
+          group_type = dataitem.group_type,
+          team_id = dataitem.team_id,
+          team_name = dataitem.team_name,
+          leader = dataitem.leader,
+          is_special = dataitem.is_special,
+          childrens = dataitem.childrens;
+
+      if (childrens && childrens.length) {
+        return true;
+      } else {
+        this.set('singleItem', [{ team_id: team_id, team_name: team_name, group_type: group_type, group_id: group_id, is_special: is_special, leader: leader }]);
+        return false;
+      }
+    },
+    teamItems: function teamItems(isHasChild) {
+      return isHasChild ? this.get('dataitem.childrens') : this.get('singleItem');
+    },
+    didRender: function didRender() {
+      this._super.apply(this, arguments);
+      var length = this.get('dataitem.childrens.length') || 1;
+      this.$().addClass('s-flex-' + length);
+      this.$('.service-item').width(length * 35);
+    }
+  }, (_applyDecoratedDescriptor(_obj, 'isHasChild', [_dec], Object.getOwnPropertyDescriptor(_obj, 'isHasChild'), _obj), _applyDecoratedDescriptor(_obj, 'teamItems', [_dec2], Object.getOwnPropertyDescriptor(_obj, 'teamItems'), _obj)), _obj)));
+});
+define("chenxu/pods/teamv5/common-tree/template", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "/WE7v/OR", "block": "{\"symbols\":[\"item\",\"index\"],\"statements\":[[6,\"div\"],[9,\"class\",\"service-item flex-column text-center  w100p\"],[7],[0,\"\\n\"],[4,\"if\",[[20,[\"isHasChild\"]]],null,{\"statements\":[[0,\"    \"],[6,\"div\"],[9,\"class\",\"service-center-header flex-column flex-all-center h50\"],[7],[0,\"\\n        \"],[6,\"div\"],[9,\"class\",\"service-teamname text-fff opacity6 text-ellipsis w100p\"],[3,\"action\",[[19,0,[]],\"gotoTeam\",[20,[\"dataitem\",\"team_id\"]]]],[7],[0,\"\\n          \"],[1,[20,[\"dataitem\",\"team_name\"]],false],[0,\"\\n        \"],[8],[0,\"\\n        \"],[6,\"div\"],[9,\"class\",\"service-name text-fff opacity6 text-ellipsis\"],[3,\"action\",[[19,0,[]],\"gotoUser\",[20,[\"dataitem\",\"leader\",\"uid\"]]]],[7],[0,\"\\n          \"],[1,[20,[\"dataitem\",\"leader\",\"name\"]],false],[0,\"\\n        \"],[8],[0,\"\\n    \"],[8],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"  \"],[6,\"div\"],[10,\"class\",[26,[\"service-center-list flex \",[25,\"if\",[[20,[\"isHasChild\"]],\"mt5\"],null]]]],[7],[0,\"\\n\"],[4,\"each\",[[20,[\"teamItems\"]]],null,{\"statements\":[[0,\"      \"],[6,\"div\"],[9,\"class\",\"service-center-item flex-1\"],[7],[0,\"\\n        \"],[6,\"div\"],[9,\"class\",\"service-center-up flex-column flex-space-between h100p\"],[7],[0,\"\\n          \"],[6,\"div\"],[9,\"class\",\"service-subItem-teamname f14  opacity6\"],[3,\"action\",[[19,0,[]],\"gotoTeam\",[19,1,[\"team_id\"]]]],[7],[1,[19,1,[\"team_name\"]],false],[8],[0,\"\\n          \"],[6,\"div\"],[9,\"class\",\"service-subItem-name f14  opacity6\"],[3,\"action\",[[19,0,[]],\"gotoUser\",[19,1,[\"leader\",\"uid\"]]]],[7],[1,[19,1,[\"leader\",\"name\"]],false],[8],[0,\"\\n        \"],[8],[0,\"\\n      \"],[8],[0,\"\\n\"]],\"parameters\":[1,2]},null],[0,\"  \"],[8],[0,\"\\n\"],[8],[0,\"\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/pods/teamv5/common-tree/template.hbs" } });
+});
+define('chenxu/pods/teamv5/commonflex-tree/component', ['exports', 'chenxu/pods/teamv5/common-tree/component'], function (exports, _component) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = _component.default.extend({});
+});
+define("chenxu/pods/teamv5/commonflex-tree/template", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "xWsvXVOJ", "block": "{\"symbols\":[\"item\",\"index\"],\"statements\":[[6,\"div\"],[9,\"class\",\"service-item flex-column text-center  w100p\"],[7],[0,\"\\n\"],[4,\"if\",[[20,[\"isHasChild\"]]],null,{\"statements\":[[0,\"    \"],[6,\"div\"],[9,\"class\",\"service-center-header flex-column flex-all-center h50\"],[7],[0,\"\\n        \"],[6,\"div\"],[9,\"class\",\"service-teamname text-fff opacity6 text-ellipsis w100p\"],[7],[0,\"\\n          \"],[1,[20,[\"dataitem\",\"team_name\"]],false],[0,\"\\n        \"],[8],[0,\"\\n        \"],[6,\"div\"],[9,\"class\",\"service-name text-fff opacity6 text-ellipsis\"],[7],[0,\"\\n          \"],[1,[20,[\"dataitem\",\"leader\",\"name\"]],false],[0,\"\\n        \"],[8],[0,\"\\n    \"],[8],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"  \"],[6,\"div\"],[10,\"class\",[26,[\"service-center-list flex \",[25,\"if\",[[20,[\"isHasChild\"]],\"mt5\"],null]]]],[7],[0,\"\\n\"],[4,\"each\",[[20,[\"teamItems\"]]],null,{\"statements\":[[0,\"      \"],[6,\"div\"],[9,\"class\",\"service-center-item flex-1\"],[7],[0,\"\\n        \"],[6,\"div\"],[9,\"class\",\"service-center-up flex-column flex-all-center h50\"],[7],[0,\"\\n          \"],[6,\"div\"],[9,\"class\",\"service-subItem-teamname f14  opacity6\"],[7],[1,[19,1,[\"team_name\"]],false],[8],[0,\"\\n          \"],[6,\"div\"],[9,\"class\",\"service-subItem-name f14  opacity6\"],[7],[1,[19,1,[\"leader\",\"name\"]],false],[8],[0,\"\\n        \"],[8],[0,\"\\n      \"],[8],[0,\"\\n\"]],\"parameters\":[1,2]},null],[0,\"  \"],[8],[0,\"\\n\"],[8],[0,\"\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/pods/teamv5/commonflex-tree/template.hbs" } });
+});
+define('chenxu/pods/teamv5/component', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.Component.extend({
+    // body
+    list: Ember.computed.alias('model.list'),
+    data: Ember.computed.alias('model.data'),
+    didInsertElement: function didInsertElement() {
+      // console.log(xx);
+      Ember.$('body').addClass('nooverhidden');
+      Ember.$('html').addClass('nooverhidden');
+      Ember.$('.content-team-v5').addClass('min-max-width');
+      var width = this.minwidth() || 1200;
+      Ember.$('.content-team-v5').css({
+        'min-width': width
+      });
+    },
+    willDestroyElement: function willDestroyElement() {
+      Ember.$('body').removeClass('nooverhidden');
+      Ember.$('html').removeClass('nooverhidden');
+      Ember.$('.content-team-v5').removeClass('min-max-width');
+    },
+    minwidth: function minwidth() {
+      // let controller = this.get('controller');
+      // let item = controller.model.list[1].teams;
+      // let width = 0;
+      // item.map((l) => {
+      //   if (l.hasOwnProperty('childrens') && Array.isArray(l.childrens) && l.childrens.length > 0) {
+      //     width += l.childrens.length * 35 + 4;
+      //   } else {
+      //     width += 35 + 4;
+      //   }
+      // });
+      // return width+151;
+    }
+  });
+});
+define('chenxu/pods/teamv5/modal-tree/component', ['exports', 'ember-computed-decorators'], function (exports, _emberComputedDecorators) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+      desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+
+    if ('value' in desc || desc.initializer) {
+      desc.writable = true;
+    }
+
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+      return decorator(target, property, desc) || desc;
+    }, desc);
+
+    if (context && desc.initializer !== void 0) {
+      desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+      desc.initializer = undefined;
+    }
+
+    if (desc.initializer === void 0) {
+      Object['define' + 'Property'](target, property, desc);
+      desc = null;
+    }
+
+    return desc;
+  }
+
+  var _dec, _desc, _value, _obj;
+
+  exports.default = Ember.Component.extend((_dec = (0, _emberComputedDecorators.observes)('groupId'), (_obj = {
+    // body
+    groupId: null,
+    blockId: 0,
+    data: '',
+    isColor: '',
+    classNames: ['block'],
+    getdata: function getdata() {
+      var _this = this;
+
+      // 用于获取modal数据
+      var id = this.get('groupId');
+      this.set('data', '');
+      if (!id) return;
+      bsGetJSON('/team/getTeamById', { id: id }).then(function (r) {
+        if (r.state) {
+          if (r.data.hasOwnProperty('childrens') && Array.isArray(r.data.childrens) && r.data.childrens.length > 0) {
+            _this.set('data', r.data);
+          } else {
+            window.open(ZBJConfig.cdnPath + '#/team/' + id);
+            _this.set('data', '');
+          }
+        }
+      });
+    },
+
+    actions: {
+      setTeamId: function setTeamId(group_id) {
+        this.set('groupId', group_id);
+      },
+      gotouser: function gotouser(uid) {
+        if (!uid) return;
+        window.open(ZBJConfig.cdnPath + '#/team/user/' + uid);
+      },
+      gototeam: function gototeam(group_id) {
+        window.open(ZBJConfig.cdnPath + '#/team/' + group_id);
+      }
+    }
+  }, (_applyDecoratedDescriptor(_obj, 'getdata', [_dec], Object.getOwnPropertyDescriptor(_obj, 'getdata'), _obj)), _obj)));
+});
+define("chenxu/pods/teamv5/modal-tree/template", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "/J4td+UT", "block": "{\"symbols\":[],\"statements\":[],\"hasEval\":false}", "meta": { "moduleName": "chenxu/pods/teamv5/modal-tree/template.hbs" } });
+});
+define('chenxu/pods/teamv5/route', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.Route.extend({
+    getTeamV5: function getTeamV5() {
+      return $.getJSON('http://boss.zbjdev.com/team/getallteamv5', { isAjax: 1, reqtoken: 1 }).then(function (o) {
+        if (o.state) {
+          return o.data.teams;
+        }
+      });
+    },
+    requestlist: function requestlist() {
+      return new Ember.RSVP.Promise(function (resolve) {
+        $.getJSON('data/sojson.json').then(function (data) {
+          resolve(data.data.teams);
+        });
+      });
+    },
+    model: function model() {
+      return Ember.RSVP.hash({
+        data: this.getTeamV5(),
+        list: this.requestlist()
+      });
+    }
+  });
+});
+define("chenxu/pods/teamv5/template", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "OVZ/mxTN", "block": "{\"symbols\":[\"item\",\"index\",\"data\",\"i\",\"data\",\"i\"],\"statements\":[[6,\"div\"],[9,\"class\",\"content content-team-v5\"],[7],[0,\"\\n  \"],[6,\"div\"],[9,\"class\",\"box box-solid\"],[7],[0,\"\\n    \"],[6,\"div\"],[9,\"class\",\"content-rightv5 padding20\"],[7],[0,\"\\n      \"],[6,\"h4\"],[9,\"class\",\"text-center\"],[7],[0,\"\\n        \"],[6,\"a\"],[9,\"class\",\"color-primary f24\"],[9,\"href\",\"#\"],[7],[0,\"猪八戒网总公司\"],[8],[0,\"\\n      \"],[8],[0,\"\\n\"],[4,\"each\",[[20,[\"data\"]]],null,{\"statements\":[[0,\"          \"],[6,\"div\"],[10,\"class\",[26,[\"flex-column basestyle \",[25,\"classNameChange\",[[19,1,[\"name\"]]],null]]]],[7],[0,\"\\n            \"],[6,\"div\"],[9,\"class\",\"flex flex-all-center h50 service-header text-fff\"],[7],[1,[19,1,[\"name\"]],false],[8],[0,\"\\n            \"],[6,\"div\"],[9,\"class\",\"flex service-content padding10\"],[7],[0,\"\\n\"],[4,\"unless\",[[25,\"is-eq\",[[19,2,[]],5],null]],null,{\"statements\":[[4,\"each\",[[19,1,[\"teams\"]]],null,{\"statements\":[[0,\"                  \"],[1,[25,\"teamv5/common-tree\",null,[[\"dataitem\"],[[19,5,[]]]]],false],[0,\"\\n\"]],\"parameters\":[5,6]},null]],\"parameters\":[]},{\"statements\":[[4,\"each\",[[19,1,[\"teams\"]]],null,{\"statements\":[[0,\"                  \"],[1,[25,\"teamv5/commonflex-tree\",null,[[\"dataitem\"],[[19,3,[]]]]],false],[0,\"\\n\"]],\"parameters\":[3,4]},null]],\"parameters\":[]}],[0,\"            \"],[8],[0,\"\\n          \"],[8],[0,\"\\n\"]],\"parameters\":[1,2]},null],[0,\"    \"],[8],[0,\"\\n  \"],[8],[0,\"\\n\"],[8],[0,\"\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/pods/teamv5/template.hbs" } });
+});
+define('chenxu/pods/teamv5/test', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  exports.default = function () {
+    return {
+      name: '序列线',
+      block_id: 8,
+      childrens: [{
+        team_name: '专业序列中心',
+        leader: {
+          name: '董长城',
+          uid: 1
+        },
+        childrens: [{
+          team_name: '综合管理序列',
+          leader: {
+            name: '王楠',
+            uid: 1
+          }
+        }, {
+          team_name: '研发序列',
+          leader: {
+            name: '叶萌',
+            uid: 1
+          }
+        }, {
+          team_name: '市场序列',
+          leader: {
+            name: '吕明转',
+            uid: 1
+          }
+        }, {
+          team_name: '运营序列',
+          leader: {
+            name: '袁进',
+            uid: 1
+          }
+        }, {
+          team_name: '服务序列',
+          leader: {
+            name: '吕明转',
+            uid: 1
+          }
+        }, {
+          team_name: '销售序列',
+          leader: {
+            name: '刘川于',
+            uid: 1
+          }
+        }, {
+          team_name: '职能序列',
+          leader: {
+            name: '刘新',
+            uid: 1
+          }
+        }, {
+          team_name: '序列运营取经团',
+          leader: {
+            name: '林曦',
+            uid: 1
+          }
+        }]
+      }]
+    };
+  };
+});
 define('chenxu/pods/text/component', ['exports'], function (exports) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     // body
     actions: {
       postmessage: function postmessage() {
@@ -2745,14 +4338,34 @@ define('chenxu/pods/text/component', ['exports'], function (exports) {
     }
   });
 });
+define('chenxu/pods/text/my-text/component', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.Component.extend({
+    didInsertElement: function didInsertElement() {
+      this._super.apply(this, arguments);
+      console.log(this, this.logger);
+    }
+  });
+});
+define("chenxu/pods/text/my-text/template", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "SpCswjUO", "block": "{\"symbols\":[],\"statements\":[[0,\"component\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/pods/text/my-text/template.hbs" } });
+});
 define('chenxu/pods/text/route', ['exports'], function (exports) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Route = Ember.Route;
-  exports.default = Route.extend({
+  exports.default = Ember.Route.extend({
     model: function model() {}
   });
 });
@@ -2770,8 +4383,7 @@ define('chenxu/pods/yield/component', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     // body
   });
 });
@@ -2781,8 +4393,7 @@ define('chenxu/pods/yield/controller', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Controller = Ember.Controller;
-  exports.default = Controller.extend({
+  exports.default = Ember.Controller.extend({
     // body
     totalClicks: 2,
     actions: {
@@ -2798,8 +4409,7 @@ define('chenxu/pods/yield/crlf-llf/component', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     didInsertElement: function didInsertElement() {
       var _this = this;
 
@@ -2840,8 +4450,7 @@ define('chenxu/pods/yield/my-input/component', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     // body
     placeholder: '',
     namevalue: ''
@@ -2861,8 +4470,7 @@ define('chenxu/pods/yield/route', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Route = Ember.Route;
-  exports.default = Route.extend({
+  exports.default = Ember.Route.extend({
     model: function model() {}
   });
 });
@@ -2880,11 +4488,9 @@ define('chenxu/pods/yield/yield-dialog/component', ['exports'], function (export
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var later = Ember.run.later;
-  var Component = Ember.Component;
 
 
-  var UserSignComponent = Component.extend({
+  var UserSignComponent = Ember.Component.extend({
     didInsertElement: function didInsertElement() {
       this.$().delegate('.user-sign-dropdown', 'click', function (evt) {
         var target = evt.target;
@@ -2905,7 +4511,7 @@ define('chenxu/pods/yield/yield-dialog/component', ['exports'], function (export
         $(document).trigger('click:guide', true);
         if (!this.get('signDetail')) {
           this.set('signDetail', true);
-          later(function () {
+          Ember.run.later(function () {
             $(document).trigger('click:addicon', 1);
           });
         }
@@ -2929,8 +4535,7 @@ define('chenxu/pods/yield/yield-yield/component', ['exports'], function (exports
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Component = Ember.Component;
-  exports.default = Component.extend({
+  exports.default = Ember.Component.extend({
     // body
     namevalue: 1
   });
@@ -2957,15 +4562,15 @@ define('chenxu/router', ['exports', 'chenxu/config/environment'], function (expo
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var EmberRouter = Ember.Router;
 
 
-  var Router = EmberRouter.extend({
+  var Router = Ember.Router.extend({
     location: _environment.default.locationType,
     rootURL: _environment.default.rootURL
   });
 
   Router.map(function () {
+    this.route('concurrency');
     this.route('css');
     this.route('yield');
     this.route('powerselect');
@@ -3019,6 +4624,35 @@ define("chenxu/services/liquid-fire-transitions", ["exports", "liquid-fire/trans
   });
   exports.default = _transitionMap.default;
 });
+define('chenxu/services/logger', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.Service.extend({
+    action: function action(entry) {
+      console.log(entry); // eslint-disable-line no-console
+    },
+    error: function error(entry) {
+      console.log(entry); // eslint-disable-line no-console
+    },
+    info: function info(entry) {
+      console.log(entry); // eslint-disable-line no-console
+    }
+  });
+});
+define('chenxu/services/moment', ['exports', 'ember-moment/services/moment', 'chenxu/config/environment'], function (exports, _moment, _environment) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  var get = Ember.get;
+  exports.default = _moment.default.extend({
+    defaultFormat: get(_environment.default, 'moment.outputFormat')
+  });
+});
 define('chenxu/services/notify', ['exports', 'ember-notify'], function (exports, _emberNotify) {
   'use strict';
 
@@ -3046,8 +4680,7 @@ define('chenxu/services/shopping-cart', ['exports'], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var Service = Ember.Service;
-  exports.default = Service.extend({
+  exports.default = Ember.Service.extend({
     items: null,
 
     init: function init() {
@@ -3102,14 +4735,6 @@ define("chenxu/templates/application", ["exports"], function (exports) {
   });
   exports.default = Ember.HTMLBars.template({ "id": "5xVqTspE", "block": "{\"symbols\":[],\"statements\":[],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/application.hbs" } });
 });
-define("chenxu/templates/components/bs-datetimepicker", ["exports"], function (exports) {
-  "use strict";
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = Ember.HTMLBars.template({ "id": "+fvwG8MG", "block": "{\"symbols\":[\"&default\"],\"statements\":[[4,\"if\",[[22,1]],null,{\"statements\":[[0,\"  \"],[11,1],[0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[0,\"  \"],[1,[25,\"input\",null,[[\"type\",\"class\",\"disabled\",\"name\",\"placeholder\"],[\"text\",\"form-control\",[20,[\"disabled\"]],[20,[\"textFieldName\"]],[20,[\"placeholder\"]]]]],false],[0,\"\\n\"]],\"parameters\":[]}],[4,\"unless\",[[20,[\"noIcon\"]]],null,{\"statements\":[[6,\"span\"],[9,\"class\",\"input-group-addon\"],[7],[0,\"\\n  \"],[6,\"span\"],[10,\"class\",[26,[[25,\"if\",[[20,[\"icons\",\"date\"]],[20,[\"icons\",\"date\"]],[20,[\"dateIcon\"]]],null]]]],[7],[8],[0,\"\\n\"],[8],[0,\"\\n\"]],\"parameters\":[]},null]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/components/bs-datetimepicker.hbs" } });
-});
 define('chenxu/templates/components/x-select', ['exports', 'emberx-select/templates/components/x-select'], function (exports, _xSelect) {
   'use strict';
 
@@ -3163,6 +4788,70 @@ define("chenxu/templates/rcomp_backgammon_profile_editor", ["exports"], function
   });
   exports.default = Ember.HTMLBars.template({ "id": "qxXw5KaN", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"component\",[\"backgammon/profile-editor\"],[[\"model\",\"_z_controller\"],[[20,[\"model\"]],[19,0,[]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/rcomp_backgammon_profile_editor.hbs" } });
 });
+define("chenxu/templates/rcomp_concurrency", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "aNHHtt9K", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"component\",[\"concurrency\"],[[\"model\",\"_z_controller\"],[[20,[\"model\"]],[19,0,[]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/rcomp_concurrency.hbs" } });
+});
+define("chenxu/templates/rcomp_concurrency_version_five", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "lTwEiIcr", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"component\",[\"concurrency/version-five\"],[[\"model\",\"_z_controller\"],[[20,[\"model\"]],[19,0,[]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/rcomp_concurrency_version_five.hbs" } });
+});
+define("chenxu/templates/rcomp_concurrency_version_four", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "As2Imz3I", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"component\",[\"concurrency/version-four\"],[[\"model\",\"_z_controller\"],[[20,[\"model\"]],[19,0,[]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/rcomp_concurrency_version_four.hbs" } });
+});
+define("chenxu/templates/rcomp_concurrency_version_one", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "EWStb9WH", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"component\",[\"concurrency/version-one\"],[[\"model\",\"_z_controller\"],[[20,[\"model\"]],[19,0,[]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/rcomp_concurrency_version_one.hbs" } });
+});
+define("chenxu/templates/rcomp_concurrency_version_seven", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "uEtG86Ub", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"component\",[\"concurrency/version-seven\"],[[\"model\",\"_z_controller\"],[[20,[\"model\"]],[19,0,[]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/rcomp_concurrency_version_seven.hbs" } });
+});
+define("chenxu/templates/rcomp_concurrency_version_six", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "MSdMfcmi", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"component\",[\"concurrency/version-six\"],[[\"model\",\"_z_controller\"],[[20,[\"model\"]],[19,0,[]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/rcomp_concurrency_version_six.hbs" } });
+});
+define("chenxu/templates/rcomp_concurrency_version_three", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "byPTEywu", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"component\",[\"concurrency/version-three\"],[[\"model\",\"_z_controller\"],[[20,[\"model\"]],[19,0,[]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/rcomp_concurrency_version_three.hbs" } });
+});
+define("chenxu/templates/rcomp_concurrency_version_two", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "kV6NL1df", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"component\",[\"concurrency/version-two\"],[[\"model\",\"_z_controller\"],[[20,[\"model\"]],[19,0,[]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/rcomp_concurrency_version_two.hbs" } });
+});
 define("chenxu/templates/rcomp_css", ["exports"], function (exports) {
   "use strict";
 
@@ -3202,6 +4891,30 @@ define("chenxu/templates/rcomp_index_index_common", ["exports"], function (expor
     value: true
   });
   exports.default = Ember.HTMLBars.template({ "id": "v9rfWLtn", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"component\",[\"index/index-common\"],[[\"model\",\"_z_controller\"],[[20,[\"model\"]],[19,0,[]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/rcomp_index_index_common.hbs" } });
+});
+define("chenxu/templates/rcomp_lottery", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "itwtSVXP", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"component\",[\"lottery\"],[[\"model\",\"_z_controller\"],[[20,[\"model\"]],[19,0,[]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/rcomp_lottery.hbs" } });
+});
+define("chenxu/templates/rcomp_lottery_lottery_gift", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "L+J6CL/w", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"component\",[\"lottery/lottery-gift\"],[[\"model\",\"_z_controller\"],[[20,[\"model\"]],[19,0,[]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/rcomp_lottery_lottery_gift.hbs" } });
+});
+define("chenxu/templates/rcomp_lottery_lottery_win", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "5QtKy76L", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"component\",[\"lottery/lottery-win\"],[[\"model\",\"_z_controller\"],[[20,[\"model\"]],[19,0,[]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/rcomp_lottery_lottery_win.hbs" } });
 });
 define("chenxu/templates/rcomp_select", ["exports"], function (exports) {
   "use strict";
@@ -3275,6 +4988,38 @@ define("chenxu/templates/rcomp_team_team_other", ["exports"], function (exports)
   });
   exports.default = Ember.HTMLBars.template({ "id": "IJ/cbjSL", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"component\",[\"team/team-other\"],[[\"model\",\"_z_controller\"],[[20,[\"model\"]],[19,0,[]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/rcomp_team_team_other.hbs" } });
 });
+define("chenxu/templates/rcomp_teamv5", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "3MUJpJ4B", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"component\",[\"teamv5\"],[[\"model\",\"_z_controller\"],[[20,[\"model\"]],[19,0,[]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/rcomp_teamv5.hbs" } });
+});
+define("chenxu/templates/rcomp_teamv5_common_tree", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "+eBQa8jY", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"component\",[\"teamv5/common-tree\"],[[\"model\",\"_z_controller\"],[[20,[\"model\"]],[19,0,[]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/rcomp_teamv5_common_tree.hbs" } });
+});
+define("chenxu/templates/rcomp_teamv5_commonflex_tree", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "b76X4Xqg", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"component\",[\"teamv5/commonflex-tree\"],[[\"model\",\"_z_controller\"],[[20,[\"model\"]],[19,0,[]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/rcomp_teamv5_commonflex_tree.hbs" } });
+});
+define("chenxu/templates/rcomp_teamv5_modal_tree", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "SV6QZnlQ", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"component\",[\"teamv5/modal-tree\"],[[\"model\",\"_z_controller\"],[[20,[\"model\"]],[19,0,[]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/rcomp_teamv5_modal_tree.hbs" } });
+});
 define("chenxu/templates/rcomp_text", ["exports"], function (exports) {
   "use strict";
 
@@ -3282,6 +5027,14 @@ define("chenxu/templates/rcomp_text", ["exports"], function (exports) {
     value: true
   });
   exports.default = Ember.HTMLBars.template({ "id": "WsOJyuDw", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"component\",[\"text\"],[[\"model\",\"_z_controller\"],[[20,[\"model\"]],[19,0,[]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/rcomp_text.hbs" } });
+});
+define("chenxu/templates/rcomp_text_my_text", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "zHJuznGQ", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"component\",[\"text/my-text\"],[[\"model\",\"_z_controller\"],[[20,[\"model\"]],[19,0,[]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "chenxu/templates/rcomp_text_my_text.hbs" } });
 });
 define("chenxu/templates/rcomp_yield", ["exports"], function (exports) {
   "use strict";
@@ -3571,5 +5324,5 @@ catch(err) {
 });
 
 if (!runningTests) {
-  require("chenxu/app")["default"].create({"name":"chenxu","version":"0.0.0+2533a1c1"});
+  require("chenxu/app")["default"].create({"name":"chenxu","version":"0.0.0+56a22254"});
 }

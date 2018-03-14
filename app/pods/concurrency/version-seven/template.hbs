@@ -1,0 +1,15 @@
+<h5>{{status}}</h5>
+
+<ul>
+  <li>Parent Task:     {{parentTask.state}}</li>
+  <li>Child Task:      {{childTask.state}}</li>
+  <li>Grandchild Task: {{grandchildTask.state}}</li>
+</ul>
+
+<button onclick={{perform parentTask}}>
+  {{#if parentTask.isRunning}}
+    Restart Parent Task
+  {{else}}
+    Perform Parent Task
+  {{/if}}
+</button>

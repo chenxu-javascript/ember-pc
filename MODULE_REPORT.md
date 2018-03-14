@@ -1,14 +1,14 @@
 ## Module Report
 ### Unknown Global
 
-**Global**: `Ember.MODEL_FACTORY_INJECTIONS`
+**Global**: `Ember.null`
 
-**Location**: `app/app.js` at line 8
+**Location**: `app/models/utils.js` at line 134
 
 ```js
-let App;
 
-Ember.MODEL_FACTORY_INJECTIONS = true;
 
-App = Ember.Application.extend({
+var APP = Ember;
+var bsAddReqToken = function(url) {
+  if (!APP.REQ_TOKEN) {
 ```

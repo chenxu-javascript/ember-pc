@@ -1,0 +1,11 @@
+<button onclick={{action 'findStores'}}>
+  Find Nearby one
+</button>
+
+{{#if result}}
+  {{#each result as |s|}}
+    <li>
+      <strong>{{s.team_name}}</strong>:
+    </li>
+  {{/each}}
+{{/if}}

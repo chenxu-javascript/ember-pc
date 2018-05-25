@@ -8,6 +8,16 @@ module.exports = function(environment) {
     rootURL: '/',
     locationType: 'hash',
     contentSecurityPolicyHeader: 'Disabled-Content-Security-Policy',
+    flatpickr: {
+      theme: 'material_blue'
+    },
+    moment: {
+      includeLocales: ['zh-cn'],
+      includeTimezone: 'all',
+    },
+    i18n: {
+      defaultLocale: 'zh-cn'
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

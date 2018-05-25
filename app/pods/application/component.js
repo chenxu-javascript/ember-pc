@@ -3,6 +3,6 @@ import Component from '@ember/component';
 export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
-    bsLoad('./Adminlte/index.js');
+    // window.bsLoad('./Adminlte/index.js');
   },
 });

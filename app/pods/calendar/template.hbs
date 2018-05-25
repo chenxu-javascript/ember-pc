@@ -1,0 +1,18 @@
+{{#power-calendar as |calendar|}}
+  {{calendar.days}}
+{{/power-calendar}}
+
+<label>
+  Start date:
+  {{pikaday-input theme="dark-theme" format="MM/DD/YYYY"}}
+</label>
+
+{{bootstrap-datepicker value=expiresAt}}
+
+
+{{bootstrap-datepicker value=expiresAt format="dd.mm.yy"}}
+
+{{ember-flatpickr
+  locale='zh-cn'
+  onChange=(action (mut dateValue))
+}}

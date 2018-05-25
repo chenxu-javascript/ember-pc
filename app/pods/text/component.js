@@ -2,6 +2,10 @@ import Component from '@ember/component';
 
 export default Component.extend({
   // body
+  init() {
+    this._super(...arguments);
+    console.log('Component', 1);
+  },
   actions: {
     postmessage() {
       let params = {

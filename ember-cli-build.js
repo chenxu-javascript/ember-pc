@@ -13,6 +13,10 @@ module.exports = function(defaults) {
   'ember-cli-qunit': { // turn off jshint
     useLintTree: false
   },
+  flatpickr: {
+    theme: 'dark',
+    locales: ['zh-cn']
+  },
   sourcemaps: {
     enabled: false
   },

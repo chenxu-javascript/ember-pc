@@ -10,26 +10,25 @@ var imgDir = 'app/';
 var appDir = 'app';
 
 walkImgDir(imgDir);
-// console.log('arrJs', arrJs);
 
 function walkImgDir(fileName) {
   if (!fs.existsSync(fileName)) return;
   if (isFile(fileName)) {
     checkAppForImg(fileName);
   }
-  // if (isDirectory(fileName)) {
-  //   var files = fs.readdirSync(fileName);
-  //   files.forEach(function(val) {
-  //     var temp = path.join(fileName, val);
-  //     if (isDirectory(temp)) walkImgDir(temp);
-  //     if (isFile(temp)) checkAppForImg(temp);
-  //   })
-  // }
+  if (isDirectory(fileName)) {
+    var files = fs.readdirSync(fileName);
+    files.forEach(function(val) {
+      var temp = path.join(fileName, val);
+      if (isDirectory(temp)) walkImgDir(temp);
+      if (isFile(temp)) checkAppForImg(temp);
+    })
+  }
 }
 
 function checkAppForImg(imgName) {
   if (walkAppDir(appDir, imgName)) {
-    // console.log('used:', imgName);
+  //  console.log('used:', imgName);
   } else {
     console.log('unused:', imgName);
   }
@@ -83,7 +82,7 @@ function checkUsed(appFile, imgFile) {
   //   arrJs.push(imgFile);
   // }
   var data = readFile(appFile);
-  var imgName = imgFile.replace(/app\/(business\/)?(components\/)?(.*?)(\/component)?\.js/, '$3');
+  var imgName = imgFile.replace(/app\/(pods\/)?(components\/)?(.*?)(\/component)?\.js/, '$3');
   imgName = imgName.replace(/\//g, '\\/').replace(/\-/g, '\\-');
   var exc = new RegExp('\\{\\{#?'+imgName);
   // var importExc = new RegExp('import .*?' + imgName);
@@ -102,7 +101,9 @@ function isDirectory(fileName) {
 }
 
 function isFile(fileName) {
-  if (fs.existsSync(fileName)) return fs.statSync(fileName).isFile();
+  if (fs.existsSync(fileName)) {
+    return fs.statSync(fileName).isFile();
+  }
 }
 
 function readFile(fileName) {

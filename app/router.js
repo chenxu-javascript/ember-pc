@@ -7,6 +7,8 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('calendar');
+  this.route('not-found', { path: '/*path' });
   this.route('concurrency');
   this.route('css');
   this.route('yield');
@@ -18,7 +20,7 @@ Router.map(function() {
   this.route('team');
   this.route('img');
   this.route('backgammon');
-  this.route('text');
+  this.route('text', { path: '/text/:customer_id' });
   this.route('emberarray', { path: '/emarray' });
   this.route('emberfn', { path: '/emberfn' }, function() {
     this.route('embera', { path: '/embera' });
